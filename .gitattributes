@@ -1,0 +1,2 @@
+# Preserve source evidence bytes on every operating system.
+raw/** -text
