@@ -1,4 +1,4 @@
-﻿# MSL and KOL capstone wiki
+# MSL and KOL capstone wiki
 
 Status: editable starter templates. Created 13 October 2026.
 
@@ -6,6 +6,7 @@ Status: editable starter templates. Created 13 October 2026.
 - [Understanding the manager brief](manager-brief.md)
 - [Working capstone notes](../MSL_KOL_Capstone_Notes_and_References.md)
 - [MSL and KOL concepts](concepts/msl-kol.md)
+- [KOL categories and expert directory](concepts/kol-directory.md)
 - [Engagement workflow](workflows/engagement.md)
 - [Human oversight and guardrails](governance/oversight.md)
 - [Wiki change log](log.md)
@@ -14,7 +15,9 @@ Status: editable starter templates. Created 13 October 2026.
 ## Source evidence
 - [Original notes snapshot](../raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md): preserved byte-for-byte on 13 October 2026. This is a copy of the project notes, not independent verification of their external references.
 - The manager brief referenced in the notes is not yet stored in this repository.
-- A targeted review of the MSL role and reporting guidance is recorded in the [MSL evidence note](../raw/msl-role-evidence-1c04fa0376b0109331c0c11a441810e9cf9d7a946d01756a5de9e13cc388c615.md). Other linked papers have not been independently reviewed for these templates; full papers have not been downloaded.
+- A targeted review of the MSL role and reporting guidance is recorded in the [MSL evidence note](../raw/msl-role-evidence-1c04fa0376b0109331c0c11a441810e9cf9d7a946d01756a5de9e13cc388c615.md). A targeted review of training and the MAPS insights process is recorded in the [supporting concepts research note](../raw/msl-concepts-evidence-a5297a4aaeaaa9bddbc06dd0381661babbe67f03edb0d2a7fa0ac66634d87c0e.md). Other linked papers remain unreviewed for these templates; full copies of those papers have not been downloaded.
+
+- [KOL directory research notes](../raw/kol-directory-evidence-7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77.md): links expert selection and directory capabilities to reviewed source passages. The KOL page also links saved WHO HTML and Veeva PDF references.
 
 ## How to edit
 1. Open this repository folder in VS Code or as an Obsidian vault.

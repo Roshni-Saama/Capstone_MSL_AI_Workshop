@@ -40,3 +40,19 @@ Append new entries; preserve earlier entries.
 - Preserved the locally changed notes as a new hash-named snapshot. Restored the original snapshot from the parent source after verifying its filename hash; the earlier committed version had a line-ending difference.
 - Retained the readable MSL role note and MSL structure PDF as supporting material; the PDF has not been independently reviewed.
 - Obsidian workspace settings remain local.
+
+## 13 October 2026 - Revise MSL concepts for user review
+
+- Expanded the [concepts page](concepts/msl-kol.md) using the annotated explanation of MSL work and organisational value.
+- Revised the definitions and separated the illustrative reporting hierarchy from scientific exchange and internal collaboration.
+- Added the observation-versus-insight example, candidate operational and technical challenges, local evidence links, and direct paper references.
+- Added a hash-named supporting research note for scientific training and the MAPS insights process; preserved prior evidence.
+- Kept company-specific assumptions open and the revision in draft for user review before further work or publication.
+
+## 13 October 2026 - Publish KOL discussion to the wiki
+
+- Added [KOL categories and expert directory](concepts/kol-directory.md) covering the six requested topics and references.
+- Distinguished working categories and proposed maintenance steps from professional guidance and vendor capabilities.
+- Linked the saved WHO page and Veeva PDF, recorded a source-backed research note, and added index navigation.
+- Prepared the KOL page and its evidence for GitHub; the Markdown also resides in the existing Obsidian vault.
+- The separate MSL concepts revision remains a local draft outside this publication.
