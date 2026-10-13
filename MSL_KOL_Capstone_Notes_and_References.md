@@ -1,4 +1,4 @@
-﻿# MSL and KOL Engagement Capstone Notes and References
+# MSL and KOL Engagement Capstone Notes and References
 
 Collected discussion notes for the AI workshop capstone. Updated 13 October 2026.
 
