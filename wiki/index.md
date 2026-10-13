@@ -15,9 +15,11 @@ Status: editable starter templates. Created 13 October 2026.
 ## Source evidence
 - [Original notes snapshot](../raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md): preserved byte-for-byte on 13 October 2026. This is a copy of the project notes, not independent verification of their external references.
 - The manager brief referenced in the notes is not yet stored in this repository.
-- A targeted review of the MSL role and reporting guidance is recorded in the [MSL evidence note](../raw/msl-role-evidence-1c04fa0376b0109331c0c11a441810e9cf9d7a946d01756a5de9e13cc388c615.md). A targeted review of training and the MAPS insights process is recorded in the [supporting concepts research note](../raw/msl-concepts-evidence-a5297a4aaeaaa9bddbc06dd0381661babbe67f03edb0d2a7fa0ac66634d87c0e.md). Other linked papers remain unreviewed for these templates; full copies of those papers have not been downloaded.
+- A targeted review of the MSL role and reporting guidance is recorded in the [MSL evidence note](../raw/msl-role-evidence.md). A targeted review of training and the MAPS insights process is recorded in the [supporting concepts research note](../raw/msl-concepts-evidence.md). Other linked papers remain unreviewed for these templates; full copies of those papers have not been downloaded.
 
-- [KOL directory research notes](../raw/kol-directory-evidence-7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77.md): links expert selection and directory capabilities to reviewed source passages. The KOL page also links saved WHO HTML and Veeva PDF references.
+- [KOL directory research notes](../raw/kol-directory-evidence.md): links expert selection and directory capabilities to reviewed source passages. The KOL page also links saved WHO HTML and Veeva PDF references.
+
+- [Current readable capstone notes](../raw/Capstone_notes.md), with a [preserved snapshot](../raw/notes-aa7e638dd48c1f9f9b0aac118e9cba2f100efb8a4cabcc06230a3c095a0e6db2.md). Readable source aliases are maintained alongside the original evidence versions.
 
 ## How to edit
 1. Open this repository folder in VS Code or as an Obsidian vault.
@@ -34,7 +36,7 @@ Status: draft populated from discussion notes on 13 October 2026. Proposed scope
 
 Draft problem: MSLs need to assemble relevant evidence and prior interaction history before a KOL meeting, then accurately document questions and complete follow-up. Fragmented information and unclear task ownership may increase preparation effort and leave questions unresolved. The intended outcome is a source-backed briefing and a reviewed follow-up record with clear owners and status.
 
-Basis: [Original notes, Operational and technical challenges](../raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md#operational-and-technical-challenges). These are candidate problems, not validated findings about a particular company.
+Basis: [Original notes, Operational and technical challenges](../raw/Capstone_notes.md#operational-and-technical-challenges). These are candidate problems, not validated findings about a particular company.
 
 ### Users and stakeholder reviewer
 
@@ -43,7 +45,7 @@ Basis: [Original notes, Operational and technical challenges](../raw/notes-745b8
 - Supporting roles in the illustrative example: medical-information colleagues reviewing responses and the medical team reviewing potential insights.
 - Proposed stakeholder reviewer: an MSL or Medical Affairs manager who can validate the workflow. Named reviewer and review date: [To complete]. Specialist reviewers for privacy, compliance, and safety routing: [To complete with the company].
 
-Basis: [Original notes, The MSL role and value](../raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md#the-msl-role-and-value) and [the fictional engagement example](../raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md#an-illustrative-engagement-from-preparation-through-follow-up).
+Basis: [Original notes, The MSL role and value](../raw/Capstone_notes.md#the-msl-role-and-value) and [the fictional engagement example](../raw/Capstone_notes.md#an-illustrative-engagement-from-preparation-through-follow-up).
 
 ### Selected use case and exclusions
 
@@ -56,7 +58,7 @@ Proposed first use case: an MSL preparation and follow-up assistant. Final selec
 
 Proposed exclusions for the initial prototype: autonomous external messaging, patient treatment recommendations, sales targeting, promises of funding or research, live meeting recording, and company-wide strategy automation. Potential safety information must be flagged for the required company process; the prototype must not make final safety-reporting decisions. These are proposed boundaries, not approved company policy.
 
-Basis: [Original notes, Possible AI scope for the capstone](../raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md#possible-ai-scope-for-the-capstone). Prototype exclusions are design proposals added here for review.
+Basis: [Original notes, Possible AI scope for the capstone](../raw/Capstone_notes.md#possible-ai-scope-for-the-capstone). Prototype exclusions are design proposals added here for review.
 
 ### Success measures and evaluation plan
 
@@ -70,4 +72,4 @@ Proposed measures:
 
 Proposed evaluation: use fictional or authorised de-identified engagements, compare manual and assisted outputs against the same source pack, and have an MSL or Medical Affairs reviewer assess them. Include missing evidence, conflicting sources, an unsolicited off-label question, and potential safety information as review cases. Measure task handling and flags, not clinical outcomes or sales.
 
-Baseline, numeric targets, test dataset, acceptance criteria, evaluator, and review date: [To complete after stakeholder validation]. These measures and test cases are new design proposals, not measured results. Their rationale is the accuracy, traceability, privacy, and oversight requirements in [Original notes, Possible AI scope](../raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md#possible-ai-scope-for-the-capstone).
+Baseline, numeric targets, test dataset, acceptance criteria, evaluator, and review date: [To complete after stakeholder validation]. These measures and test cases are new design proposals, not measured results. Their rationale is the accuracy, traceability, privacy, and oversight requirements in [Original notes, Possible AI scope](../raw/Capstone_notes.md#possible-ai-scope-for-the-capstone).

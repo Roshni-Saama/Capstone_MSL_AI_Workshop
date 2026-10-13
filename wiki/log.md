@@ -56,3 +56,11 @@ Append new entries; preserve earlier entries.
 - Linked the saved WHO page and Veeva PDF, recorded a source-backed research note, and added index navigation.
 - Prepared the KOL page and its evidence for GitHub; the Markdown also resides in the existing Obsidian vault.
 - The separate MSL concepts revision remains a local draft outside this publication.
+
+## 13 October 2026 - Save edits made in Obsidian
+
+- Saved the user's revised MSL concepts content and readable source filenames for VS Code and GitHub.
+- Corrected source links to use relative paths to raw so they resolve in GitHub and Obsidian.
+- Retained original hash-named evidence versions alongside the readable aliases and added a snapshot of the current Capstone notes.
+- Kept the historical original-snapshot links pointing to their original evidence.
+- Obsidian workspace configuration remains local.

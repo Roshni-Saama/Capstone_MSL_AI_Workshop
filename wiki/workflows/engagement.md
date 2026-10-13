@@ -4,7 +4,7 @@ Status: proposed workflow template, not a validated company process.
 Owner: [To complete]. Last reviewed: [To complete].
 
 ## Evidence to review
-See "An illustrative engagement" and "Possible AI scope" in the [original notes](../../raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md).
+See "An illustrative engagement" and "Possible AI scope" in the [original notes](../../raw/Capstone_notes.md).
 The example in those notes is fictional.
 
 ## Workflow design

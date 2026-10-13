@@ -4,7 +4,7 @@ Status: draft discussion guide. Created 13 October 2026. Reviewer and review dat
 
 This page extracts the manager-brief summary and explains the choices the team needs to make.
 
-Source: [Preserved notes, The manager brief](../raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md#the-manager-brief). This is our discussion summary, not the original manager DOCX. Its filename is shown as plain text because the DOCX is not stored in this repository.
+Source: [Preserved notes, The manager brief](../raw/Capstone_notes.md#the-manager-brief). This is our discussion summary, not the original manager DOCX. Its filename is shown as plain text because the DOCX is not stored in this repository.
 
 ## The manager brief
 

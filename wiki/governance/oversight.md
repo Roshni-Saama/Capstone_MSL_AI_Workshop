@@ -4,7 +4,7 @@ Status: draft design template, not approved policy.
 Owner: [To complete]. Last reviewed: [To complete].
 
 ## Evidence to review
-See "Possible AI scope" and the engagement example in the [original notes](../../raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md).
+See "Possible AI scope" and the engagement example in the [original notes](../../raw/Capstone_notes.md).
 Confirm applicable company procedures and local requirements with an authorized reviewer.
 
 ## Controls to define

@@ -6,8 +6,8 @@ For a pharma company, KOL identification starts with the therapy area and scient
 
 ## Evidence to review
 
-- [Selection and first contact evidence](../../raw/kol-directory-evidence-7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77.md#selection-and-first-contact).
-- [Expert profiles and identity evidence](../../raw/kol-directory-evidence-7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77.md#expert-profiles-and-identity).
+- [Selection and first contact evidence](../../raw/kol-directory-evidence.md#selection-and-first-contact).
+- [Expert profiles and identity evidence](../../raw/kol-directory-evidence.md#expert-profiles-and-identity).
 - [Veeva Four Pillars PDF](../../raw/Veeva_Four_Pillars_of_Data_Driven_KOL-1e21cf0e7e2c96238d6ad182f6b7bb0304b1607ceab10943c95f458596d8a804.pdf): pages 3 to 6 discuss community, emerging, scientific, clinical, and digital experts and combining profile intelligence with CRM history.
 - [WHO ATC classification saved page](../../raw/WHO_ATC_Classification-69e6a3bc096cf41c2b8bab0614ddcc89dfeca414cdf4528e6c913ec9445c3468.html): formal medicine classification; it does not classify KOLs.
 
@@ -17,7 +17,7 @@ Direct web references appear below. The working tables and proposed process are 
 
 A Key Opinion Leader is an expert recognised for relevant scientific or clinical knowledge and influence. KOLs can be specialist doctors or scientific researchers. Being a doctor alone does not establish KOL status; wider Medical Affairs stakeholders are not automatically KOLs.
 
-Relevant evidence includes expertise, publications, research activity, and contributions to professional societies or guidelines. Prescribing potential is not an appropriate basis for scientific expert selection. [Selection evidence](../../raw/kol-directory-evidence-7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77.md#selection-and-first-contact).
+Relevant evidence includes expertise, publications, research activity, and contributions to professional societies or guidelines. Prescribing potential is not an appropriate basis for scientific expert selection. [Selection evidence](../../raw/kol-directory-evidence.md#selection-and-first-contact).
 
 Relevance is specific: a lung-cancer biomarker expert may be relevant to one evidence question but not another. Match expertise to the scientific purpose rather than relying on general prominence.
 
@@ -64,13 +64,13 @@ The following are candidate discovery routes. A listing or search result identif
 | Emerging experts | Recent publications, conference presenters, trial and research teams |
 | Digital opinion leaders | Professional scientific discussions and webinars, checked against institutional and research credentials |
 
-Curated profiles combine multiple discovery signals. See [Expert profiles evidence](../../raw/kol-directory-evidence-7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77.md#expert-profiles-and-identity) and [Veeva PDF, pages 3 to 6](../../raw/Veeva_Four_Pillars_of_Data_Driven_KOL-1e21cf0e7e2c96238d6ad182f6b7bb0304b1607ceab10943c95f458596d8a804.pdf).
+Curated profiles combine multiple discovery signals. See [Expert profiles evidence](../../raw/kol-directory-evidence.md#expert-profiles-and-identity) and [Veeva PDF, pages 3 to 6](../../raw/Veeva_Four_Pillars_of_Data_Driven_KOL-1e21cf0e7e2c96238d6ad182f6b7bb0304b1607ceab10943c95f458596d8a804.pdf).
 
 Geographic relevance depends on the intended country, disease area, and research programme. There is no universal location ranking in these sources. International prominence and local relevance should be assessed separately.
 
 ## How a company makes the first connection
 
-Professional guidance supports an introductory meeting to understand scientific needs and the expert's interest in engagement. [First-contact evidence](../../raw/kol-directory-evidence-7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77.md#selection-and-first-contact).
+Professional guidance supports an introductory meeting to understand scientific needs and the expert's interest in engagement. [First-contact evidence](../../raw/kol-directory-evidence.md#selection-and-first-contact).
 
 Proposed outreach sequence for validation:
 
@@ -94,7 +94,7 @@ Distinguish external scientific intelligence, the company identity record, and p
 | Company master directory | Consistent identity and institution links across systems | HCP master data; identifiers such as IQVIA OneKey |
 | Medical interaction history | Meetings, questions, requests, follow-up status, recorded preferences | Company medical CRM |
 
-Veeva and IQVIA describe linking expert intelligence to company systems. These examples do not establish which tools the intended company uses. [Profiles and identity evidence](../../raw/kol-directory-evidence-7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77.md#expert-profiles-and-identity).
+Veeva and IQVIA describe linking expert intelligence to company systems. These examples do not establish which tools the intended company uses. [Profiles and identity evidence](../../raw/kol-directory-evidence.md#expert-profiles-and-identity).
 
 Proposed maintenance responsibilities:
 
@@ -117,7 +117,7 @@ An external directory identifies and profiles experts. The company CRM records i
 
 ## References
 
-1. **Theron et al. (2021), Promoting Best Practices for Medical Science Liaisons, APPA, IFAPP, MAPS and MSLS.** Relevant sections: scientific exchange, expert selection, responsibilities, and independence. [Publisher article](https://link.springer.com/article/10.1007/s43441-021-00310-y) | [PDF](https://ifapp.org/wp-content/uploads/2021/08/Theron2021_Article_PromotingBestPracticesForMedic.pdf) | [Local evidence](../../raw/kol-directory-evidence-7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77.md#selection-and-first-contact).
+1. **Theron et al. (2021), Promoting Best Practices for Medical Science Liaisons, APPA, IFAPP, MAPS and MSLS.** Relevant sections: scientific exchange, expert selection, responsibilities, and independence. [Publisher article](https://link.springer.com/article/10.1007/s43441-021-00310-y) | [PDF](https://ifapp.org/wp-content/uploads/2021/08/Theron2021_Article_PromotingBestPracticesForMedic.pdf) | [Local evidence](../../raw/kol-directory-evidence.md#selection-and-first-contact).
 2. **Veeva, Four Pillars of Data-Driven KOL Engagement.** Relevant pages: 3 to 6. Vendor perspective, not professional policy. [PDF online](https://www.veeva.com/eu/wp-content/uploads/2024/06/Four-Pillars-of-Data-Driven-KOL_eBook-EU.pdf?5) | [Saved PDF](../../raw/Veeva_Four_Pillars_of_Data_Driven_KOL-1e21cf0e7e2c96238d6ad182f6b7bb0304b1607ceab10943c95f458596d8a804.pdf) | [Related web page](https://www.veeva.com/eu/resources/four-pillars-of-data-driven-kol-engagement/).
 3. **WHO, Anatomical Therapeutic Chemical Classification.** Medicine classification, not KOL segmentation. [Web page](https://www.who.int/tools/atc-ddd-toolkit/atc-classification) | [Saved HTML](../../raw/WHO_ATC_Classification-69e6a3bc096cf41c2b8bab0614ddcc89dfeca414cdf4528e6c913ec9445c3468.html).
 4. **Veeva Link Key People.** Expert profile content and access options. [Product page](https://www.veeva.com/ap/products/veeva-link/) | [Global product page](https://www.veeva.com/products/veeva-link/).
