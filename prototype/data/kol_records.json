@@ -1,0 +1,125 @@
+{
+  "synthetic": true,
+  "records": [
+    {
+      "kol_id": "KOL-DEMO-001",
+      "display_name": "Dr Mira Sen",
+      "organization_id": "ORG-DEMO-001",
+      "institution": "Harborview Cancer Institute (fictional)",
+      "role": "Medical oncologist and clinical researcher",
+      "therapy_area": "Oncology, fictional solid-tumor evidence scenario",
+      "expert_categories": ["Clinical expert", "Research leader"],
+      "planned_meeting": {
+        "engagement_id": "ENG-DEMO-003",
+        "date": "2026-10-27",
+        "purpose": "Review the open question and discuss what evidence is available, including limitations"
+      },
+      "interactions": [
+        {
+          "engagement_id": "ENG-DEMO-001",
+          "date": "2026-06-12",
+          "purpose": "Discuss a fictional study's eligibility criteria and questions for a future evidence review",
+          "observation": "The KOL asked whether the study materials described how older adults were represented.",
+          "msl_interpretation": "The KOL may want a clearer summary of population characteristics and limitations. Draft interpretation, not a quote or validated insight.",
+          "task_id": "TASK-DEMO-001",
+          "task": "Locate a suitable reviewed source pack and prepare a response draft.",
+          "owner_role": "MSL, Field Medical",
+          "status": "Open",
+          "due_date": "2026-10-28"
+        },
+        {
+          "engagement_id": "ENG-DEMO-002",
+          "date": "2026-08-20",
+          "purpose": "Revisit the earlier evidence question",
+          "observation": "The KOL asked whether there had been an update to the prior follow-up.",
+          "msl_interpretation": "The question remains relevant to the next meeting because the prior task is still open. Draft interpretation.",
+          "task_id": "TASK-DEMO-001",
+          "task": "Prior request remains open; no response is recorded in this fixture.",
+          "owner_role": "MSL, Field Medical",
+          "status": "Open",
+          "due_date": "2026-10-28"
+        }
+      ]
+    },
+    {
+      "kol_id": "KOL-DEMO-002",
+      "display_name": "Dr Arjun Rao",
+      "organization_id": "ORG-DEMO-002",
+      "institution": "Northbridge Oncology Centre (fictional)",
+      "role": "Medical oncologist and clinical researcher",
+      "therapy_area": "Oncology, fictional solid-tumor evidence scenario",
+      "expert_categories": ["Clinical expert", "Emerging research contributor"],
+      "planned_meeting": {
+        "engagement_id": "ENG-DEMO-103",
+        "date": "2026-11-03",
+        "purpose": "Clarify the evidence question and review approved, relevant sources if available"
+      },
+      "interactions": [
+        {
+          "engagement_id": "ENG-DEMO-101",
+          "date": "2026-08-05",
+          "purpose": "Discuss general operational questions about biomarker-testing workflows in a fictional setting",
+          "observation": "The KOL asked what information an evidence summary should include to support testing-related discussion.",
+          "msl_interpretation": "A concise, source-linked explanation may be useful. Draft interpretation, not a quote or validated insight.",
+          "task_id": "TASK-DEMO-101",
+          "task": "Identify a reviewed source pack relevant to the question and draft a response for review.",
+          "owner_role": "MSL, Field Medical",
+          "status": "In progress",
+          "due_date": "2026-10-30"
+        },
+        {
+          "engagement_id": "ENG-DEMO-102",
+          "date": "2026-09-16",
+          "purpose": "Check whether the requested evidence summary had been prepared",
+          "observation": "The KOL asked for an update and clarified that the question concerned evidence sources, not an individual patient's care.",
+          "msl_interpretation": "Keep the distinction between an evidence request and patient-specific advice explicit. Draft interpretation.",
+          "task_id": "TASK-DEMO-101",
+          "task": "Request remains in progress pending source review; no response is recorded.",
+          "owner_role": "MSL, Field Medical",
+          "status": "In progress",
+          "due_date": "2026-10-30"
+        }
+      ]
+    },
+    {
+      "kol_id": "KOL-DEMO-003",
+      "display_name": "Dr Leah Park",
+      "organization_id": "ORG-DEMO-003",
+      "institution": "Meridian Cancer Research Hospital (fictional)",
+      "role": "Oncology researcher and clinical investigator",
+      "therapy_area": "Oncology, fictional solid-tumor evidence scenario",
+      "expert_categories": ["Research leader", "Clinical expert"],
+      "planned_meeting": {
+        "engagement_id": "ENG-DEMO-203",
+        "date": "2026-11-10",
+        "purpose": "Review the draft outline and clarify what should be sourced versus interpreted"
+      },
+      "interactions": [
+        {
+          "engagement_id": "ENG-DEMO-201",
+          "date": "2026-07-18",
+          "purpose": "Discuss study endpoints and evidence limitations in a fictional scenario",
+          "observation": "The KOL asked how an evidence summary would distinguish a measured study outcome from an interpretation of broader relevance.",
+          "msl_interpretation": "The KOL may value explicit separation of reported outcomes from contextual interpretation. Draft interpretation, not a quote or validated insight.",
+          "task_id": "TASK-DEMO-201",
+          "task": "Prepare a source-linked outline distinguishing reported outcomes, limitations, and interpretation.",
+          "owner_role": "MSL, Field Medical",
+          "status": "Awaiting review",
+          "due_date": "2026-11-04"
+        },
+        {
+          "engagement_id": "ENG-DEMO-202",
+          "date": "2026-09-29",
+          "purpose": "Follow up on the proposed outline and confirm the next discussion question",
+          "observation": "The KOL asked that the outline clearly identify where source evidence ends and interpretation begins.",
+          "msl_interpretation": "Preserve source references next to each scientific statement and label synthesis as interpretation. Draft interpretation.",
+          "task_id": "TASK-DEMO-201",
+          "task": "Outline remains a draft and has not been approved or shared.",
+          "owner_role": "MSL, Field Medical",
+          "status": "Awaiting review",
+          "due_date": "2026-11-04"
+        }
+      ]
+    }
+  ]
+}
