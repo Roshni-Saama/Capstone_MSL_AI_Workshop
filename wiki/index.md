@@ -58,6 +58,10 @@ Proposed first use case: an MSL preparation and follow-up assistant for repeat K
 - Demo data: use fictional KOLs, organizations, interactions, and follow-up records with enterprise-like identifiers and relationships. Do not connect to or imply access to a live CRM.
 - Human review: the MSL reviews briefings, interpretations, and outgoing responses.
 
+### Agent and runtime decision
+
+Prototype decision: use exactly three deterministic local agents coordinated by LangGraph: (1) KOL Context Agent for exact-ID synthetic CRM retrieval; (2) Scientific Source Agent for user-triggered, read-only PubMed and ClinicalTrials.gov search and source-preserving formatting; and (3) Follow-up Agent for note preservation and generic rule-based follow-up prompts. No LLM, model API, cloud inference, or model key is used. Public registries receive only user-entered search terms; selected material remains local and is not interpreted by the prototype. This is a prototype, not a validated medical system.
+
 Proposed exclusions for the initial prototype: autonomous external messaging, patient treatment recommendations, sales targeting, promises of funding or research, live meeting recording, and company-wide strategy automation. Potential safety information must be flagged for the required company process; the prototype must not make final safety-reporting decisions. These are proposed boundaries, not approved company policy.
 
 Basis: [Original notes, Possible AI scope for the capstone](../raw/Capstone_notes.md#possible-ai-scope-for-the-capstone). Prototype exclusions are design proposals added here for review.

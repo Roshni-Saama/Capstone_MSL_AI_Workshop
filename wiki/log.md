@@ -78,3 +78,17 @@ Append new entries; preserve earlier entries.
 - Added stable fictional IDs and explicit provenance warnings; excluded real contact details, patient information, and scientific claims.
 - Linked the fixture from the wiki home and repeat-meeting workflow.
 - The records are demo inputs only; no runnable application or live CRM integration is present in this workspace.
+
+## 23 October 2026 - Decide the three-agent prototype runtime
+
+- Recorded the runtime decision: three bounded deterministic agents coordinated by LangGraph, with no LLM or Gemini runtime.
+- Assigned KOL history retrieval, read-only scientific source retrieval, and reviewed follow-up drafting to separate agents.
+- Clarified that PubMed and ClinicalTrials.gov source text is preserved, not interpreted, and registry discussion prompts are neutral templates.
+- Updated the decision to match the working prototype; it remains a demonstrator, not a validated medical system.
+
+## 23 October 2026 - Keep model drafting local-only
+
+- Removed the optional OpenAI Responses API integration, API-key configuration, SDK dependency, and cloud-only tests.
+- Kept the three deterministic local agents and read-only, user-triggered PubMed/ClinicalTrials.gov search connectors.
+- Clarified that registry searches send only user-entered query terms to the public APIs; scientific drafts remain source-preserving and are not interpreted by a model.
+- No OpenAI request or API key was used. Previously pushed GitHub commits are being withdrawn from the remote main branch separately; prior public API search queries cannot be recalled.

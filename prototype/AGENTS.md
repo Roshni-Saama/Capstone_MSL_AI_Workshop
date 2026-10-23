@@ -7,8 +7,8 @@ Build a demonstrable MSL repeat-meeting assistant using only the fictional CRM f
 ## Required workflow
 
 1. Read `README.md` and the relevant acceptance criteria before changing behavior.
-2. Keep the application to three bounded capabilities: KOL context retrieval, read-only scientific-source retrieval (PubMed and ClinicalTrials.gov), and reviewed note/follow-up drafting.
-3. Keep workflow processing deterministic; PubMed is the only external read-only source, and no LLM or model API may be called.
+2. Keep exactly three application agents: KOL Context Agent, Scientific Source Agent (read-only PubMed and ClinicalTrials.gov), and Follow-up Agent.
+3. Keep all workflow processing deterministic and local; do not call an LLM or external model API.
 4. Treat synthetic CRM notes as interaction history, never as scientific evidence.
 5. Do not add real HCP/patient data, real CRM connections or writes, external messages, or real safety reporting.
 6. Add or update focused tests and run `python -m pytest -q` before reporting completion.

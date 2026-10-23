@@ -4,11 +4,11 @@ This Streamlit proof of concept demonstrates a repeat MSL-KOL meeting workflow o
 
 ## What it demonstrates
 
-1. Select a fictional KOL and retrieve only that record's profile, interaction history, and open follow-up.
-2. Search PubMed through NCBI E-utilities and ClinicalTrials.gov through its current API v2, inspect cited records, and explicitly select articles/studies to include as source text. The trial registry also gets neutral, rule-based discussion prompts tied to registered fields. The app accepts optional user-supplied scientific source text. Without source text, it abstains from scientific claims; selected records/source text are preserved and not interpreted.
-3. Structure new meeting notes into a review draft using deterministic rules. Notes remain verbatim, interpretation is left to the MSL, and a generic follow-up prompt is suggested only when question/request/evidence terms appear.
+1. **KOL Context Agent:** select a fictional KOL and retrieve only that record's profile, interaction history, and open follow-up.
+2. **Scientific Source Agent:** search PubMed through NCBI E-utilities and ClinicalTrials.gov through API v2, inspect cited records, and explicitly select articles/studies to include as source text. The trial registry also gets neutral, rule-based discussion prompts tied to registered fields. The app accepts optional user-supplied scientific source text. Without source text, it abstains from scientific claims; selected records/source text are preserved and not interpreted.
+3. **Follow-up Agent:** structure new meeting notes into a review draft using deterministic rules. Notes remain verbatim, interpretation is left to the MSL, and a generic follow-up prompt is suggested only when question/request/evidence terms appear.
 
-The workflow nodes are implemented as LangGraph steps: `retrieve_context`, `draft_briefing`, and `draft_follow_up`. PubMed access uses NCBI E-utilities ESearch/EFetch; clinical trial search uses the ClinicalTrials.gov API v2 `GET /studies` endpoint. Both are read-only and user-triggered; HTTPS verification uses the operating-system trust store. No LLM or model API is used. Python code performs citation formatting, source preservation, and neutral field-based discussion prompts. This prototype does not interpret abstracts or generate medical summaries. See the [NCBI E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK25500/) and [ClinicalTrials.gov API documentation](https://clinicaltrials.gov/data-api/api).
+LangGraph coordinates three deterministic local Python agents. No LLM, model API, cloud inference, or API key is used. PubMed and ClinicalTrials.gov are contacted only when a user explicitly searches; only the query term is sent to those public registries. The prototype preserves selected records as source text and does not interpret abstracts or generate medical summaries. This remains a prototype, not a validated medical system. See the [NCBI E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK25500/) and [ClinicalTrials.gov API documentation](https://clinicaltrials.gov/data-api/api).
 
 ## Run locally
 
@@ -47,4 +47,4 @@ All briefings and follow-up outputs are drafts. The MSL must verify identity, so
 - No source text means no scientific claims are generated; the app shows an abstention.
 - New notes are preserved, interpretation remains for MSL review, and follow-up prompts use deterministic rules.
 - Drafts are visibly marked as requiring human review.
-- Tests cover record isolation, evidence abstention, source preservation, rule-based follow-up, and mocked PubMed/ClinicalTrials.gov parsing without live network calls.
+- Tests cover record isolation, evidence abstention, source preservation, rule-based follow-up, and mocked registry parsing without live model calls.

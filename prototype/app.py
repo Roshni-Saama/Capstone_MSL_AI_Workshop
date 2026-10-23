@@ -4,20 +4,22 @@ from __future__ import annotations
 
 import streamlit as st
 
-from clinical_trials import ClinicalTrialsError, discussion_prompts, search_clinical_trials
-from pubmed import PubMedError, search_pubmed
+from agents import ScientificSourceAgent
+from clinical_trials import ClinicalTrialsError
+from pubmed import PubMedError
 from workflow import load_records, run_workflow
 
 
 st.set_page_config(page_title="Medical Engagement Workbench", page_icon="M", layout="wide")
 st.title("Medical Engagement Workbench")
-st.caption("Repeat-meeting preparation and follow-up | Code-only synthetic-data prototype")
+st.caption("Repeat-meeting preparation and follow-up | Local-only prototype")
 st.warning(
     "Fictional demo data only. Draft support tool, not clinical advice or a live CRM. "
     "Verify all content; do not enter patient-identifiable or real HCP information."
 )
 
 records = load_records()
+source_agent = ScientificSourceAgent()
 selected = st.selectbox(
     "Select a fictional KOL",
     records,
@@ -62,7 +64,7 @@ with right:
             st.session_state["pubmed_results"] = []
         else:
             try:
-                st.session_state["pubmed_results"] = search_pubmed(pubmed_query, retmax=5)
+                st.session_state["pubmed_results"] = source_agent.search_pubmed(pubmed_query, retmax=5)
                 st.session_state.pop("pubmed_error", None)
             except (PubMedError, ValueError) as error:
                 st.session_state["pubmed_results"] = []
@@ -112,7 +114,7 @@ with right:
             st.session_state["trial_results"] = []
         else:
             try:
-                st.session_state["trial_results"] = search_clinical_trials(trial_query, page_size=5)
+                st.session_state["trial_results"] = source_agent.search_trials(trial_query, page_size=5)
                 st.session_state.pop("trial_error", None)
             except (ClinicalTrialsError, ValueError) as error:
                 st.session_state["trial_results"] = []
@@ -144,7 +146,7 @@ with right:
                     f"**Enrollment:** {trial['enrollment']} {trial['enrollment_type']}"
                 )
                 st.markdown(f"[Open ClinicalTrials.gov record]({trial['url']})")
-                prompts = discussion_prompts(trial)
+                prompts = source_agent.trial_discussion_prompts(trial)
                 st.markdown("**Neutral discussion prompts (draft):**")
                 for prompt in prompts:
                     st.markdown(f"- {prompt}")
@@ -160,7 +162,7 @@ with right:
     scientific_source_text = st.text_area(
         "Optional source text from approved materials",
         height=130,
-        placeholder="Paste relevant text only if permitted. Source text is preserved verbatim and not interpreted by this code-only prototype.",
+        placeholder="Paste permitted text for local source preservation. No model service is used.",
     )
     meeting_notes = st.text_area(
         "New fictional meeting notes",
@@ -175,44 +177,13 @@ if generate:
         for article in st.session_state.get("pubmed_results", [])
         if article["pmid"] in selected_pmids
     ]
-    selected_pubmed_text = "\n\n".join(
-        "\n".join(
-            [
-                f"Title: {article['title']}",
-                f"Authors: {article['authors'] or 'Unavailable'}",
-                f"Journal: {article['journal'] or 'Unavailable'} ({article['year'] or 'Year unavailable'})",
-                f"PMID: {article['pmid']}",
-                f"PubMed URL: {article['url']}",
-                f"DOI: {article['doi'] or 'Unavailable'}",
-                f"Abstract: {article['abstract'] or 'No abstract available.'}",
-            ]
-        )
-        for article in selected_articles
-    )
+    selected_pubmed_text = source_agent.format_pubmed_sources(selected_articles)
     selected_trials = [
         trial
         for trial in st.session_state.get("trial_results", [])
         if trial["nct_id"] in selected_nct_ids
     ]
-    selected_trial_text = "\n\n".join(
-        "\n".join(
-            [
-                f"Registry source: ClinicalTrials.gov",
-                f"NCT ID: {trial['nct_id']}",
-                f"Title: {trial['title']}",
-                f"Record URL: {trial['url']}",
-                f"Registry status: {trial['status']}",
-                f"Last posted update: {trial['last_updated'] or 'Not listed'}",
-                f"Study type: {trial['study_type']}; phase: {trial['phase']}",
-                f"Conditions: {', '.join(trial['conditions']) or 'Not listed'}",
-                f"Interventions: {', '.join(trial['interventions']) or 'Not listed'}",
-                f"Primary outcomes: {'; '.join(trial['primary_outcomes']) or 'Not listed'}",
-                f"Enrollment: {trial['enrollment']} {trial['enrollment_type']}",
-                f"Eligibility: {trial['eligibility']}",
-            ]
-        )
-        for trial in selected_trials
-    )
+    selected_trial_text = source_agent.format_trial_sources(selected_trials)
     source_parts = [
         part
         for part in (selected_pubmed_text, selected_trial_text, scientific_source_text.strip())
@@ -237,6 +208,7 @@ if result:
 
 st.divider()
 st.caption(
-    "Workflow: deterministic KOL history retrieval → evidence-bounded briefing draft → "
-    "reviewable follow-up draft. No live integrations or safety submissions."
+    "LangGraph coordinates three bounded local agents. PubMed and ClinicalTrials.gov searches "
+    "are explicit read-only web requests; no model service, CRM writes, external messages, "
+    "or safety submissions are used."
 )

@@ -2,6 +2,7 @@
 
 | Requirement | Validation | Test or location | Status |
 | --- | --- | --- | --- |
+| Three code-only agents have distinct responsibilities | Direct agent contracts and orchestrated graph output | `tests/test_agents.py` | Implemented |
 | Exactly three unique synthetic KOLs | Load fixture and assert count/IDs | `tests/test_workflow.py::test_loads_exactly_three_unique_synthetic_records` | Implemented |
 | Exact KOL lookup; no cross-record leakage | Compare returned IDs and engagement IDs | `tests/test_workflow.py::test_record_lookup_does_not_mix_kol_history` | Implemented |
 | Unknown identity fails closed | Request unknown ID and expect error | `tests/test_workflow.py::test_unknown_kol_id_fails_closed` | Implemented |
