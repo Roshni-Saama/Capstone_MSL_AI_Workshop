@@ -8,7 +8,10 @@
       "institution": "Harborview Cancer Institute (fictional)",
       "role": "Medical oncologist and clinical researcher",
       "therapy_area": "Oncology, fictional solid-tumor evidence scenario",
-      "expert_categories": ["Clinical expert", "Research leader"],
+      "expert_categories": [
+        "Clinical expert",
+        "Research leader"
+      ],
       "planned_meeting": {
         "engagement_id": "ENG-DEMO-003",
         "date": "2026-10-27",
@@ -25,7 +28,11 @@
           "task": "Locate a suitable reviewed source pack and prepare a response draft.",
           "owner_role": "MSL, Field Medical",
           "status": "Open",
-          "due_date": "2026-10-28"
+          "due_date": "2026-10-28",
+          "kol_id": "KOL-DEMO-001",
+          "channel": "In-person scientific exchange",
+          "meeting_status": "Completed (fictional history)",
+          "source_reference": "SYNTHETIC/ENG-DEMO-001"
         },
         {
           "engagement_id": "ENG-DEMO-002",
@@ -37,7 +44,110 @@
           "task": "Prior request remains open; no response is recorded in this fixture.",
           "owner_role": "MSL, Field Medical",
           "status": "Open",
-          "due_date": "2026-10-28"
+          "due_date": "2026-10-28",
+          "kol_id": "KOL-DEMO-001",
+          "channel": "Video meeting",
+          "meeting_status": "Completed (fictional history)",
+          "source_reference": "SYNTHETIC/ENG-DEMO-002"
+        },
+        {
+          "engagement_id": "ENG-DEMO-004",
+          "kol_id": "KOL-DEMO-001",
+          "date": "2026-10-15",
+          "purpose": "Clarify the requested source format before the next scientific meeting",
+          "observation": "The KOL requested a concise source list with explicit limitations and asked that unresolved questions remain visible.",
+          "msl_interpretation": "A structured, source-linked preparation format may help the next exchange. Draft interpretation only.",
+          "task_id": "TASK-DEMO-004",
+          "task": "Confirm the requested source format; the fixture records no completion.",
+          "owner_role": "MSL, Field Medical",
+          "status": "Open",
+          "due_date": "2026-10-20",
+          "channel": "Video meeting",
+          "meeting_status": "Completed (fictional history)",
+          "source_reference": "SYNTHETIC/ENG-DEMO-004"
+        }
+      ],
+      "crm_profile": {
+        "crm_record_id": "CRM-DEMO-001",
+        "snapshot_date": "2026-10-23",
+        "territory": "East demo territory",
+        "city": "Kolkata (fictional assignment)",
+        "country": "India (fictional demo setting)",
+        "assigned_msl_role": "MSL, East demo territory",
+        "relationship_stage": "Established scientific exchange",
+        "preferred_channel": "Video meeting",
+        "scientific_interests": [
+          "Representation of older adults in study materials",
+          "Population description and evidence limitations"
+        ],
+        "profile_reviewed_on": "2026-10-19",
+        "provenance": "Fully synthetic; not a real CRM record or HCP profile"
+      },
+      "tasks": [
+        {
+          "task_id": "TASK-DEMO-001",
+          "kol_id": "KOL-DEMO-001",
+          "engagement_id": "ENG-DEMO-002",
+          "title": "Locate a suitable reviewed source pack and prepare a response draft.",
+          "owner_role": "MSL, Field Medical",
+          "status": "Open",
+          "created_on": "2026-06-12",
+          "due_date": "2026-10-28",
+          "completed_on": null,
+          "closure_note": null,
+          "latest_note": "Prior request remains open; no response is recorded in this fixture."
+        },
+        {
+          "task_id": "TASK-DEMO-004",
+          "kol_id": "KOL-DEMO-001",
+          "engagement_id": "ENG-DEMO-004",
+          "title": "Confirm the requested source format before the next meeting",
+          "owner_role": "MSL, Field Medical",
+          "status": "Open",
+          "created_on": "2026-10-15",
+          "due_date": "2026-10-20",
+          "completed_on": null,
+          "closure_note": null,
+          "latest_note": "No completion recorded in this fictional snapshot."
+        },
+        {
+          "task_id": "TASK-DEMO-005",
+          "kol_id": "KOL-DEMO-001",
+          "engagement_id": "ENG-DEMO-001",
+          "title": "Check the fictional institution and profile link for the demo",
+          "owner_role": "Medical operations, demo role",
+          "status": "Completed",
+          "created_on": "2026-09-30",
+          "due_date": "2026-10-02",
+          "completed_on": "2026-10-01",
+          "closure_note": "Invented administrative closure in the fixture only; no scientific response or external action was performed.",
+          "latest_note": "Synthetic profile linkage checked for the workshop example."
+        }
+      ],
+      "medical_requests": [
+        {
+          "request_id": "MIR-DEMO-001",
+          "kol_id": "KOL-DEMO-001",
+          "engagement_id": "ENG-DEMO-001",
+          "task_id": "TASK-DEMO-001",
+          "received_on": "2026-06-12",
+          "question": "Representation of older adults in study materials",
+          "status": "Awaiting source review",
+          "owner_role": "Medical information, demo role",
+          "response_status": "No reviewed response recorded",
+          "source_pack_status": "Not supplied in CRM; select scientific sources separately"
+        },
+        {
+          "request_id": "MIR-DEMO-002",
+          "kol_id": "KOL-DEMO-001",
+          "engagement_id": "ENG-DEMO-004",
+          "task_id": "TASK-DEMO-004",
+          "received_on": "2026-10-15",
+          "question": "Can the next source list distinguish source statements, limitations and open questions?",
+          "status": "Clarification pending",
+          "owner_role": "MSL, Field Medical",
+          "response_status": "No response recorded",
+          "source_pack_status": "No scientific content stored with this request"
         }
       ]
     },
@@ -48,7 +158,10 @@
       "institution": "Northbridge Oncology Centre (fictional)",
       "role": "Medical oncologist and clinical researcher",
       "therapy_area": "Oncology, fictional solid-tumor evidence scenario",
-      "expert_categories": ["Clinical expert", "Emerging research contributor"],
+      "expert_categories": [
+        "Clinical expert",
+        "Emerging research contributor"
+      ],
       "planned_meeting": {
         "engagement_id": "ENG-DEMO-103",
         "date": "2026-11-03",
@@ -65,7 +178,11 @@
           "task": "Identify a reviewed source pack relevant to the question and draft a response for review.",
           "owner_role": "MSL, Field Medical",
           "status": "In progress",
-          "due_date": "2026-10-30"
+          "due_date": "2026-10-30",
+          "kol_id": "KOL-DEMO-002",
+          "channel": "In-person scientific exchange",
+          "meeting_status": "Completed (fictional history)",
+          "source_reference": "SYNTHETIC/ENG-DEMO-101"
         },
         {
           "engagement_id": "ENG-DEMO-102",
@@ -77,7 +194,110 @@
           "task": "Request remains in progress pending source review; no response is recorded.",
           "owner_role": "MSL, Field Medical",
           "status": "In progress",
-          "due_date": "2026-10-30"
+          "due_date": "2026-10-30",
+          "kol_id": "KOL-DEMO-002",
+          "channel": "Video meeting",
+          "meeting_status": "Completed (fictional history)",
+          "source_reference": "SYNTHETIC/ENG-DEMO-102"
+        },
+        {
+          "engagement_id": "ENG-DEMO-104",
+          "kol_id": "KOL-DEMO-002",
+          "date": "2026-10-15",
+          "purpose": "Clarify the requested source format before the next scientific meeting",
+          "observation": "The KOL requested a concise source list with explicit limitations and asked that unresolved questions remain visible.",
+          "msl_interpretation": "A structured, source-linked preparation format may help the next exchange. Draft interpretation only.",
+          "task_id": "TASK-DEMO-104",
+          "task": "Confirm the requested source format; the fixture records no completion.",
+          "owner_role": "MSL, Field Medical",
+          "status": "Open",
+          "due_date": "2026-10-20",
+          "channel": "In-person scientific exchange",
+          "meeting_status": "Completed (fictional history)",
+          "source_reference": "SYNTHETIC/ENG-DEMO-104"
+        }
+      ],
+      "crm_profile": {
+        "crm_record_id": "CRM-DEMO-002",
+        "snapshot_date": "2026-10-23",
+        "territory": "West demo territory",
+        "city": "Pune (fictional assignment)",
+        "country": "India (fictional demo setting)",
+        "assigned_msl_role": "MSL, West demo territory",
+        "relationship_stage": "Established scientific exchange",
+        "preferred_channel": "In-person scientific exchange",
+        "scientific_interests": [
+          "Sources for discussing biomarker-testing workflows",
+          "Evidence-source selection and scope"
+        ],
+        "profile_reviewed_on": "2026-10-19",
+        "provenance": "Fully synthetic; not a real CRM record or HCP profile"
+      },
+      "tasks": [
+        {
+          "task_id": "TASK-DEMO-101",
+          "kol_id": "KOL-DEMO-002",
+          "engagement_id": "ENG-DEMO-102",
+          "title": "Identify a reviewed source pack relevant to the question and draft a response for review.",
+          "owner_role": "MSL, Field Medical",
+          "status": "In progress",
+          "created_on": "2026-08-05",
+          "due_date": "2026-10-30",
+          "completed_on": null,
+          "closure_note": null,
+          "latest_note": "Request remains in progress pending source review; no response is recorded."
+        },
+        {
+          "task_id": "TASK-DEMO-104",
+          "kol_id": "KOL-DEMO-002",
+          "engagement_id": "ENG-DEMO-104",
+          "title": "Confirm the requested source format before the next meeting",
+          "owner_role": "MSL, Field Medical",
+          "status": "Open",
+          "created_on": "2026-10-15",
+          "due_date": "2026-10-20",
+          "completed_on": null,
+          "closure_note": null,
+          "latest_note": "No completion recorded in this fictional snapshot."
+        },
+        {
+          "task_id": "TASK-DEMO-105",
+          "kol_id": "KOL-DEMO-002",
+          "engagement_id": "ENG-DEMO-101",
+          "title": "Check the fictional institution and profile link for the demo",
+          "owner_role": "Medical operations, demo role",
+          "status": "Completed",
+          "created_on": "2026-09-30",
+          "due_date": "2026-10-02",
+          "completed_on": "2026-10-01",
+          "closure_note": "Invented administrative closure in the fixture only; no scientific response or external action was performed.",
+          "latest_note": "Synthetic profile linkage checked for the workshop example."
+        }
+      ],
+      "medical_requests": [
+        {
+          "request_id": "MIR-DEMO-101",
+          "kol_id": "KOL-DEMO-002",
+          "engagement_id": "ENG-DEMO-101",
+          "task_id": "TASK-DEMO-101",
+          "received_on": "2026-08-05",
+          "question": "Sources for discussing biomarker-testing workflows",
+          "status": "Awaiting source review",
+          "owner_role": "Medical information, demo role",
+          "response_status": "No reviewed response recorded",
+          "source_pack_status": "Not supplied in CRM; select scientific sources separately"
+        },
+        {
+          "request_id": "MIR-DEMO-102",
+          "kol_id": "KOL-DEMO-002",
+          "engagement_id": "ENG-DEMO-104",
+          "task_id": "TASK-DEMO-104",
+          "received_on": "2026-10-15",
+          "question": "Can the next source list distinguish source statements, limitations and open questions?",
+          "status": "Clarification pending",
+          "owner_role": "MSL, Field Medical",
+          "response_status": "No response recorded",
+          "source_pack_status": "No scientific content stored with this request"
         }
       ]
     },
@@ -88,7 +308,10 @@
       "institution": "Meridian Cancer Research Hospital (fictional)",
       "role": "Oncology researcher and clinical investigator",
       "therapy_area": "Oncology, fictional solid-tumor evidence scenario",
-      "expert_categories": ["Research leader", "Clinical expert"],
+      "expert_categories": [
+        "Research leader",
+        "Clinical expert"
+      ],
       "planned_meeting": {
         "engagement_id": "ENG-DEMO-203",
         "date": "2026-11-10",
@@ -105,7 +328,11 @@
           "task": "Prepare a source-linked outline distinguishing reported outcomes, limitations, and interpretation.",
           "owner_role": "MSL, Field Medical",
           "status": "Awaiting review",
-          "due_date": "2026-11-04"
+          "due_date": "2026-11-04",
+          "kol_id": "KOL-DEMO-003",
+          "channel": "In-person scientific exchange",
+          "meeting_status": "Completed (fictional history)",
+          "source_reference": "SYNTHETIC/ENG-DEMO-201"
         },
         {
           "engagement_id": "ENG-DEMO-202",
@@ -117,9 +344,115 @@
           "task": "Outline remains a draft and has not been approved or shared.",
           "owner_role": "MSL, Field Medical",
           "status": "Awaiting review",
-          "due_date": "2026-11-04"
+          "due_date": "2026-11-04",
+          "kol_id": "KOL-DEMO-003",
+          "channel": "Video meeting",
+          "meeting_status": "Completed (fictional history)",
+          "source_reference": "SYNTHETIC/ENG-DEMO-202"
+        },
+        {
+          "engagement_id": "ENG-DEMO-204",
+          "kol_id": "KOL-DEMO-003",
+          "date": "2026-10-15",
+          "purpose": "Clarify the requested source format before the next scientific meeting",
+          "observation": "The KOL requested a concise source list with explicit limitations and asked that unresolved questions remain visible.",
+          "msl_interpretation": "A structured, source-linked preparation format may help the next exchange. Draft interpretation only.",
+          "task_id": "TASK-DEMO-204",
+          "task": "Confirm the requested source format; the fixture records no completion.",
+          "owner_role": "MSL, Field Medical",
+          "status": "Open",
+          "due_date": "2026-10-20",
+          "channel": "Video meeting",
+          "meeting_status": "Completed (fictional history)",
+          "source_reference": "SYNTHETIC/ENG-DEMO-204"
+        }
+      ],
+      "crm_profile": {
+        "crm_record_id": "CRM-DEMO-003",
+        "snapshot_date": "2026-10-23",
+        "territory": "South demo territory",
+        "city": "Bengaluru (fictional assignment)",
+        "country": "India (fictional demo setting)",
+        "assigned_msl_role": "MSL, South demo territory",
+        "relationship_stage": "Established scientific exchange",
+        "preferred_channel": "Video meeting",
+        "scientific_interests": [
+          "Separation of reported outcomes from interpretation",
+          "Endpoint descriptions and limitations"
+        ],
+        "profile_reviewed_on": "2026-10-19",
+        "provenance": "Fully synthetic; not a real CRM record or HCP profile"
+      },
+      "tasks": [
+        {
+          "task_id": "TASK-DEMO-201",
+          "kol_id": "KOL-DEMO-003",
+          "engagement_id": "ENG-DEMO-202",
+          "title": "Prepare a source-linked outline distinguishing reported outcomes, limitations, and interpretation.",
+          "owner_role": "MSL, Field Medical",
+          "status": "Awaiting review",
+          "created_on": "2026-07-18",
+          "due_date": "2026-11-04",
+          "completed_on": null,
+          "closure_note": null,
+          "latest_note": "Outline remains a draft and has not been approved or shared."
+        },
+        {
+          "task_id": "TASK-DEMO-204",
+          "kol_id": "KOL-DEMO-003",
+          "engagement_id": "ENG-DEMO-204",
+          "title": "Confirm the requested source format before the next meeting",
+          "owner_role": "MSL, Field Medical",
+          "status": "Open",
+          "created_on": "2026-10-15",
+          "due_date": "2026-10-20",
+          "completed_on": null,
+          "closure_note": null,
+          "latest_note": "No completion recorded in this fictional snapshot."
+        },
+        {
+          "task_id": "TASK-DEMO-205",
+          "kol_id": "KOL-DEMO-003",
+          "engagement_id": "ENG-DEMO-201",
+          "title": "Check the fictional institution and profile link for the demo",
+          "owner_role": "Medical operations, demo role",
+          "status": "Completed",
+          "created_on": "2026-09-30",
+          "due_date": "2026-10-02",
+          "completed_on": "2026-10-01",
+          "closure_note": "Invented administrative closure in the fixture only; no scientific response or external action was performed.",
+          "latest_note": "Synthetic profile linkage checked for the workshop example."
+        }
+      ],
+      "medical_requests": [
+        {
+          "request_id": "MIR-DEMO-201",
+          "kol_id": "KOL-DEMO-003",
+          "engagement_id": "ENG-DEMO-201",
+          "task_id": "TASK-DEMO-201",
+          "received_on": "2026-07-18",
+          "question": "Separation of reported outcomes from interpretation",
+          "status": "Awaiting source review",
+          "owner_role": "Medical information, demo role",
+          "response_status": "No reviewed response recorded",
+          "source_pack_status": "Not supplied in CRM; select scientific sources separately"
+        },
+        {
+          "request_id": "MIR-DEMO-202",
+          "kol_id": "KOL-DEMO-003",
+          "engagement_id": "ENG-DEMO-204",
+          "task_id": "TASK-DEMO-204",
+          "received_on": "2026-10-15",
+          "question": "Can the next source list distinguish source statements, limitations and open questions?",
+          "status": "Clarification pending",
+          "owner_role": "MSL, Field Medical",
+          "response_status": "No response recorded",
+          "source_pack_status": "No scientific content stored with this request"
         }
       ]
     }
-  ]
+  ],
+  "schema_version": 2,
+  "snapshot_date": "2026-10-23",
+  "provenance": "Entirely invented workshop CRM fixture; no real people, contact details, patient data or clinical evidence."
 }

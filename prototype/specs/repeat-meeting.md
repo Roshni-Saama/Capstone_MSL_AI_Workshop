@@ -10,14 +10,14 @@ The primary user is an MSL preparing for and documenting a repeat meeting with a
 
 - One exact fictional KOL ID from `data/kol_records.json`.
 - That KOL's synthetic profile, prior interactions, and task records.
-- Optional scientific source text entered for the current run; it is not persisted or sent to a model service.
+- Optional scientific source text entered for the current run; it is not persisted; it is sent to OpenAI only for an explicit LLM-mode preparation.
 - Optional user-triggered PubMed query; returned citation metadata and abstracts are selected explicitly and are not saved to CRM.
 - Optional user-triggered ClinicalTrials.gov query; returned registry metadata are selected explicitly and are not saved to CRM.
 - Optional fictional meeting notes entered by the user; they are not written to CRM.
 
 ## Workflow
 
-The LangGraph orchestrator coordinates three code-only agents:
+The LangGraph orchestrator coordinates three agents with Offline and explicit OpenAI LLM modes. The [LLM specification](llm-agents.md) supersedes earlier no-model drafting restrictions:
 
 - **KOL Context Agent:** exact-ID retrieval of one synthetic profile, prior interactions, and open task history.
 - **Scientific Source Agent:** explicit, read-only PubMed and ClinicalTrials.gov searches; citation-preserving source selection; neutral registry-field prompts.
@@ -32,9 +32,9 @@ The LangGraph orchestrator coordinates three code-only agents:
 7. Generate only neutral discussion prompts derived from the displayed registry fields; MSL reviews, edits, or ignores them.
 8. Require explicit record selection before including trial metadata in the briefing source text.
 9. If no scientific source text is supplied or selected, abstain from scientific claims.
-10. Preserve supplied abstracts/source text; do not summarize or interpret clinical evidence.
-11. Follow-up Agent structures new notes using deterministic rules, preserves original notes, and leaves interpretation to MSL review.
-12. Suggest only a generic follow-up prompt when question/request/evidence terms appear; leave owner and due date unassigned.
+10. Preserve supplied sources separately. Offline mode does not interpret them; OpenAI mode may draft quote-backed findings/questions/limitations for MSL review.
+11. Follow-up Agent preserves original notes and uses offline rules or optional LLM extraction of quote-backed observations, requests and questions; interpretation remains for review.
+12. Offline mode suggests generic rule-based follow-up; OpenAI mode extracts requests without inventing commitments. Leave owner and due date unassigned.
 13. Mark all outputs as drafts. Do not create tasks in a real system.
 
 ## Outputs
@@ -48,7 +48,7 @@ The LangGraph orchestrator coordinates three code-only agents:
 - Unknown KOL ID: fail closed with an error.
 - Invalid or non-synthetic data file: reject it.
 - Missing evidence: abstain from scientific claims.
-- No LLM, model API, or model key is used. Briefing output preserves selected source text without interpreting it.
+- OpenAI mode requires configured credentials; it validates structured output and supporting quotes. Errors reject the run without stale or partial results. Offline mode makes no model requests.
 - PubMed and ClinicalTrials.gov are contacted only when the user explicitly initiates a search; only the query terms are sent to those public registries.
 - Potential safety information: state that the organization's established process applies; no reporting action is performed.
 - No live CRM, patient data, external messaging, or real-world action is permitted.
@@ -59,6 +59,6 @@ The LangGraph orchestrator coordinates three code-only agents:
 - Selecting one ID cannot retrieve another KOL's interactions.
 - CRM history and scientific source text are visibly distinct.
 - No source text yields explicit abstention.
-- Supplied source text is preserved and not presented as an AI-generated evidence summary.
+- Original source text is preserved separately from clearly labeled LLM drafts; source IDs/quotes must match selected inputs.
 - New notes remain a draft and are not written to a CRM.
 - The UI discloses synthetic data and human review requirements.

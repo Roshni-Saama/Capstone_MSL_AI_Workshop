@@ -2,21 +2,44 @@
 
 from __future__ import annotations
 
+import os
+
 import streamlit as st
+from llm import DEFAULT_MODEL, LLMError
 
 from agents import ScientificSourceAgent
 from clinical_trials import ClinicalTrialsError
 from pubmed import PubMedError
+from crm import crm_summary, task_rows
 from workflow import load_records, run_workflow
 
 
 st.set_page_config(page_title="Medical Engagement Workbench", page_icon="M", layout="wide")
 st.title("Medical Engagement Workbench")
-st.caption("Repeat-meeting preparation and follow-up | Local-only prototype")
+st.caption("Repeat-meeting preparation and follow-up | Workshop prototype")
 st.warning(
     "Fictional demo data only. Draft support tool, not clinical advice or a live CRM. "
     "Verify all content; do not enter patient-identifiable or real HCP information."
 )
+
+with st.sidebar:
+    st.header("Drafting mode")
+    drafting_mode = st.radio("Choose mode", ["Offline", "OpenAI LLM"], key="drafting_mode")
+    use_llm = drafting_mode == "OpenAI LLM"
+    api_key = ""
+    model = os.environ.get("OPENAI_MODEL", DEFAULT_MODEL)
+    if use_llm:
+        st.caption("OpenAI mode sends the selected fictional KOL context, selected source text, and fictional meeting notes to OpenAI. API usage may incur charges.")
+        api_key = st.text_input("OpenAI API key", type="password", key="openai_api_key",
+                                help="Used for this session only. Never paste keys into chat or project files.")
+        if os.environ.get("OPENAI_API_KEY"):
+            st.caption("A server-side OpenAI API key is available.")
+        model = st.text_input("OpenAI model", value=model, key="openai_model")
+        st.caption("Model drafts can be wrong. Supporting quotes and source IDs help the MSL review them.")
+    runtime_signature = (drafting_mode, model)
+    if st.session_state.get("runtime_signature") != runtime_signature:
+        st.session_state.pop("workflow_result", None)
+        st.session_state["runtime_signature"] = runtime_signature
 
 records = load_records()
 source_agent = ScientificSourceAgent()
@@ -26,23 +49,72 @@ selected = st.selectbox(
     format_func=lambda record: f"{record['display_name']} · {record['kol_id']}",
 )
 
+st.caption("Changing the KOL clears the current notes, source selections, searches, and drafts.")
+
+# Switching identities starts a fresh meeting workspace.
+if st.session_state.get("active_kol_id") != selected["kol_id"]:
+    for state_key in (
+        "workflow_result", "pubmed_results", "pubmed_error", "pubmed_query_submitted",
+        "trial_results", "trial_error", "trial_query_submitted", "pubmed_query",
+        "trial_query", "selected_pmids", "selected_nct_ids", "scientific_source_text",
+        "meeting_notes",
+    ):
+        st.session_state.pop(state_key, None)
+    st.session_state["active_kol_id"] = selected["kol_id"]
+
 left, right = st.columns([1, 1])
 with left:
-    st.subheader("Prior interaction context")
-    st.markdown(f"**{selected['display_name']}** · {selected['role']}")
-    st.caption(f"{selected['institution']} · {selected['therapy_area']}")
-    st.markdown(f"**Planned meeting:** {selected['planned_meeting']['date']}")
-    st.write(selected["planned_meeting"]["purpose"])
-    for interaction in selected["interactions"]:
-        with st.expander(f"{interaction['date']} · {interaction['engagement_id']}"):
-            st.markdown(f"**Purpose:** {interaction['purpose']}")
-            st.markdown(f"**Synthetic observation:** {interaction['observation']}")
-            st.markdown(f"**Draft MSL interpretation:** {interaction['msl_interpretation']}")
-            st.markdown(
-                f"**Follow-up:** {interaction['task']}  \n"
-                f"**Owner:** {interaction['owner_role']} · **Status:** {interaction['status']} · "
-                f"**Due:** {interaction['due_date']}"
-            )
+    st.subheader("Synthetic CRM workspace")
+    st.markdown(f"**{selected['display_name']}** | {selected['role']}")
+    st.caption(f"{selected['institution']} | {selected['therapy_area']}")
+    profile = selected["crm_profile"]
+    st.caption(f"Fully fictional CRM data | Snapshot: {profile['snapshot_date']} | CRM history is not scientific evidence")
+    summary = crm_summary(selected)
+    cards = st.columns(3)
+    cards[0].metric("Interactions", summary["interactions"])
+    cards[1].metric("Active tasks", summary["active_tasks"])
+    cards[2].metric("Overdue tasks", summary["overdue_tasks"])
+    profile_tab, history_tab, tasks_tab, requests_tab = st.tabs(
+        ["CRM profile", "Interaction timeline", "Follow-up tasks", "Medical requests"]
+    )
+    with profile_tab:
+        st.markdown(f"**CRM record:** {profile['crm_record_id']}  \n"
+                    f"**KOL ID:** {selected['kol_id']}  \n"
+                    f"**Organization ID:** {selected['organization_id']}  \n"
+                    f"**Territory:** {profile['territory']}  \n"
+                    f"**Location:** {profile['city']}, {profile['country']}  \n"
+                    f"**Assigned role:** {profile['assigned_msl_role']}  \n"
+                    f"**Relationship:** {profile['relationship_stage']}  \n"
+                    f"**Preferred channel:** {profile['preferred_channel']}  \n"
+                    f"**Profile reviewed:** {profile['profile_reviewed_on']}")
+        st.markdown("**Scientific interests (topics only):**")
+        for interest in profile["scientific_interests"]:
+            st.write(interest)
+        st.markdown(f"**Planned meeting:** {selected['planned_meeting']['date']}")
+        st.write(selected["planned_meeting"]["purpose"])
+    with history_tab:
+        st.caption("Past interactions are fictional historical snapshots; the task tab shows latest fixture status.")
+        for interaction in sorted(selected["interactions"], key=lambda row: row["date"], reverse=True):
+            with st.expander(f"{interaction['date']} | {interaction['engagement_id']} | {interaction['channel']}"):
+                st.markdown(f"**Purpose:** {interaction['purpose']}")
+                st.markdown(f"**Synthetic observation:** {interaction['observation']}")
+                st.markdown(f"**Draft MSL interpretation:** {interaction['msl_interpretation']}")
+                st.markdown(f"**Follow-up at this interaction:** {interaction['task']}  \n"
+                            f"**Owner:** {interaction['owner_role']} | **Status:** {interaction['status']} | "
+                            f"**Due:** {interaction['due_date']}")
+                st.caption(f"Fixture reference: {interaction['source_reference']}")
+    with tasks_tab:
+        st.caption(f"Read-only synthetic tasks. Overdue is calculated as of {profile['snapshot_date']}, not the current date. Completed entries are fictional history, not actions performed by this app.")
+        st.dataframe(task_rows(selected), hide_index=True, use_container_width=True)
+    with requests_tab:
+        st.caption("Fictional evidence requests; no scientific response is implied and no requests are sent.")
+        st.dataframe([
+            {"Request ID": request["request_id"], "Received": request["received_on"],
+             "Question": request["question"], "Status": request["status"],
+             "Owner": request["owner_role"], "Linked task": request["task_id"],
+             "Response": request["response_status"], "Sources": request["source_pack_status"]}
+            for request in selected["medical_requests"]
+        ], hide_index=True, use_container_width=True)
 
 with right:
     st.subheader("Preparation and follow-up")
@@ -55,6 +127,7 @@ with right:
         "Search terms",
         placeholder='Example: oncology trial population older adults',
         max_chars=300,
+        key="pubmed_query",
     )
     search_clicked = st.button("Search PubMed", use_container_width=True)
     if search_clicked:
@@ -80,6 +153,7 @@ with right:
         selected_pmids = st.multiselect(
             "Select articles to include as source text",
             options=list(result_by_pmid),
+            key="selected_pmids",
             format_func=lambda pmid: (
                 f"{result_by_pmid[pmid]['year'] or 'Year n/a'} · "
                 f"{result_by_pmid[pmid]['title']} · PMID {pmid}"
@@ -105,6 +179,7 @@ with right:
         "Condition or study topic",
         placeholder="Example: chronic lymphocytic leukemia",
         max_chars=250,
+        key="trial_query",
     )
     trial_search_clicked = st.button("Search ClinicalTrials.gov", use_container_width=True)
     if trial_search_clicked:
@@ -130,6 +205,7 @@ with right:
         selected_nct_ids = st.multiselect(
             "Select registry records for this meeting",
             options=list(trial_by_nct_id),
+            key="selected_nct_ids",
             format_func=lambda nct_id: (
                 f"{trial_by_nct_id[nct_id]['status']} · "
                 f"{trial_by_nct_id[nct_id]['title']} · {nct_id}"
@@ -161,11 +237,13 @@ with right:
 
     scientific_source_text = st.text_area(
         "Optional source text from approved materials",
+        key="scientific_source_text",
         height=130,
-        placeholder="Paste permitted text for local source preservation. No model service is used.",
+        placeholder="Paste permitted text for local source preservation. OpenAI mode sends this text to OpenAI.",
     )
     meeting_notes = st.text_area(
         "New fictional meeting notes",
+        key="meeting_notes",
         height=130,
         placeholder="Enter synthetic demo notes only. Do not enter patient details or real HCP information.",
     )
@@ -189,26 +267,38 @@ if generate:
         for part in (selected_pubmed_text, selected_trial_text, scientific_source_text.strip())
         if part
     ]
-    result = run_workflow(
-        kol_id=selected["kol_id"],
-        scientific_sources="\n\n---\n\n".join(source_parts),
-        meeting_notes=meeting_notes,
-    )
-    st.session_state["workflow_result"] = result
+    st.session_state.pop("workflow_result", None)
+    try:
+        with st.spinner("Preparing review drafts..."):
+            result = run_workflow(
+                kol_id=selected["kol_id"],
+                scientific_sources="\n\n---\n\n".join(source_parts),
+                meeting_notes=meeting_notes,
+                use_llm=use_llm, api_key=api_key or None, model=model,
+            )
+        st.session_state["workflow_result"] = result
+    except LLMError as error:
+        st.error(str(error))
 
 result = st.session_state.get("workflow_result")
-if result:
+if result and result.get("kol_id") == selected["kol_id"]:
     st.divider()
+    if result.get("context_draft"):
+        st.subheader("Draft meeting priorities")
+        st.write(result["context_draft"])
     st.subheader("Draft briefing")
     st.caption(f"Mode: {result.get('generation_mode', 'Code-only')} · Requires MSL review")
     st.write(result.get("briefing", "No briefing available."))
     st.subheader("Draft note and follow-up")
     st.caption("Requires MSL review. This prototype does not create CRM records or send messages.")
     st.write(result.get("follow_up_draft", "No new notes were submitted."))
+    if result.get("agent_trace"):
+        with st.expander("Agent run details"):
+            st.table(result["agent_trace"])
 
 st.divider()
 st.caption(
-    "LangGraph coordinates three bounded local agents. PubMed and ClinicalTrials.gov searches "
-    "are explicit read-only web requests; no model service, CRM writes, external messages, "
-    "or safety submissions are used."
+    "LangGraph coordinates three bounded agents. OpenAI drafting runs only in OpenAI LLM mode "
+    "when you prepare a draft. Registry searches are explicit read-only requests. "
+    "There are no CRM writes, external messages, or safety submissions."
 )

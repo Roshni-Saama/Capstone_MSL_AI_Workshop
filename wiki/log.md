@@ -92,3 +92,44 @@ Append new entries; preserve earlier entries.
 - Kept the three deterministic local agents and read-only, user-triggered PubMed/ClinicalTrials.gov search connectors.
 - Clarified that registry searches send only user-entered query terms to the public APIs; scientific drafts remain source-preserving and are not interpreted by a model.
 - No OpenAI request or API key was used. Previously pushed GitHub commits are being withdrawn from the remote main branch separately; prior public API search queries cannot be recalled.
+
+## 23 October 2026 - Clean workspace and reconcile prototype delivery scope
+
+- Removed the parent workspace's verified empty MSL AI Solution POV.md and unused prototype folder, which contained only a virtual environment.
+- Removed generated prototype Python and pytest caches; preserved the application environment and research evidence.
+- Added the [scope and delivery plan](../prototype/specs/scope-and-delivery.md) with implementation-backed agent responsibilities, a demonstration storyline, and completion evidence for remaining work.
+- Distinguished deterministic workflow orchestration from unimplemented model reasoning and evidence synthesis. Stakeholder acceptance, governance review, and measured value remain pending.
+- Historical log entries and source snapshots remain unchanged.
+
+## 23 October 2026 - Validate meeting UI and prepare remaining delivery artifacts
+
+- Reproduced and fixed stale briefing and note display after switching KOL identities; added a complete meeting-state reset and focused Streamlit regression checks.
+- Added checks for draft labels, source/history separation, abstention, explicit registry selection, unchanged fixture and simulated search errors/no matches.
+- Live read-only topic/no-result searches succeeded for PubMed and ClinicalTrials.gov; no scientific interpretation or CRM updates were performed.
+- Recorded the user-confirmed workshop evaluator role; approval, reviewer name/date and measured business value remain pending.
+- Populated proposed governance controls/failure handling and prepared fixed fictional evaluation cases, a scoring protocol, and a workshop presentation script.
+- Updated the delivery plan and workflow to distinguish implemented draft behavior from manual ownership, review and task closure.
+
+## 23 October 2026 - Add user-authorized OpenAI LLM agents
+
+- The user requested working LLM agents and selected OpenAI API, superseding the previous no-model constraint.
+- Added explicit OpenAI mode alongside Offline default, with three LangGraph-coordinated role-specific model calls and unchanged exact-ID lookup.
+- Added strict structured output, local schema/source-ID/quote validation, sanitized API errors, bounded input and stale-result clearing. Matching quotes do not establish scientific validity.
+- Added session/environment credential support, explicit data-transmission disclosure and secret-file exclusions; no key is saved in code or graph state.
+- Updated current scope, instructions, governance, evaluation and walkthrough references while preserving historical source evidence and log entries.
+- No OpenAI API key was configured; model integration checks use mocked responses. Live generation and human quality evaluation remain pending.
+
+## 23 October 2026 - Verify OpenAI integration contracts
+
+- Full offline/mocked suite: 58 tests passed. Added HTTP method/endpoint/header/payload verification alongside role isolation, strict schema, citation/quote rejection and UI failure recovery.
+- Local links validated in 19 documents; eight source snapshot hashes verified. No raw evidence changed.
+- Streamlit health returned HTTP 200; Offline and OpenAI LLM sidebar modes rendered without errors.
+- No live OpenAI completion was attempted because no API key was configured. User can configure the key locally in the app sidebar; scientific quality and workshop acceptance remain pending.
+
+## 23 October 2026 - Expand fictional CRM and publish test-scenario evidence
+
+- Expanded the three fictional KOL records with profile metadata, dated interaction channels, normalized task snapshots and medical-information requests. Totals: 3 profiles, 9 interactions, 9 tasks and 6 requests.
+- Added read-only CRM profile, timeline, task and request views; overdue uses the fixed 23 October snapshot. No real CRM writes, external communications or scientific evidence were added.
+- Added linked-record validation and regression tests for all KOLs, corrupted relationships, snapshot overdue behavior, demo inputs, CSV IDs and UI isolation.
+- Full suite: 75 tests passed, recorded in test_scenarios/results/automated_tests.xml. Added an exact executed-case catalog, fictional use cases, reproducible inputs, report builder and separate manual/live status.
+- Earlier live registry observations remain labeled historical; no real OpenAI completion or scientific quality assessment was performed for this change.

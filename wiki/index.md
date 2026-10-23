@@ -8,8 +8,14 @@ Status: editable starter templates. Created 13 October 2026.
 - [MSL and KOL concepts](concepts/msl-kol.md)
 - [KOL categories and expert directory](concepts/kol-directory.md)
 - [Synthetic CRM demo data: three fictional KOL records](demo-data/synthetic-crm/index.md)
+- [Expanded application CRM and CSV exports](../prototype/data/synthetic_crm/README.md)
+- [Test use cases, all executed scenarios and results](../prototype/test_scenarios/README.md)
 - [Engagement workflow](workflows/engagement.md)
+- [Prototype scope, demonstration storyline, and delivery plan](../prototype/specs/scope-and-delivery.md)
+- [OpenAI LLM agents: setup and acceptance criteria](../prototype/specs/llm-agents.md)
 - [Human oversight and guardrails](governance/oversight.md)
+- [Evaluation cases and workshop reviewer pack](../prototype/specs/evaluation-and-review.md)
+- [Workshop presentation and walkthrough](../prototype/docs/workshop-walkthrough.md)
 - [Wiki change log](log.md)
 - [Codex instructions](../AGENTS.md)
 
@@ -44,7 +50,7 @@ Basis: [Original notes, Operational and technical challenges](../raw/Capstone_no
 - Primary user: the MSL preparing for and following up on a scientific engagement.
 - External stakeholder: the KOL receiving scientific information and raising evidence questions.
 - Supporting roles in the illustrative example: medical-information colleagues reviewing responses and the medical team reviewing potential insights.
-- Proposed stakeholder reviewer: an MSL or Medical Affairs manager who can validate the workflow. Named reviewer and review date: [To complete]. Specialist reviewers for privacy, compliance, and safety routing: [To complete with the company].
+- Proposed stakeholder reviewer: an MSL or Medical Affairs manager who can validate the workflow. Scope reviewer role: workshop evaluator (user-confirmed on 23 October 2026); name and review date: [To complete]. Specialist reviewers for privacy, compliance, and safety routing: [To complete with the company].
 
 Basis: [Original notes, The MSL role and value](../raw/Capstone_notes.md#the-msl-role-and-value) and [the fictional engagement example](../raw/Capstone_notes.md#an-illustrative-engagement-from-preparation-through-follow-up).
 
@@ -60,7 +66,7 @@ Proposed first use case: an MSL preparation and follow-up assistant for repeat K
 
 ### Agent and runtime decision
 
-Prototype decision: use exactly three deterministic local agents coordinated by LangGraph: (1) KOL Context Agent for exact-ID synthetic CRM retrieval; (2) Scientific Source Agent for user-triggered, read-only PubMed and ClinicalTrials.gov search and source-preserving formatting; and (3) Follow-up Agent for note preservation and generic rule-based follow-up prompts. No LLM, model API, cloud inference, or model key is used. Public registries receive only user-entered search terms; selected material remains local and is not interpreted by the prototype. This is a prototype, not a validated medical system.
+Current decision (user-authorized 23 October 2026): three LangGraph-coordinated agents with Offline default and explicit OpenAI LLM mode. KOL Context Agent retrieves exact-ID fictional history and drafts meeting priorities; Scientific Source Agent retrieves selected public sources and drafts quote-backed findings/questions/limitations; Follow-up Agent preserves notes and extracts draft requests/questions. Model output requires schema, source-ID and quote checks plus human review. Selected fictional context, sources and notes are sent to OpenAI only on explicit LLM preparation. Credentials and live completion verification remain pending; see the [LLM specification](../prototype/specs/llm-agents.md).
 
 Proposed exclusions for the initial prototype: autonomous external messaging, patient treatment recommendations, sales targeting, promises of funding or research, live meeting recording, and company-wide strategy automation. Potential safety information must be flagged for the required company process; the prototype must not make final safety-reporting decisions. These are proposed boundaries, not approved company policy.
 

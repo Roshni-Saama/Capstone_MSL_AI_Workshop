@@ -1,0 +1,27 @@
+{
+  "synthetic": true,
+  "snapshot_date": "2026-10-23",
+  "scenarios": [
+    {
+      "use_case_id": "UC-001",
+      "kol_id": "KOL-DEMO-001",
+      "scientific_sources": "SYNTHETIC MECHANICAL TEST SOURCE 1. No clinical findings or recommendations are supplied. This text tests source preservation only.",
+      "meeting_notes": "Fictional Dr Mira Sen asked for a source list with limitations and an update on the open evidence request.",
+      "expected": "Exact KOL history only; source and notes preserved; draft for review; no new owner or due date assigned."
+    },
+    {
+      "use_case_id": "UC-002",
+      "kol_id": "KOL-DEMO-002",
+      "scientific_sources": "SYNTHETIC MECHANICAL TEST SOURCE 2. No clinical findings or recommendations are supplied. This text tests source preservation only.",
+      "meeting_notes": "Fictional Dr Arjun Rao asked for a source list with limitations and an update on the open evidence request.",
+      "expected": "Exact KOL history only; source and notes preserved; draft for review; no new owner or due date assigned."
+    },
+    {
+      "use_case_id": "UC-003",
+      "kol_id": "KOL-DEMO-003",
+      "scientific_sources": "SYNTHETIC MECHANICAL TEST SOURCE 3. No clinical findings or recommendations are supplied. This text tests source preservation only.",
+      "meeting_notes": "Fictional Dr Leah Park asked for a source list with limitations and an update on the open evidence request.",
+      "expected": "Exact KOL history only; source and notes preserved; draft for review; no new owner or due date assigned."
+    }
+  ]
+}

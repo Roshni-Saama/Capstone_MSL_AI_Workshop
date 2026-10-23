@@ -31,7 +31,7 @@ No contact details, patient information, product claims, or literature citations
 1. Select KOL-DEMO-001 and review the planned meeting purpose.
 2. Retrieve prior interactions and show the unresolved task without converting the MSL interpretation into a KOL quote.
 3. Draft a briefing that separates synthetic CRM context from citations in the scientific source pack.
-4. Enter new fictional notes, review the structured draft, and create a follow-up task with an owner and status.
+4. Enter new fictional notes, review the structured draft, and discuss the owner/status that a human would need to assign outside the demo; the application does not create or complete CRM tasks.
 5. Repeat retrieval with KOL-DEMO-002 and KOL-DEMO-003 to check record isolation and avoid merging profiles.
 
 ## Related project pages
@@ -40,3 +40,6 @@ No contact details, patient information, product claims, or literature citations
 - [Engagement workflow](../../workflows/engagement.md)
 - [Human oversight and guardrails](../../governance/oversight.md)
 - [Wiki home](../../index.md)
+## Expanded runnable CRM fixture
+
+The earlier Markdown records remain the initial scenario notes. The [application JSON fixture](../../../prototype/data/kol_records.json) now includes three profiles, nine interactions, nine tasks and six requests. [CSV exports and field descriptions](../../../prototype/data/synthetic_crm/README.md) support review. The app shows a read-only CRM workspace with a dated snapshot; completed entries are invented historical administrative tasks, not actions performed by the prototype. See the [test-scenario folder](../../../prototype/test_scenarios/README.md) for the current use cases and execution evidence.

@@ -8,7 +8,7 @@ Demonstrate how a small, governed AI workflow can help an MSL prepare for and fo
 
 1. Build one end-to-end repeat-meeting workflow using three fictional KOL records.
 2. Keep exactly three bounded application agents: KOL Context Agent, Scientific Source Agent, and Follow-up Agent.
-3. Use LangGraph to coordinate three deterministic Python agents. Do not call an LLM or external model service.
+3. Use LangGraph to coordinate exactly three agents with explicit OpenAI LLM mode and an offline default. The user authorized this runtime change on 23 October 2026.
 4. Keep identity selection, access limits, review gates, and task ownership deterministic.
 5. Prefer the smallest demonstrable change; do not imply production readiness or live enterprise integration.
 
@@ -26,8 +26,8 @@ Demonstrate how a small, governed AI workflow can help an MSL prepare for and fo
 
 1. Every requirement has an acceptance check.
 2. Record lookup must be exact and must not mix KOL histories.
-3. Model unavailability must fail closed and never invent a scientific summary.
-4. API keys stay in environment variables and are never committed.
+3. Missing scientific sources must produce an explicit abstention; never invent a scientific summary.
+4. Keep model credentials out of code/logs/state; reject failed or ungrounded drafts. Preserve sources and notes, and require MSL review of every model draft.
 
 ## Definition of done
 

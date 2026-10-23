@@ -1,7 +1,7 @@
-"""Three bounded local agents for the MSL prototype.
+"""Three bounded agents for the MSL workshop prototype.
 
-All agent drafting and workflow logic is deterministic Python. Registry searches
-are read-only web requests initiated explicitly by the user.
+Offline mode is deterministic. Explicit OpenAI mode adds bounded, quote-checked
+drafting. Registry searches remain read-only and user-triggered.
 """
 
 from __future__ import annotations
@@ -12,6 +12,9 @@ from typing import Any
 
 from clinical_trials import discussion_prompts, search_clinical_trials
 from pubmed import search_pubmed
+from crm import validate_crm_records, format_crm_details
+from llm import (ContextOutput, ScienceOutput, FollowUpOutput, OpenAILLM, LLMError,
+                 validate_items, render_items)
 
 
 DATA_PATH = Path(__file__).parent / "data" / "kol_records.json"
@@ -43,6 +46,7 @@ def format_crm_context(record: Record) -> str:
             f"Purpose: {meeting['purpose']}",
             "Prior interactions (synthetic CRM history):",
             *interactions,
+            format_crm_details(record),
         ]
     )
 
@@ -63,6 +67,7 @@ class KOLContextAgent:
         ids = [record.get("kol_id") for record in records]
         if len(ids) != len(set(ids)) or any(not identifier for identifier in ids):
             raise ValueError("Synthetic KOL IDs must be present and unique.")
+        validate_crm_records(records)
         return records
 
     def get_record(self, kol_id: str, records: list[Record] | None = None) -> Record:
@@ -72,13 +77,25 @@ class KOLContextAgent:
                 return record
         raise KeyError(f"Unknown synthetic KOL ID: {kol_id}")
 
-    def retrieve(self, kol_id: str) -> dict[str, Any]:
+    def retrieve(self, kol_id: str, llm: OpenAILLM | None = None) -> dict[str, Any]:
         record = self.get_record(kol_id)
-        return {"record": record, "crm_context": format_crm_context(record)}
+        context = format_crm_context(record)
+        result = {"record": record, "crm_context": context}
+        if llm is not None:
+            draft = llm.generate(
+                "KOL Context Agent: extract meeting priorities and unresolved requests from this exact synthetic CRM context. Do not make scientific claims.",
+                {"synthetic_crm_context": context}, ContextOutput,
+            )
+            validate_items(draft.meeting_priorities + draft.unresolved_requests, context)
+            result["context_draft"] = (
+                "DRAFT FOR MSL REVIEW\n\nMeeting priorities:\n" + render_items(draft.meeting_priorities)
+                + "\n\nUnresolved requests:\n" + render_items(draft.unresolved_requests)
+            )
+        return result
 
 
 class ScientificSourceAgent:
-    """Searches public registries and preserves selected sources locally."""
+    """Retrieves selected sources and optionally drafts a quote-backed briefing."""
 
     def search_pubmed(self, query: str, retmax: int = 5) -> list[dict[str, str]]:
         return search_pubmed(query, retmax=retmax)
@@ -132,6 +149,7 @@ class ScientificSourceAgent:
     def prepare_briefing(
         crm_context: str,
         sources: str,
+        llm: OpenAILLM | None = None,
     ) -> dict[str, str]:
         source_text = sources.strip()
         if not source_text:
@@ -143,6 +161,25 @@ class ScientificSourceAgent:
                     "drafting evidence content."
                 ),
                 "generation_mode": "Abstention: code-only, no scientific source supplied",
+            }
+        if llm is not None:
+            sources_by_id = {f"S{index}": text for index, text in
+                             enumerate(source_text.split("\n\n---\n\n"), 1) if text.strip()}
+            draft = llm.generate(
+                "Scientific Source Agent: draft findings, neutral discussion questions and limitations using only selected scientific sources. Every item needs its source_id and an exact quote from that source. Do not use CRM as evidence. Omit unsupported findings.",
+                {"selected_scientific_sources": sources_by_id}, ScienceOutput,
+            )
+            for item in draft.findings + draft.discussion_questions + draft.limitations:
+                if item.source_id not in sources_by_id:
+                    raise LLMError("Draft cited a source that was not selected. No draft was accepted.")
+                validate_items([item], sources_by_id[item.source_id])
+            source_appendix = "\n\n".join(f"[{key}]\n{value}" for key, value in sources_by_id.items())
+            return {
+                "briefing": "DRAFT FOR MSL REVIEW\n\nAI-drafted findings:\n" + render_items(draft.findings)
+                + "\n\nNeutral discussion questions:\n" + render_items(draft.discussion_questions)
+                + "\n\nLimitations to review:\n" + render_items(draft.limitations)
+                + "\n\nSelected scientific source text (not independently verified):\n" + source_appendix,
+                "generation_mode": f"OpenAI LLM: {llm.model}; source quotes checked; MSL review required",
             }
         return {
             "briefing": (
@@ -161,9 +198,9 @@ class ScientificSourceAgent:
 
 
 class FollowUpAgent:
-    """Preserves notes and provides a generic, rule-based review prompt."""
+    """Preserves notes and drafts bounded offline or LLM follow-up content."""
 
-    def draft(self, notes: str) -> str:
+    def draft(self, notes: str, llm: OpenAILLM | None = None) -> str:
         meeting_notes = notes.strip()
         if not meeting_notes:
             return (
@@ -171,6 +208,21 @@ class FollowUpAgent:
                 "No interpretation or follow-up task has been created."
             )
 
+        if llm is not None:
+            draft = llm.generate(
+                "Follow-up Agent: extract stakeholder observations, explicit follow-up requests and open questions from the fictional notes only. Do not answer scientific questions or generate clinical conclusions. Use exact quotes. Do not invent commitments, owners or due dates.",
+                {"fictional_meeting_notes": meeting_notes}, FollowUpOutput,
+            )
+            validate_items(draft.observations + draft.follow_up_requests + draft.open_questions, meeting_notes)
+            return (
+                "DRAFT FOR MSL REVIEW\n\nMSL-entered notes (preserved verbatim):\n" + meeting_notes
+                + "\n\nDraft observations:\n" + render_items(draft.observations)
+                + "\n\nDraft follow-up requests:\n" + render_items(draft.follow_up_requests)
+                + "\n\nOpen questions:\n" + render_items(draft.open_questions)
+                + "\n\nMSL interpretation: Enter only after review."
+                + "\nOwner and due date: Not assigned.\nStatus: Draft for review."
+                + "\nSafety reminder: Use the organization's established process for potential safety information; this prototype does not detect or submit reports."
+            )
         request_terms = ("ask", "asked", "question", "request", "evidence", "source")
         has_request = any(term in meeting_notes.casefold() for term in request_terms)
         suggested_task = (

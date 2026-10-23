@@ -1,50 +1,65 @@
-# MSL Repeat-Meeting Assistant (Prototype)
+# MSL Repeat-Meeting Assistant
 
-This Streamlit proof of concept demonstrates a repeat MSL-KOL meeting workflow over three fictional CRM-shaped records. It is separate from the capstone research wiki and does not connect to a live CRM.
+Streamlit workshop prototype for repeat MSL-KOL preparation and follow-up. It uses three fictional CRM-shaped records and exactly three LangGraph-coordinated agents. No live CRM is connected.
 
-## What it demonstrates
+## Two drafting modes
 
-1. **KOL Context Agent:** select a fictional KOL and retrieve only that record's profile, interaction history, and open follow-up.
-2. **Scientific Source Agent:** search PubMed through NCBI E-utilities and ClinicalTrials.gov through API v2, inspect cited records, and explicitly select articles/studies to include as source text. The trial registry also gets neutral, rule-based discussion prompts tied to registered fields. The app accepts optional user-supplied scientific source text. Without source text, it abstains from scientific claims; selected records/source text are preserved and not interpreted.
-3. **Follow-up Agent:** structure new meeting notes into a review draft using deterministic rules. Notes remain verbatim, interpretation is left to the MSL, and a generic follow-up prompt is suggested only when question/request/evidence terms appear.
+- **Offline** (default): deterministic retrieval, source preservation and generic note/follow-up formatting; no model requests.
+- **OpenAI LLM**: explicit preparation invokes bounded OpenAI Responses calls. KOL Context Agent extracts meeting priorities and unresolved requests from the selected synthetic history; Scientific Source Agent drafts findings, neutral discussion questions and limitations from selected sources only; Follow-up Agent extracts observations, requests and open questions from fictional notes.
 
-LangGraph coordinates three deterministic local Python agents. No LLM, model API, cloud inference, or API key is used. PubMed and ClinicalTrials.gov are contacted only when a user explicitly searches; only the query term is sent to those public registries. The prototype preserves selected records as source text and does not interpret abstracts or generate medical summaries. This remains a prototype, not a validated medical system. See the [NCBI E-utilities documentation](https://www.ncbi.nlm.nih.gov/books/NBK25500/) and [ClinicalTrials.gov API documentation](https://clinicaltrials.gov/data-api/api).
+Identity lookup stays exact and deterministic. Missing scientific sources cause abstention and skip the scientific model call. Empty notes skip the follow-up model call. Maximum three model calls per preparation, no automatic retries, no autonomous tool loop, no CRM writes or external messages. This is a bounded LLM workflow, not a general autonomous assistant.
 
 ## Run locally
 
-From this folder, create and activate a virtual environment, then install dependencies:
+From this folder:
 
 ```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-streamlit run app.py
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-PubMed and ClinicalTrials.gov searches require internet access. Each requests at most five records per search and does not require an API key for this low-volume demonstration.
+Use the sidebar to select **OpenAI LLM**, enter an API key in the password field and choose a model. The default is `gpt-4.1-mini`; access depends on your API project. Alternatively configure `OPENAI_API_KEY` and optionally `OPENAI_MODEL` in the server environment, then restart Streamlit. `.env` files are not loaded automatically. Do not paste keys into chat, code, source text or meeting notes. No key is bundled with the project.
 
-Run tests with:
+The password field remains in the current Streamlit session memory; do not use a shared browser session for secrets. The application does not save credentials to disk or graph state. Secret files are excluded by `.gitignore`.
+
+When you click **Prepare selected sources and notes** in OpenAI mode, the selected fictional history, selected source text and fictional notes are sent to OpenAI. API usage may incur charges. The app uses `store=false` on requests; this is not a claim of zero provider retention. Review applicable provider data controls before any real deployment. Registry queries remain separate, explicit read-only requests to PubMed/ClinicalTrials.gov.
+
+## Walkthrough
+
+1. Select a fictional KOL and inspect the CRM profile, interaction timeline, current tasks and medical-information requests. The fixed 23 October 2026 snapshot contains 3 profiles, 9 interactions, 9 tasks and 6 requests.
+2. Choose Offline or OpenAI LLM in the sidebar.
+3. Search a registry, inspect and explicitly select records, or supply permitted source text.
+4. Enter fictional meeting notes and click Prepare.
+5. Review meeting priorities (LLM mode), scientific draft/abstention, original source appendix and note/follow-up draft. Source IDs and exact supporting quotes aid review.
+6. Changing KOL clears the current meeting workspace. Changing mode/model clears the prior result. Regenerating clears the old draft before attempting a new run.
+
+## Evidence and failure behavior
+
+Every model response is constrained to a JSON schema and validated locally with Pydantic. Draft items require a nonempty exact quote from the designated input, and scientific items require a selected source ID. Invalid source IDs, mismatched quotes, malformed responses, refusals, incomplete output and API errors reject the run. The UI shows an error without displaying partial or older results; it never silently calls an offline draft an LLM result.
+
+Quote matching does not prove that a paraphrase follows from its source. Model text can still be misleading, incomplete or scientifically wrong. MSL review remains mandatory. Original sources/notes stay visible; task owners and due dates remain unassigned; no approval or closure action is performed. Potential safety information must follow the established organizational process; the prototype does not detect reportability or submit reports.
+
+## Verification
 
 ```powershell
-python -m pytest -q
+.\.venv\Scripts\python.exe -m pytest -q
 ```
 
-## Demo data
+Tests use mocked model/registry responses and Streamlit AppTest; running tests incurs no OpenAI usage. Real model quality requires a separately configured key and reviewer evaluation. The integration was built without a configured API key, so a live OpenAI completion has not yet been verified.
 
-`data/kol_records.json` contains the three invented KOL profiles, prior interaction notes, and follow-up statuses. No real people, organizations, patient details, or scientific claims are represented. PubMed results and ClinicalTrials.gov records are external metadata retrieved by user search; they display source identifiers and links and are not copied into the synthetic CRM fixture. Selected source input is used only for the current workflow run and is not saved.
+## Project references
 
-## Human review and limitations
+- [Scope and delivery plan](specs/scope-and-delivery.md)
+- [LLM acceptance criteria and verification](specs/llm-agents.md)
+- [Requirement-test matrix](specs/requirement-test-matrix.md)
+- [Evaluation and reviewer pack](specs/evaluation-and-review.md)
+- [Workshop walkthrough](docs/workshop-walkthrough.md)
+- [OpenAI Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs)
+- [GPT-4.1 mini model documentation](https://developers.openai.com/api/docs/models/gpt-4.1-mini)
 
-All briefings and follow-up outputs are drafts. The MSL must verify identity, sources, interpretation, and task ownership. This prototype has no CRM writes, external communications, patient-specific recommendations, safety-case submission, authentication, or production data controls. Any potential safety information must be handled through the organization's established process; this demo does not make safety-reporting decisions.
+## Synthetic CRM and test scenarios
 
-## Acceptance criteria
+- [CRM data and CSV exports](data/synthetic_crm/README.md): profiles, interactions, tasks and medical-information requests; the app reads data/kol_records.json.
+- [Dedicated test use cases and scenarios](test_scenarios/README.md): all executed test instances, reproducible fictional inputs, XML evidence, latest results and separate live/manual status.
 
-- Exactly three synthetic KOLs are available with distinct IDs.
-- Selecting a KOL returns only that KOL's history and tasks.
-- PubMed search returns article metadata and PMID links; article selection is explicit.
-- ClinicalTrials.gov search returns registry fields and NCT links; study selection is explicit and discussion prompts are neutral templates.
-- CRM history is clearly separated from scientific source text.
-- No source text means no scientific claims are generated; the app shows an abstention.
-- New notes are preserved, interpretation remains for MSL review, and follow-up prompts use deterministic rules.
-- Drafts are visibly marked as requiring human review.
-- Tests cover record isolation, evidence abstention, source preservation, rule-based follow-up, and mocked registry parsing without live model calls.
+CRM task updates and request responses remain read-only fixture history. New drafts do not modify these records. Overdue is calculated at the fixture snapshot, not against the computer clock.
