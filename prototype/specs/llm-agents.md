@@ -14,7 +14,7 @@ See [agents.py](../agents.py), [workflow.py](../workflow.py) and [llm.py](../llm
 
 ## Request and credential contract
 
-- Explicit OpenAI mode and Prepare action; Offline remains the default and makes no model requests.
+- Explicit OpenAI mode and Search/Prepare action; Offline remains the default and makes no model requests. Searches can make one public-record summary batch call separately from the preparation graph.
 - One response per non-skipped agent, maximum three calls, 45-second timeout per HTTP call and no automatic retries.
 - OpenAI Responses API with strict JSON schema, `store=false` and an output-token cap. Endpoint is fixed to api.openai.com; redirects are rejected.
 - Default model is configurable `gpt-4.1-mini`, documented to support Structured Outputs. Availability is not assumed for every API project.
@@ -45,3 +45,7 @@ No API key was configured during implementation. No live OpenAI completion or mo
 
 - [OpenAI Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs): JSON schema constrains response structure; schema validity does not establish factual truth.
 - [GPT-4.1 mini](https://developers.openai.com/api/docs/models/gpt-4.1-mini): selected configurable model and structured-output support.
+
+## Scientific search summaries
+
+The existing Scientific Source Agent also provides summary-first result previews through an explicit search action. See [search-summaries.md](search-summaries.md). Summaries do not replace original evidence and are never automatically selected as briefing sources.

@@ -142,3 +142,10 @@ Append new entries; preserve earlier entries.
 - Preserved all former filenames, checksums and removal reasons in [the source manifest](../raw/source-manifest.json). Updated the two download-metadata local_file pointers.
 - Updated source links in current documentation and the historical log so they resolve to canonical files; historical event descriptions remain intact.
 - Updated source-naming instructions to reflect the user's request. The existing original-note DOCX link remains an identified evidence gap; no source text was rewritten to conceal it.
+
+## 23 October 2026 - Show scientific search summaries before original details
+
+- Added summary-first PubMed/ClinicalTrials.gov result views with source links and original data under View original details.
+- Offline mode shows labeled compact excerpts/registry overviews. Explicit OpenAI searches can request one batch of quote-checked short summaries through the Scientific Source Agent, without CRM data.
+- Added per-session summaries and clearing on new search, mode/model or identity changes. Failed AI summaries show a warning and labeled offline previews; original records remain briefing evidence.
+- Full automated suite: 91 passed. Added 16 summary-specific cases; live OpenAI summary quality remains unverified in this development run.

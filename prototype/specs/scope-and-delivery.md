@@ -71,3 +71,7 @@ OpenAI integration and mocked tests are implemented. Configure a key in the app 
 ## Expanded synthetic CRM and scenario evidence
 
 The fictional fixture now includes three profiles, nine historical interactions, nine current tasks and six medical-information requests, using a fixed 23 October 2026 snapshot. The UI has separate profile, timeline, task and request tabs. Existing tasks are fixture history; no live CRM or task write-back is added. See [the CRM data folder](../data/synthetic_crm/README.md) and [the dedicated test-scenario folder](../test_scenarios/README.md) for human-readable exports and actual test evidence.
+
+## Summary-first search results
+
+PubMed and ClinicalTrials.gov results show concise previews with originals under View original details. OpenAI-mode searches may make one additional public-source summary batch request via the Scientific Source Agent; offline previews require no model. Original records remain the briefing evidence. See [the search-summary contract](search-summaries.md).

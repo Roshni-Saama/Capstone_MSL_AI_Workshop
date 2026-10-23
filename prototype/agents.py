@@ -97,6 +97,11 @@ class KOLContextAgent:
 class ScientificSourceAgent:
     """Retrieves selected sources and optionally drafts a quote-backed briefing."""
 
+    @staticmethod
+    def summarize_search_results(records, kind, llm=None):
+        from search_summaries import summarize_results
+        return summarize_results(records, kind, llm=llm)
+
     def search_pubmed(self, query: str, retmax: int = 5) -> list[dict[str, str]]:
         return search_pubmed(query, retmax=retmax)
 

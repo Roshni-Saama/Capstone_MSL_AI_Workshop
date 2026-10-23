@@ -17,6 +17,7 @@ cases = list(root.iter("testcase"))
 if not cases:
     raise SystemExit("No executed test cases in XML; no report was generated.")
 categories = {
+    "test_search_summaries": ("Scientific search summaries", "Exercise compact previews or mocked batch summaries; inspect source validation, original-detail UI, explicit selection and session recovery."),
     "test_agents": ("Agent contracts", "Run the role-specific input through the agent and verify returned context/draft assertions."),
     "test_workflow": ("Workflow and evidence boundaries", "Run fixture lookup, missing-source or note/source preservation checks with the named inputs."),
     "test_pubmed": ("PubMed parsing and validation", "Use mocked PubMed payloads or invalid query/count inputs; inspect metadata or raised error."),

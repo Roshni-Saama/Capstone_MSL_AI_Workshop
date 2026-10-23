@@ -38,3 +38,7 @@ Automated checks simulate model refusal, incomplete/malformed output, unknown so
 ## UC-007: human review scenarios
 
 Use conflicting synthetic source text, an instruction-like source, a fictional off-label question or a general potential-safety note. Assess whether wording is supported and uncertainty is visible. The prompt-boundary test checks request construction only; it does not prove live resistance to injection. Medical handling, specialist review, live output quality and business benefit remain unverified. See [live/manual status](live_and_manual_checks.md).
+
+## UC-008: summary-first scientific search
+
+Run either registry search and open a record. Expect a short AI summary draft in OpenAI mode, or a labeled offline excerpt/overview otherwise. Original abstract or registry data is available under View original details. Check source links, supporting quotes, missing abstracts, a failed AI summary and repeated UI edits without another model call. Preparing without selecting the result must still abstain. Executable coverage: test_search_summaries.py. Live AI summary usefulness remains a reviewer task.

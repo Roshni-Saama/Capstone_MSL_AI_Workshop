@@ -63,3 +63,17 @@ Tests use mocked model/registry responses and Streamlit AppTest; running tests i
 - [Dedicated test use cases and scenarios](test_scenarios/README.md): all executed test instances, reproducible fictional inputs, XML evidence, latest results and separate live/manual status.
 
 CRM task updates and request responses remain read-only fixture history. New drafts do not modify these records. Overdue is calculated at the fixture snapshot, not against the computer clock.
+## Restart after updating backend code
+
+If an existing browser session reports `run_workflow() got an unexpected keyword argument 'use_llm'` after updating the application, stop the old Streamlit server and start it again from this prototype folder with `./.venv/Scripts/python.exe -B -m streamlit run app.py`. Then refresh the browser. A fresh process loads the updated workflow signature; a browser refresh alone may retain an older imported function. Restarting clears the session, so re-enter the API key locally and restore any unsaved fictional notes.
+
+## Summary-first scientific search
+
+Opening a PubMed or ClinicalTrials.gov result now shows a short overview before the original details. Links and source identifiers remain visible. Expand **View original details** for the abstract or registered fields; PubMed retrieval is abstract-based and does not fetch full article text.
+
+- Offline: PubMed shows a bounded abstract excerpt, explicitly labeled as an excerpt rather than an AI summary. Trials show a compact overview of design/status, population/interventions and planned outcomes. Missing abstracts are disclosed.
+- OpenAI LLM: clicking a search generates one batch of short, source-checked summaries for up to five returned records through the existing Scientific Source Agent. These are additional API calls beyond preparation; retrieved public source text is sent to OpenAI. Draft summaries require MSL review.
+- Summaries are session-only and reused on ordinary UI reruns. A new search, KOL change or mode/model change clears the affected summaries. Model failures show a warning and explicitly labeled offline previews, never an old AI summary.
+- Source selection remains explicit. Preparing a briefing uses original selected records, not generated search summaries. Registry planned outcomes are not represented as study results.
+
+See the [search-summary specification](specs/search-summaries.md) and [executed test scenarios](test_scenarios/README.md).

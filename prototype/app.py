@@ -5,7 +5,8 @@ from __future__ import annotations
 import os
 
 import streamlit as st
-from llm import DEFAULT_MODEL, LLMError
+from llm import DEFAULT_MODEL, LLMError, OpenAILLM
+from search_result_views import render_pubmed_result, render_trial_result
 
 from agents import ScientificSourceAgent
 from clinical_trials import ClinicalTrialsError
@@ -29,7 +30,7 @@ with st.sidebar:
     api_key = ""
     model = os.environ.get("OPENAI_MODEL", DEFAULT_MODEL)
     if use_llm:
-        st.caption("OpenAI mode sends the selected fictional KOL context, selected source text, and fictional meeting notes to OpenAI. API usage may incur charges.")
+        st.caption("Searching in OpenAI mode sends retrieved public records to OpenAI for short summaries. Preparing drafts sends the selected fictional KOL context, selected sources, and fictional notes. API usage may incur charges.")
         api_key = st.text_input("OpenAI API key", type="password", key="openai_api_key",
                                 help="Used for this session only. Never paste keys into chat or project files.")
         if os.environ.get("OPENAI_API_KEY"):
@@ -39,10 +40,24 @@ with st.sidebar:
     runtime_signature = (drafting_mode, model)
     if st.session_state.get("runtime_signature") != runtime_signature:
         st.session_state.pop("workflow_result", None)
+        for summary_key in ("pubmed_summaries", "pubmed_summary_error", "trial_summaries", "trial_summary_error"):
+            st.session_state.pop(summary_key, None)
         st.session_state["runtime_signature"] = runtime_signature
 
 records = load_records()
 source_agent = ScientificSourceAgent()
+
+
+def populate_search_summaries(prefix, results, kind):
+    if not results:
+        return
+    try:
+        runtime = OpenAILLM(api_key=api_key or None, model=model) if use_llm else None
+        with st.spinner("Summarizing search results..."):
+            st.session_state[prefix + "_summaries"] = source_agent.summarize_search_results(results, kind, llm=runtime)
+    except LLMError as error:
+        st.session_state[prefix + "_summary_error"] = "AI summaries unavailable. " + str(error) + " Showing the compact offline preview instead."
+
 selected = st.selectbox(
     "Select a fictional KOL",
     records,
@@ -57,7 +72,7 @@ if st.session_state.get("active_kol_id") != selected["kol_id"]:
         "workflow_result", "pubmed_results", "pubmed_error", "pubmed_query_submitted",
         "trial_results", "trial_error", "trial_query_submitted", "pubmed_query",
         "trial_query", "selected_pmids", "selected_nct_ids", "scientific_source_text",
-        "meeting_notes",
+        "meeting_notes", "pubmed_summaries", "pubmed_summary_error", "trial_summaries", "trial_summary_error",
     ):
         st.session_state.pop(state_key, None)
     st.session_state["active_kol_id"] = selected["kol_id"]
@@ -131,6 +146,8 @@ with right:
     )
     search_clicked = st.button("Search PubMed", use_container_width=True)
     if search_clicked:
+        for state_key in ("pubmed_summaries", "pubmed_summary_error", "selected_pmids"):
+            st.session_state.pop(state_key, None)
         st.session_state["pubmed_query_submitted"] = True
         if not pubmed_query.strip():
             st.session_state["pubmed_error"] = "Enter search terms before searching."
@@ -139,12 +156,16 @@ with right:
             try:
                 st.session_state["pubmed_results"] = source_agent.search_pubmed(pubmed_query, retmax=5)
                 st.session_state.pop("pubmed_error", None)
+                populate_search_summaries("pubmed", st.session_state["pubmed_results"], "pubmed")
             except (PubMedError, ValueError) as error:
                 st.session_state["pubmed_results"] = []
                 st.session_state["pubmed_error"] = str(error)
 
     if st.session_state.get("pubmed_error"):
         st.error(st.session_state["pubmed_error"])
+
+    if st.session_state.get("pubmed_summary_error"):
+        st.warning(st.session_state["pubmed_summary_error"])
 
     pubmed_results = st.session_state.get("pubmed_results", [])
     selected_pmids: list[str] = []
@@ -160,13 +181,7 @@ with right:
             ),
         )
         for article in pubmed_results:
-            with st.expander(f"{article['title']} · PMID {article['pmid']}"):
-                st.markdown(
-                    f"**{article['authors']}**  \n"
-                    f"{article['journal']} ({article['year'] or 'Year unavailable'})"
-                )
-                st.markdown(f"[Open PubMed record]({article['url']})")
-                st.write(article["abstract"] or "No abstract is available in the PubMed record.")
+            render_pubmed_result(article, st.session_state.get("pubmed_summaries", {}).get(article["pmid"]))
     elif st.session_state.get("pubmed_query_submitted") and not st.session_state.get("pubmed_error"):
         st.info("No PubMed results found for that search.")
 
@@ -183,6 +198,8 @@ with right:
     )
     trial_search_clicked = st.button("Search ClinicalTrials.gov", use_container_width=True)
     if trial_search_clicked:
+        for state_key in ("trial_summaries", "trial_summary_error", "selected_nct_ids"):
+            st.session_state.pop(state_key, None)
         st.session_state["trial_query_submitted"] = True
         if not trial_query.strip():
             st.session_state["trial_error"] = "Enter a condition or topic before searching trials."
@@ -191,12 +208,16 @@ with right:
             try:
                 st.session_state["trial_results"] = source_agent.search_trials(trial_query, page_size=5)
                 st.session_state.pop("trial_error", None)
+                populate_search_summaries("trial", st.session_state["trial_results"], "trials")
             except (ClinicalTrialsError, ValueError) as error:
                 st.session_state["trial_results"] = []
                 st.session_state["trial_error"] = str(error)
 
     if st.session_state.get("trial_error"):
         st.error(st.session_state["trial_error"])
+
+    if st.session_state.get("trial_summary_error"):
+        st.warning(st.session_state["trial_summary_error"])
 
     trial_results = st.session_state.get("trial_results", [])
     selected_nct_ids: list[str] = []
@@ -212,26 +233,7 @@ with right:
             ),
         )
         for trial in trial_results:
-            with st.expander(f"{trial['title']} · {trial['nct_id']}"):
-                st.markdown(
-                    f"**Registry status:** {trial['status']}  \n"
-                    f"**Last posted update:** {trial['last_updated'] or 'Not listed'}  \n"
-                    f"**Study type / phase:** {trial['study_type']} / {trial['phase']}  \n"
-                    f"**Conditions:** {', '.join(trial['conditions']) or 'Not listed'}  \n"
-                    f"**Interventions:** {', '.join(trial['interventions']) or 'Not listed'}  \n"
-                    f"**Enrollment:** {trial['enrollment']} {trial['enrollment_type']}"
-                )
-                st.markdown(f"[Open ClinicalTrials.gov record]({trial['url']})")
-                prompts = source_agent.trial_discussion_prompts(trial)
-                st.markdown("**Neutral discussion prompts (draft):**")
-                for prompt in prompts:
-                    st.markdown(f"- {prompt}")
-                with st.expander("View registered eligibility and primary outcomes"):
-                    st.markdown(f"**Eligibility:**\n\n{trial['eligibility']}")
-                    st.markdown(
-                        "**Primary outcomes:** "
-                        f"{'; '.join(trial['primary_outcomes']) or 'Not listed'}"
-                    )
+            render_trial_result(trial, source_agent, st.session_state.get("trial_summaries", {}).get(trial["nct_id"]))
     elif st.session_state.get("trial_query_submitted") and not st.session_state.get("trial_error"):
         st.info("No ClinicalTrials.gov records found for that search.")
 
