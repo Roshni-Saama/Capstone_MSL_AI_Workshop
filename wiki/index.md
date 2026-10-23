@@ -7,6 +7,7 @@ Status: editable starter templates. Created 13 October 2026.
 - [Working capstone notes](../MSL_KOL_Capstone_Notes_and_References.md)
 - [MSL and KOL concepts](concepts/msl-kol.md)
 - [KOL categories and expert directory](concepts/kol-directory.md)
+- [Synthetic CRM demo data: three fictional KOL records](demo-data/synthetic-crm/index.md)
 - [Engagement workflow](workflows/engagement.md)
 - [Human oversight and guardrails](governance/oversight.md)
 - [Wiki change log](log.md)
@@ -34,7 +35,7 @@ Status: draft populated from discussion notes on 13 October 2026. Proposed scope
 
 ### Focused business problem
 
-Draft problem: MSLs need to assemble relevant evidence and prior interaction history before a KOL meeting, then accurately document questions and complete follow-up. Fragmented information and unclear task ownership may increase preparation effort and leave questions unresolved. The intended outcome is a source-backed briefing and a reviewed follow-up record with clear owners and status.
+Draft problem: For repeat KOL meetings, MSLs need to reconstruct relevant scientific context, prior discussions, and outstanding commitments from interaction history, then accurately document new questions and complete follow-up. The prototype will use clearly labeled, fully synthetic CRM-shaped records to demonstrate this continuity. The intended outcome is a source-backed briefing and a reviewed follow-up record with clear owners and status.
 
 Basis: [Original notes, Operational and technical challenges](../raw/Capstone_notes.md#operational-and-technical-challenges). These are candidate problems, not validated findings about a particular company.
 
@@ -49,11 +50,12 @@ Basis: [Original notes, The MSL role and value](../raw/Capstone_notes.md#the-msl
 
 ### Selected use case and exclusions
 
-Proposed first use case: an MSL preparation and follow-up assistant. Final selection remains pending review.
+Proposed first use case: an MSL preparation and follow-up assistant for repeat KOL meetings. Final selection remains pending review.
 
-- Preparation: assemble relevant sources, prior interaction context, and unresolved questions into a briefing.
+- Preparation: assemble relevant scientific sources, synthetic prior interaction context, and unresolved questions into a briefing.
 - Documentation: draft a structured record separating KOL statements, MSL interpretations, and follow-up tasks.
-- Follow-up: track task owners, reviewed responses, and unresolved questions.
+- Follow-up: carry prior commitments into the next meeting and track task owners, reviewed responses, and unresolved questions.
+- Demo data: use fictional KOLs, organizations, interactions, and follow-up records with enterprise-like identifiers and relationships. Do not connect to or imply access to a live CRM.
 - Human review: the MSL reviews briefings, interpretations, and outgoing responses.
 
 Proposed exclusions for the initial prototype: autonomous external messaging, patient treatment recommendations, sales targeting, promises of funding or research, live meeting recording, and company-wide strategy automation. Potential safety information must be flagged for the required company process; the prototype must not make final safety-reporting decisions. These are proposed boundaries, not approved company policy.

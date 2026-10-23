@@ -2,6 +2,13 @@
 
 Append new entries; preserve earlier entries.
 
+## 23 October 2026 - Add synthetic CRM history to proposed demo scope
+
+- Updated the draft problem and use case to focus on repeat KOL meetings and continuity of open scientific questions.
+- Defined synthetic, enterprise-shaped CRM records as demo inputs, with fictional identifiers and no live CRM connection or real HCP/patient data.
+- Added the minimum interaction/task fields and a repeat-meeting scenario to the proposed workflow.
+- This is a scope proposal; the workspace contains no runnable prototype application to integrate data into yet.
+
 ## 13 October 2026 - Initial wiki structure
 - Added the wiki home, concepts, workflow, and governance templates.
 - Added root instructions for Codex.
@@ -64,3 +71,10 @@ Append new entries; preserve earlier entries.
 - Retained original hash-named evidence versions alongside the readable aliases and added a snapshot of the current Capstone notes.
 - Kept the historical original-snapshot links pointing to their original evidence.
 - Obsidian workspace configuration remains local.
+
+## 23 October 2026 - Prepare three synthetic KOL CRM records
+
+- Added a wiki-formatted demo-data folder with three fictional KOL profiles, dated interaction histories, and follow-up task statuses.
+- Added stable fictional IDs and explicit provenance warnings; excluded real contact details, patient information, and scientific claims.
+- Linked the fixture from the wiki home and repeat-meeting workflow.
+- The records are demo inputs only; no runnable application or live CRM integration is present in this workspace.

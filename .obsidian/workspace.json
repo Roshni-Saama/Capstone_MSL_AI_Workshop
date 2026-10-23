@@ -1,0 +1,212 @@
+{
+  "main": {
+    "id": "23c6441246226eee",
+    "type": "split",
+    "children": [
+      {
+        "id": "0108ff95e0e52793",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0d490bb55f3e0643",
+            "type": "leaf",
+            "state": {
+              "type": "graph",
+              "state": {},
+              "icon": "lucide-git-fork",
+              "title": "Graph view"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "9e1356b7d47e21cc",
+    "type": "split",
+    "children": [
+      {
+        "id": "4686c02cf14ed014",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "772f18d9fb8c283e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "48c10ce097afcafb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "a0f21a6ef6368e46",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "bd5104158dc1a119",
+    "type": "split",
+    "children": [
+      {
+        "id": "bd7c2e1a78b96abd",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7d9d33ce835db081",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "MSL_KOL_Capstone_Notes_and_References.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "58fbc4ce12d7cc52",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "MSL_KOL_Capstone_Notes_and_References.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "1edf457e7248d13d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "89ff8179aa660952",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "75a575d36727076b",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "MSL_KOL_Capstone_Notes_and_References.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "0d490bb55f3e0643",
+  "lastOpenFiles": [
+    "wiki/index.md",
+    "raw/notes-aa7e638dd48c1f9f9b0aac118e9cba2f100efb8a4cabcc06230a3c095a0e6db2.md",
+    "raw/notes-7940ca70961ec0155ecc7dfce21505d3acd6ad7358af29cfebec50d22b1e9527.md",
+    "raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md",
+    "raw/msl-role-evidence-1c04fa0376b0109331c0c11a441810e9cf9d7a946d01756a5de9e13cc388c615.md",
+    "raw/msl-concepts-evidence-a5297a4aaeaaa9bddbc06dd0381661babbe67f03edb0d2a7fa0ac66634d87c0e.md",
+    "raw/kol-directory-evidence-7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77.md",
+    "wiki/concepts/msl-kol.md",
+    "raw/Veeva_Four_Pillars_of_Data_Driven_KOL-1e21cf0e7e2c96238d6ad182f6b7bb0304b1607ceab10943c95f458596d8a804.pdf",
+    "raw/Capstone_notes.md",
+    "raw/msl-role-evidence.md",
+    "raw/kol-directory-evidence.md",
+    "raw/msl-concepts-evidence.md",
+    "wiki/concepts/kol-directory.md",
+    "raw/Veeva_Four_Pillars_of_Data_Driven_KOL-1e21cf0e7e2c96238d6ad182f6b7bb0304b1607ceab10943c95f458596d8a804.pdf.source.json",
+    "raw/WHO_ATC_Classification-69e6a3bc096cf41c2b8bab0614ddcc89dfeca414cdf4528e6c913ec9445c3468.html.source.json",
+    "raw/WHO_ATC_Classification-69e6a3bc096cf41c2b8bab0614ddcc89dfeca414cdf4528e6c913ec9445c3468.html",
+    "wiki/manager-brief.md",
+    "raw/msl-role.md",
+    "wiki/workflows/engagement.md",
+    "raw/Understanding the MSL Structure.pdf",
+    "MSL_KOL_Capstone_Notes_and_References.md"
+  ]
+}
