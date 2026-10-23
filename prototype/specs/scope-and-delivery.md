@@ -6,7 +6,7 @@ Status: working implementation scope, 23 October 2026. Stakeholder approval and 
 
 For repeat KOL meetings, the MSL needs to recover prior discussion context and unfinished commitments, inspect relevant scientific sources, and preserve new questions for reviewed follow-up. The proposed value is less preparation effort and fewer missed commitments. These are hypotheses to measure, not demonstrated benefits.
 
-Basis: [Project notes, Operational and technical challenges and Possible AI scope](../../raw/Capstone_notes.md), [proposed engagement workflow](../../wiki/workflows/engagement.md), and [repeat-meeting specification](repeat-meeting.md). The source notes describe candidate problems and a fictional example; they do not establish a validated company workflow.
+Basis: [Project notes, Operational and technical challenges and Possible AI scope](../../raw/MSL%20KOL%20engagement%20note.md), [proposed engagement workflow](../../wiki/workflows/engagement.md), and [repeat-meeting specification](repeat-meeting.md). The source notes describe candidate problems and a fictional example; they do not establish a validated company workflow.
 
 ## Current delivery boundary
 

@@ -4,7 +4,7 @@ Status: proposed workflow template, not a validated company process.
 Owner: [To complete]. Last reviewed: [To complete].
 
 ## Evidence to review
-See "An illustrative engagement" and "Possible AI scope" in the [original notes](../../raw/Capstone_notes.md).
+See "An illustrative engagement" and "Possible AI scope" in the [original notes](../../raw/MSL%20KOL%20engagement%20note.md).
 The example in those notes is fictional.
 The proposed prototype fixture is [three synthetic KOL CRM records](../demo-data/synthetic-crm/index.md); those records are invented interaction history, not scientific evidence.
 

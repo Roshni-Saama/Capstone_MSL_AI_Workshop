@@ -1,0 +1,168 @@
+{
+  "recorded_on": "2026-10-23",
+  "purpose": "Human-readable raw filenames and user-authorized deduplication. Source note/PDF/HTML bytes are preserved; only download metadata local_file pointers changed.",
+  "original_file_count": 16,
+  "retained_source_and_metadata_files": 9,
+  "redundant_files_removed": 7,
+  "sources": [
+    {
+      "file": "MSL KOL engagement note.md",
+      "sha256": "745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4",
+      "bytes": 9944,
+      "original_files": [
+        {
+          "name": "notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md",
+          "bytes": 9944,
+          "sha256": "745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4",
+          "action": "Renamed according to reviewed content."
+        },
+        {
+          "name": "notes-7940ca70961ec0155ecc7dfce21505d3acd6ad7358af29cfebec50d22b1e9527.md",
+          "bytes": 9940,
+          "sha256": "7940ca70961ec0155ecc7dfce21505d3acd6ad7358af29cfebec50d22b1e9527",
+          "action": "Removed same engagement note with only formatting differences."
+        },
+        {
+          "name": "notes-aa7e638dd48c1f9f9b0aac118e9cba2f100efb8a4cabcc06230a3c095a0e6db2.md",
+          "bytes": 19881,
+          "sha256": "aa7e638dd48c1f9f9b0aac118e9cba2f100efb8a4cabcc06230a3c095a0e6db2",
+          "action": "Removed redundant copy containing the complete engagement note twice."
+        },
+        {
+          "name": "Capstone_notes.md",
+          "bytes": 19881,
+          "sha256": "aa7e638dd48c1f9f9b0aac118e9cba2f100efb8a4cabcc06230a3c095a0e6db2",
+          "action": "Removed redundant copy containing the complete engagement note twice."
+        }
+      ]
+    },
+    {
+      "file": "MSL role and reporting research.md",
+      "sha256": "1c04fa0376b0109331c0c11a441810e9cf9d7a946d01756a5de9e13cc388c615",
+      "bytes": 1281,
+      "original_files": [
+        {
+          "name": "msl-role-evidence.md",
+          "bytes": 1281,
+          "sha256": "1c04fa0376b0109331c0c11a441810e9cf9d7a946d01756a5de9e13cc388c615",
+          "action": "Renamed according to reviewed content."
+        },
+        {
+          "name": "msl-role-evidence-1c04fa0376b0109331c0c11a441810e9cf9d7a946d01756a5de9e13cc388c615.md",
+          "bytes": 1281,
+          "sha256": "1c04fa0376b0109331c0c11a441810e9cf9d7a946d01756a5de9e13cc388c615",
+          "action": "Removed byte-identical duplicate; canonical copy retained."
+        },
+        {
+          "name": "msl-role.md",
+          "bytes": 1281,
+          "sha256": "1c04fa0376b0109331c0c11a441810e9cf9d7a946d01756a5de9e13cc388c615",
+          "action": "Removed byte-identical duplicate; canonical copy retained."
+        }
+      ]
+    },
+    {
+      "file": "MSL scientific training and medical insights research.md",
+      "sha256": "a5297a4aaeaaa9bddbc06dd0381661babbe67f03edb0d2a7fa0ac66634d87c0e",
+      "bytes": 1054,
+      "original_files": [
+        {
+          "name": "msl-concepts-evidence.md",
+          "bytes": 1054,
+          "sha256": "a5297a4aaeaaa9bddbc06dd0381661babbe67f03edb0d2a7fa0ac66634d87c0e",
+          "action": "Renamed according to reviewed content."
+        },
+        {
+          "name": "msl-concepts-evidence-a5297a4aaeaaa9bddbc06dd0381661babbe67f03edb0d2a7fa0ac66634d87c0e.md",
+          "bytes": 1054,
+          "sha256": "a5297a4aaeaaa9bddbc06dd0381661babbe67f03edb0d2a7fa0ac66634d87c0e",
+          "action": "Removed byte-identical duplicate; canonical copy retained."
+        }
+      ]
+    },
+    {
+      "file": "KOL directory research notes.md",
+      "sha256": "7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77",
+      "bytes": 1342,
+      "original_files": [
+        {
+          "name": "kol-directory-evidence.md",
+          "bytes": 1342,
+          "sha256": "7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77",
+          "action": "Renamed according to reviewed content."
+        },
+        {
+          "name": "kol-directory-evidence-7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77.md",
+          "bytes": 1342,
+          "sha256": "7ea11700536da0cf15791ba65adf200d79419105df03cd5174c98adc08d1bd77",
+          "action": "Removed byte-identical duplicate; canonical copy retained."
+        }
+      ]
+    },
+    {
+      "file": "MSL best practices position statement - Theron 2021.pdf",
+      "sha256": "b5aa966854ad77705e20c5a613f0e01ecccf7e24eedd2b016780dfe27bfc1f3e",
+      "bytes": 472411,
+      "original_files": [
+        {
+          "name": "Understanding the MSL Structure.pdf",
+          "bytes": 472411,
+          "sha256": "b5aa966854ad77705e20c5a613f0e01ecccf7e24eedd2b016780dfe27bfc1f3e",
+          "action": "Renamed according to reviewed content."
+        }
+      ]
+    },
+    {
+      "file": "Veeva four pillars of data-driven KOL engagement.pdf",
+      "sha256": "1e21cf0e7e2c96238d6ad182f6b7bb0304b1607ceab10943c95f458596d8a804",
+      "bytes": 1451731,
+      "original_files": [
+        {
+          "name": "Veeva_Four_Pillars_of_Data_Driven_KOL-1e21cf0e7e2c96238d6ad182f6b7bb0304b1607ceab10943c95f458596d8a804.pdf",
+          "bytes": 1451731,
+          "sha256": "1e21cf0e7e2c96238d6ad182f6b7bb0304b1607ceab10943c95f458596d8a804",
+          "action": "Renamed according to reviewed content."
+        }
+      ]
+    },
+    {
+      "file": "Veeva four pillars of data-driven KOL engagement.source.json",
+      "sha256": "cea8051321eaa040457962225ac9ed265cfc00f6c753a40a5fd6fe29e6ca939f",
+      "bytes": 348,
+      "original_files": [
+        {
+          "name": "Veeva_Four_Pillars_of_Data_Driven_KOL-1e21cf0e7e2c96238d6ad182f6b7bb0304b1607ceab10943c95f458596d8a804.pdf.source.json",
+          "bytes": 427,
+          "sha256": "80de4791f0a20f053dc19e18881464bdcc225aa57c842a93be6ff6f00b5f8d16",
+          "action": "Renamed according to reviewed content."
+        }
+      ]
+    },
+    {
+      "file": "WHO anatomical therapeutic chemical classification.html",
+      "sha256": "69e6a3bc096cf41c2b8bab0614ddcc89dfeca414cdf4528e6c913ec9445c3468",
+      "bytes": 83596,
+      "original_files": [
+        {
+          "name": "WHO_ATC_Classification-69e6a3bc096cf41c2b8bab0614ddcc89dfeca414cdf4528e6c913ec9445c3468.html",
+          "bytes": 83596,
+          "sha256": "69e6a3bc096cf41c2b8bab0614ddcc89dfeca414cdf4528e6c913ec9445c3468",
+          "action": "Renamed according to reviewed content."
+        }
+      ]
+    },
+    {
+      "file": "WHO anatomical therapeutic chemical classification.source.json",
+      "sha256": "5081f5daf207ce73ca3168cadd3a51ff1434358706ea2c6de909f39ad82e1aa8",
+      "bytes": 311,
+      "original_files": [
+        {
+          "name": "WHO_ATC_Classification-69e6a3bc096cf41c2b8bab0614ddcc89dfeca414cdf4528e6c913ec9445c3468.html.source.json",
+          "bytes": 373,
+          "sha256": "bc6bb881dfd0012539c827932b65f12e8ec6e9ac676b86e25c10f1339c1e8df3",
+          "action": "Renamed according to reviewed content."
+        }
+      ]
+    }
+  ]
+}

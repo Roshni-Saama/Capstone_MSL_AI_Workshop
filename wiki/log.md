@@ -12,7 +12,7 @@ Append new entries; preserve earlier entries.
 ## 13 October 2026 - Initial wiki structure
 - Added the wiki home, concepts, workflow, and governance templates.
 - Added root instructions for Codex.
-- Preserved a byte-for-byte [snapshot of the original project notes](../raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md).
+- Preserved a byte-for-byte [snapshot of the original project notes](../raw/MSL%20KOL%20engagement%20note.md).
 - Templates contain placeholders; no company process or policy has been approved.
 - Evidence gap: the manager brief DOCX referenced in the notes is not present in the repository.
 - External references in the original notes have not been independently verified during setup.
@@ -133,3 +133,12 @@ Append new entries; preserve earlier entries.
 - Added linked-record validation and regression tests for all KOLs, corrupted relationships, snapshot overdue behavior, demo inputs, CSV IDs and UI isolation.
 - Full suite: 75 tests passed, recorded in test_scenarios/results/automated_tests.xml. Added an exact executed-case catalog, fictional use cases, reproducible inputs, report builder and separate manual/live status.
 - Earlier live registry observations remain labeled historical; no real OpenAI completion or scientific quality assessment was performed for this change.
+
+## 23 October 2026 - Give raw sources readable names and remove proven duplicates
+
+- Reviewed all 16 raw files, including the full local six-page MSL position paper, ten-page Veeva paper, saved WHO HTML, source metadata and Markdown note variants.
+- Renamed the original engagement note to [MSL KOL engagement note](../raw/MSL%20KOL%20engagement%20note.md), with descriptive names for the other research notes and references.
+- Removed seven redundant files: five exact duplicates and two further note variants containing no unique text. Original source note/PDF/HTML bytes remain unchanged in canonical copies.
+- Preserved all former filenames, checksums and removal reasons in [the source manifest](../raw/source-manifest.json). Updated the two download-metadata local_file pointers.
+- Updated source links in current documentation and the historical log so they resolve to canonical files; historical event descriptions remain intact.
+- Updated source-naming instructions to reflect the user's request. The existing original-note DOCX link remains an identified evidence gap; no source text was rewritten to conceal it.

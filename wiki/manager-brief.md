@@ -4,7 +4,7 @@ Status: draft discussion guide. Created 13 October 2026. Reviewer and review dat
 
 This page extracts the manager-brief summary and explains the choices the team needs to make.
 
-Source: [Preserved notes, The manager brief](../raw/Capstone_notes.md#the-manager-brief). This is our discussion summary, not the original manager DOCX. Its filename is shown as plain text because the DOCX is not stored in this repository.
+Source: [Preserved notes, The manager brief](../raw/MSL%20KOL%20engagement%20note.md#the-manager-brief). This is our discussion summary, not the original manager DOCX. Its filename is shown as plain text because the DOCX is not stored in this repository.
 
 ## The manager brief
 

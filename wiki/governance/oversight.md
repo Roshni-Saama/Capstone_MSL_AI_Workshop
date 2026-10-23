@@ -4,7 +4,7 @@ Status: proposed capstone controls, 23 October 2026; not approved company policy
 
 ## Basis and implementation evidence
 
-The [project notes, Possible AI scope and fictional engagement](../../raw/Capstone_notes.md) propose source traceability, privacy and MSL review. Current software behavior is evidenced by [agents.py](../../prototype/agents.py), [app.py](../../prototype/app.py), and the [acceptance matrix](../../prototype/specs/requirement-test-matrix.md). The manager brief is still outside this repository in the parent workspace. This page describes design controls and implementation limits, not legal advice or approved reporting procedures.
+The [project notes, Possible AI scope and fictional engagement](../../raw/MSL%20KOL%20engagement%20note.md) propose source traceability, privacy and MSL review. Current software behavior is evidenced by [agents.py](../../prototype/agents.py), [app.py](../../prototype/app.py), and the [acceptance matrix](../../prototype/specs/requirement-test-matrix.md). The manager brief is still outside this repository in the parent workspace. This page describes design controls and implementation limits, not legal advice or approved reporting procedures.
 
 ## Controls and responsibility
 

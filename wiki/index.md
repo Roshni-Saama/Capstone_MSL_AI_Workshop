@@ -20,18 +20,16 @@ Status: editable starter templates. Created 13 October 2026.
 - [Codex instructions](../AGENTS.md)
 
 ## Source evidence
-- [Original notes snapshot](../raw/notes-745b8c6e1e77409997d2763ff5af5f34571d0dca95ecb4ea791154764f85b5d4.md): preserved byte-for-byte on 13 October 2026. This is a copy of the project notes, not independent verification of their external references.
-- The manager brief referenced in the notes is not yet stored in this repository.
-- A targeted review of the MSL role and reporting guidance is recorded in the [MSL evidence note](../raw/msl-role-evidence.md). A targeted review of training and the MAPS insights process is recorded in the [supporting concepts research note](../raw/msl-concepts-evidence.md). Other linked papers remain unreviewed for these templates; full copies of those papers have not been downloaded.
 
-- [KOL directory research notes](../raw/kol-directory-evidence.md): links expert selection and directory capabilities to reviewed source passages. The KOL page also links saved WHO HTML and Veeva PDF references.
-
-- [Current readable capstone notes](../raw/Capstone_notes.md), with a [preserved snapshot](../raw/notes-aa7e638dd48c1f9f9b0aac118e9cba2f100efb8a4cabcc06230a3c095a0e6db2.md). Readable source aliases are maintained alongside the original evidence versions.
+- [Source notes and references](../raw/README.md): readable filenames and one canonical copy per source; former filenames and checksums are recorded in the provenance manifest.
+- [MSL KOL engagement note](../raw/MSL%20KOL%20engagement%20note.md): original discussion note retained unchanged. Duplicate copies and repeated full-note variants were removed on 23 October 2026; this is not independent verification of external references.
+- [MSL role and reporting research](../raw/MSL%20role%20and%20reporting%20research.md), [scientific training and medical insights research](../raw/MSL%20scientific%20training%20and%20medical%20insights%20research.md), and [KOL directory research notes](../raw/KOL%20directory%20research%20notes.md): paraphrased source notes with their limitations.
+- The original manager brief DOCX is outside this repository. The local MSL position paper, Veeva paper and saved WHO page are cataloged in the raw-folder index. Other externally linked references are not necessarily stored or fully reviewed here.
 
 ## How to edit
 1. Open this repository folder in VS Code or as an Obsidian vault.
 2. Fill in the templates below, distinguishing evidence from assumptions.
-3. Add source evidence to raw/ using new filenames; preserve earlier versions.
+3. Add source evidence to raw/ using descriptive filenames; record checksums and provenance in raw/source-manifest.json. Preserve distinct source versions.
 4. Link each new wiki page here and append its change to the log.
 5. Review, stage, commit, and push changes to GitHub.
 
@@ -43,7 +41,7 @@ Status: draft populated from discussion notes on 13 October 2026. Proposed scope
 
 Draft problem: For repeat KOL meetings, MSLs need to reconstruct relevant scientific context, prior discussions, and outstanding commitments from interaction history, then accurately document new questions and complete follow-up. The prototype will use clearly labeled, fully synthetic CRM-shaped records to demonstrate this continuity. The intended outcome is a source-backed briefing and a reviewed follow-up record with clear owners and status.
 
-Basis: [Original notes, Operational and technical challenges](../raw/Capstone_notes.md#operational-and-technical-challenges). These are candidate problems, not validated findings about a particular company.
+Basis: [Original notes, Operational and technical challenges](../raw/MSL%20KOL%20engagement%20note.md#operational-and-technical-challenges). These are candidate problems, not validated findings about a particular company.
 
 ### Users and stakeholder reviewer
 
@@ -52,7 +50,7 @@ Basis: [Original notes, Operational and technical challenges](../raw/Capstone_no
 - Supporting roles in the illustrative example: medical-information colleagues reviewing responses and the medical team reviewing potential insights.
 - Proposed stakeholder reviewer: an MSL or Medical Affairs manager who can validate the workflow. Scope reviewer role: workshop evaluator (user-confirmed on 23 October 2026); name and review date: [To complete]. Specialist reviewers for privacy, compliance, and safety routing: [To complete with the company].
 
-Basis: [Original notes, The MSL role and value](../raw/Capstone_notes.md#the-msl-role-and-value) and [the fictional engagement example](../raw/Capstone_notes.md#an-illustrative-engagement-from-preparation-through-follow-up).
+Basis: [Original notes, The MSL role and value](../raw/MSL%20KOL%20engagement%20note.md#the-msl-role-and-value) and [the fictional engagement example](../raw/MSL%20KOL%20engagement%20note.md#an-illustrative-engagement-from-preparation-through-follow-up).
 
 ### Selected use case and exclusions
 
@@ -70,7 +68,7 @@ Current decision (user-authorized 23 October 2026): three LangGraph-coordinated 
 
 Proposed exclusions for the initial prototype: autonomous external messaging, patient treatment recommendations, sales targeting, promises of funding or research, live meeting recording, and company-wide strategy automation. Potential safety information must be flagged for the required company process; the prototype must not make final safety-reporting decisions. These are proposed boundaries, not approved company policy.
 
-Basis: [Original notes, Possible AI scope for the capstone](../raw/Capstone_notes.md#possible-ai-scope-for-the-capstone). Prototype exclusions are design proposals added here for review.
+Basis: [Original notes, Possible AI scope for the capstone](../raw/MSL%20KOL%20engagement%20note.md#possible-ai-scope-for-the-capstone). Prototype exclusions are design proposals added here for review.
 
 ### Success measures and evaluation plan
 
@@ -84,4 +82,4 @@ Proposed measures:
 
 Proposed evaluation: use fictional or authorised de-identified engagements, compare manual and assisted outputs against the same source pack, and have an MSL or Medical Affairs reviewer assess them. Include missing evidence, conflicting sources, an unsolicited off-label question, and potential safety information as review cases. Measure task handling and flags, not clinical outcomes or sales.
 
-Baseline, numeric targets, test dataset, acceptance criteria, evaluator, and review date: [To complete after stakeholder validation]. These measures and test cases are new design proposals, not measured results. Their rationale is the accuracy, traceability, privacy, and oversight requirements in [Original notes, Possible AI scope](../raw/Capstone_notes.md#possible-ai-scope-for-the-capstone).
+Baseline, numeric targets, test dataset, acceptance criteria, evaluator, and review date: [To complete after stakeholder validation]. These measures and test cases are new design proposals, not measured results. Their rationale is the accuracy, traceability, privacy, and oversight requirements in [Original notes, Possible AI scope](../raw/MSL%20KOL%20engagement%20note.md#possible-ai-scope-for-the-capstone).
