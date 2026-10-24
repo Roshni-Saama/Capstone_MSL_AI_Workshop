@@ -1,0 +1,46 @@
+{
+  "prepared_on": "2026-10-24",
+  "slide_count": 16,
+  "automated_tests_passed": 126,
+  "harness_cases_passed": 16,
+  "browser_checks_passed": 8,
+  "live_openai_reviewed": false,
+  "public_app_deployed": false,
+  "images_embedded": true,
+  "palette": "A - Navy & Azure",
+  "palette_colors": {
+    "navy": "#102A43",
+    "primary": "#2563EB",
+    "ink": "#172B4D",
+    "background": "#F4F7FC",
+    "soft": "#EFF6FF"
+  },
+  "input_sha256": {
+    "app.py": "43b173308c7a6d0994e0dde436711db0af838874d552d506c55f240172953b8a",
+    "agents.py": "a92ec59acd9e7bb3cae960515549414f65463803d905cce70899a949bdad4092",
+    "workflow.py": "3cd45a81c7696e762d170e4a5c89b5c21ebede1a257825e4f26d1a0396e2c155",
+    "llm.py": "591f019201fb32c77e29286aadbb0ddad71d1cbe154fff173227f0b1b3fd8a32",
+    "data/kol_records.json": "684ef347bf39918a78d3e46378122353074300fb1c8b53a57ec34941bc0fbcf5",
+    "styles.css": "25ec4655e6a9218f68519ddfb8c17f2af7acc705f9ecbfea18d762469bf0a2d5",
+    ".streamlit/config.toml": "bacb96f2fef3e142ad860564639c0a29df4967a5e9cd156c5af7f6bb4e95ceb7",
+    "presentation/template.html": "a014b04545a56e8219ab9dcdecf3bc35a4365f08650e8ef13b8b18d559915dc3",
+    "presentation/slides.json": "98e34c7f303dee335fb6018834b1dbacc0ef0114ba30739306c402ee71d70cfb",
+    "presentation/build_presentation.py": "ebd95de45866a0513687e478d47937080e8ac0c1ddd11766003ae304723c0cce",
+    "test_scenarios/results/latest_run.md": "3c4e637fab3ce0230bb5f5f3ce5e19028a0260909dc6c392528ec810d70b77a1",
+    "test_scenarios/results/automated_tests.xml": "38c7ea248bc21815c128ff72a904f8671ceffba3a5b3993e1ba67455b1e37250",
+    "harness/results/agent_evaluation.json": "394180fb79c16891c90ba3b5269c73cec124289b143e4535def97dce0ce54c04",
+    "test_scenarios/results/aligned_layout_browser.json": "5fdc42f734b12047afc206c853a0802077f751c54bb4c2bfa0ffa4fbdcfe0def",
+    "specs/requirement-test-matrix.md": "837d03904b5bcff74aae16c890944d4f8d6d156b914cf4d7f60ed45015fef10e",
+    "specs/evaluation-and-review.md": "0a007d7976016dd18a76e7b21d4b63582b34e4e0aeae90bc7991a0e1636bb0b0"
+  },
+  "screenshots": {
+    "aligned_pubmed_filters_desktop.png": "e11d3258d817249fe0a9d448bfa6a851fcafcd03200caf27cd467e937341d791",
+    "aligned_pubmed_results_desktop.png": "bbfd54cdb1a109f2714131c4c7d3f148ef5ec2bfdca93131c8c0283649f80cb3",
+    "aligned_requests_desktop.png": "0fbf01f8bde11a7a78a5183312f7768894af52da98cb4efd75f45374a2519e45",
+    "aligned_tasks_desktop.png": "f4d52fbf66bf4600b65b30d83d12db3effd75524f5d6075e4e06517253aef4c7",
+    "aligned_trials_filters_desktop.png": "e1006e155f2bc990ea03f6742bf1c61f07b41c068fbcfc6c0779e69d8566c80d",
+    "aligned_trials_results_desktop.png": "19997c31690b45561cbb1f4f47c2ba8a99bd15ba3acca74c8e25d58c173d7159",
+    "crm_profile_desktop.png": "070cfc65ca0955dcc686831e87d9466b7ff7010597099f97c4538de2861e9b54",
+    "presentation_draft_workspace.png": "da88c834a0c72e92816f15b4b1fb0bc003bade45ded4de92d2910d2933c34949"
+  }
+}

@@ -12,9 +12,11 @@ from search_result_views import render_pubmed_result, render_trial_result
 from agents import ScientificSourceAgent
 from clinical_trials import ClinicalTrialsError
 from pubmed import PubMedError
+from crm_views import render_task_cards, render_request_cards
 from crm import crm_summary, task_rows
 from workflow import load_records, run_workflow
-from ui import apply_theme, hero, section_label, profile_card, render_draft
+from presentation import display_crm
+from ui import apply_theme, hero, section_label, profile_card, render_draft, crm_profile_details
 from filter_views import FILTER_KEYS, pubmed_controls, trial_controls, invalidate_changed_search, applied_search
 from search_filters import pubmed_parameters, trial_parameters
 from walkthrough import DEMO_QUERY, DEMO_NOTES, build_report, save_report
@@ -24,7 +26,7 @@ st.set_page_config(page_title="Medical Engagement Workbench", page_icon="M", lay
 apply_theme()
 hero()
 public_demo = os.environ.get("MSL_PUBLIC_DEMO") == "1"
-st.info("Fictional workshop data. Review all drafts and sources; do not enter patient or real HCP information.")
+st.info("CRM data is synthetic. Review all drafts and sources; do not enter patient or real HCP information.")
 
 
 def load_walkthrough():
@@ -43,13 +45,13 @@ with st.sidebar:
     api_key = ""
     model = os.environ.get("OPENAI_MODEL", DEFAULT_MODEL)
     if use_llm:
-        st.caption("Searching in OpenAI mode sends retrieved public records to OpenAI for short summaries. Preparing drafts sends the selected fictional KOL context, selected sources, and fictional notes. API usage may incur charges.")
+        st.caption("Searching in OpenAI mode sends retrieved public records to OpenAI for short summaries. Preparing drafts sends the selected KOL context, selected sources, and meeting notes. API usage may incur charges.")
         api_key = st.text_input("OpenAI API key", type="password", key="openai_api_key",
                                 help="Used for this session only. Never paste keys into chat or project files.")
         if not public_demo and os.environ.get("OPENAI_API_KEY"):
             st.caption("A server-side OpenAI API key is available.")
         if public_demo:
-            st.caption("Public demo: use your own API key for this session. No shared API credit is provided.")
+            st.caption("Use your own API key for this session. No shared API credit is provided.")
         model = st.text_input("OpenAI model", value=model, key="openai_model")
         st.caption("Model drafts can be wrong. Supporting quotes and source IDs help the MSL review them.")
     runtime_signature = (drafting_mode, model)
@@ -73,17 +75,17 @@ def populate_search_summaries(prefix, results, kind):
     except LLMError as error:
         st.session_state[prefix + "_summary_error"] = "AI summaries unavailable. " + str(error) + " Showing the compact offline preview instead."
 
-with st.expander("Live OpenAI walkthrough - Dr Mira Sen"):
-    st.write("Start with fictional CRM context, find a public scientific source, then review the three agent drafts.")
-    st.button("Load Dr Mira Sen walkthrough", key="load_walkthrough", on_click=load_walkthrough)
-    st.caption("Loads the KOL, a scientific query and fictional notes. It does not make model calls or send searches.")
+with st.expander("Guided preparation - Dr Mira Sen"):
+    st.write("Start with the KOL context, find a public scientific source, then review the three agent drafts.")
+    st.button("Load Dr Mira Sen case", key="load_walkthrough", on_click=load_walkthrough)
+    st.caption("Loads the KOL, a scientific query and meeting notes. It does not make model calls or send searches.")
     st.markdown("**1. Connect:** enter your key in the sidebar. **2. Find evidence:** Search PubMed, inspect a summary and select an article. **3. Prepare:** review the notes and prepare the drafts. **4. Record:** review agent details and save the run evidence.")
 
 selected = st.selectbox(
-    "Select a fictional KOL",
+    "Select a KOL",
     options=records,
     key="selected_kol",
-    format_func=lambda record: f"{record['display_name']} | {record['kol_id']}",
+    format_func=lambda record: record['display_name'],
 )
 
 st.caption("Changing the KOL clears the current notes, source selections, searches, and drafts.")
@@ -107,12 +109,13 @@ if st.session_state.pop("walkthrough_seed_pending", False):
     st.session_state["scientific_source_text"] = ""
 
 context_page, evidence_page, draft_page = st.tabs(["01  KOL context", "02  Evidence search", "03  Drafts & follow-up"])
+display_record = display_crm(selected)
 with context_page:
     section_label("01", "KOL context", "Continuity before the next conversation")
-    profile_card(selected)
-    profile = selected["crm_profile"]
-    st.caption(f"Fully fictional CRM data | Snapshot: {profile['snapshot_date']} | CRM history is not scientific evidence")
-    summary = crm_summary(selected)
+    profile_card(display_record)
+    profile = display_record["crm_profile"]
+    st.caption(f"CRM snapshot: {profile['snapshot_date']} | CRM history is not scientific evidence")
+    summary = crm_summary(display_record)
     cards = st.columns(3)
     cards[0].metric("Interactions", summary["interactions"])
     cards[1].metric("Active tasks", summary["active_tasks"])
@@ -121,43 +124,34 @@ with context_page:
         ["CRM profile", "Interaction timeline", "Follow-up tasks", "Medical requests"]
     )
     with profile_tab:
-        st.markdown(f"**CRM record:** {profile['crm_record_id']}  \n"
-                    f"**KOL ID:** {selected['kol_id']}  \n"
-                    f"**Organization ID:** {selected['organization_id']}  \n"
-                    f"**Territory:** {profile['territory']}  \n"
-                    f"**Location:** {profile['city']}, {profile['country']}  \n"
-                    f"**Assigned role:** {profile['assigned_msl_role']}  \n"
-                    f"**Relationship:** {profile['relationship_stage']}  \n"
-                    f"**Preferred channel:** {profile['preferred_channel']}  \n"
-                    f"**Profile reviewed:** {profile['profile_reviewed_on']}")
-        st.markdown("**Scientific interests (topics only):**")
-        for interest in profile["scientific_interests"]:
-            st.write(interest)
-        st.markdown(f"**Planned meeting:** {selected['planned_meeting']['date']}")
-        st.write(selected["planned_meeting"]["purpose"])
+        crm_profile_details(display_record)
     with history_tab:
-        st.caption("Past interactions are fictional historical snapshots; the task tab shows latest fixture status.")
-        for interaction in sorted(selected["interactions"], key=lambda row: row["date"], reverse=True):
-            with st.expander(f"{interaction['date']} | {interaction['engagement_id']} | {interaction['channel']}"):
+        st.caption("Past interactions show recorded history; the task tab shows the latest status.")
+        for interaction in sorted(display_record["interactions"], key=lambda row: row["date"], reverse=True):
+            with st.expander(f"{interaction['date']} | {interaction['channel']}"):
                 st.markdown(f"**Purpose:** {interaction['purpose']}")
-                st.markdown(f"**Synthetic observation:** {interaction['observation']}")
+                st.markdown(f"**KOL observation:** {interaction['observation']}")
                 st.markdown(f"**Draft MSL interpretation:** {interaction['msl_interpretation']}")
                 st.markdown(f"**Follow-up at this interaction:** {interaction['task']}  \n"
                             f"**Owner:** {interaction['owner_role']} | **Status:** {interaction['status']} | "
                             f"**Due:** {interaction['due_date']}")
-                st.caption(f"Fixture reference: {interaction['source_reference']}")
+                st.caption(f"Record reference: {interaction['source_reference']}")
     with tasks_tab:
-        st.caption(f"Read-only synthetic tasks. Overdue is calculated as of {profile['snapshot_date']}, not the current date. Completed entries are fictional history, not actions performed by this app.")
-        st.dataframe(task_rows(selected), hide_index=True, width="stretch")
+        st.caption(f"Read-only tasks. Overdue is calculated as of {profile['snapshot_date']}, not the current date. Completed entries reflect recorded history; this app does not complete tasks.")
+        render_task_cards(display_record)
+        with st.expander("View complete task register"):
+            st.dataframe(task_rows(display_record), hide_index=True, width="stretch")
     with requests_tab:
-        st.caption("Fictional evidence requests; no scientific response is implied and no requests are sent.")
-        st.dataframe([
-            {"Request ID": request["request_id"], "Received": request["received_on"],
-             "Question": request["question"], "Status": request["status"],
-             "Owner": request["owner_role"], "Linked task": request["task_id"],
-             "Response": request["response_status"], "Sources": request["source_pack_status"]}
-            for request in selected["medical_requests"]
-        ], hide_index=True, width="stretch")
+        st.caption("Medical-information requests. Responses require review; no requests are sent from this app.")
+        render_request_cards(display_record)
+        with st.expander("View complete request register"):
+            st.dataframe([
+                {"Request ID": request["request_id"], "Received": request["received_on"],
+                 "Question": request["question"], "Status": request["status"],
+                 "Owner": request["owner_role"], "Linked task": request["task_id"],
+                 "Response": request["response_status"], "Sources": request["source_pack_status"]}
+                for request in display_record["medical_requests"]
+            ], hide_index=True, width="stretch")
 
 
 with evidence_page:
@@ -169,15 +163,18 @@ with evidence_page:
             "Search NCBI PubMed by scientific topic. Do not enter patient details, "
             "identifiable information, or confidential CRM content."
         )
-        pubmed_query = st.text_input(
-            "Search terms",
-            placeholder='Example: oncology trial population older adults',
-            max_chars=300,
-            key="pubmed_query",
-        )
+        query_column, action_column = st.columns([4, 1], vertical_alignment="bottom")
+        with query_column:
+            pubmed_query = st.text_input(
+                "Search terms",
+                placeholder='Example: oncology trial population older adults',
+                max_chars=300,
+                key="pubmed_query",
+            )
+        with action_column:
+            search_clicked = st.button("Search PubMed", key="search_pubmed", type="primary", width="stretch")
         pm_filters = pubmed_controls()
         invalidate_changed_search("pubmed", pubmed_query, pm_filters)
-        search_clicked = st.button("Search PubMed", key="search_pubmed", width="stretch")
         if search_clicked:
             for state_key in ("pubmed_summaries", "pubmed_summary_error", "selected_pmids", "workflow_result"):
                 st.session_state.pop(state_key, None)
@@ -206,6 +203,7 @@ with evidence_page:
         applied_search("pubmed", len(pubmed_results))
         selected_pmids: list[str] = []
         if pubmed_results:
+            st.markdown("#### Select evidence for the briefing")
             result_by_pmid = {article["pmid"]: article for article in pubmed_results}
             selected_pmids = st.multiselect(
                 "Select articles to include as source text",
@@ -228,15 +226,18 @@ with evidence_page:
             "Search public registry records by condition/topic. Registry records are "
             "not proof of study quality, results, or current operational status."
         )
-        trial_query = st.text_input(
-            "Condition or study topic",
-            placeholder="Example: chronic lymphocytic leukemia",
-            max_chars=250,
-            key="trial_query",
-        )
+        query_column, action_column = st.columns([4, 1], vertical_alignment="bottom")
+        with query_column:
+            trial_query = st.text_input(
+                "Condition or study topic",
+                placeholder="Example: chronic lymphocytic leukemia",
+                max_chars=250,
+                key="trial_query",
+            )
+        with action_column:
+            trial_search_clicked = st.button("Search ClinicalTrials.gov", key="search_trials", type="primary", width="stretch")
         ct_filters = trial_controls()
         invalidate_changed_search("trial", trial_query, ct_filters)
-        trial_search_clicked = st.button("Search ClinicalTrials.gov", key="search_trials", width="stretch")
         if trial_search_clicked:
             for state_key in ("trial_summaries", "trial_summary_error", "selected_nct_ids", "workflow_result"):
                 st.session_state.pop(state_key, None)
@@ -265,6 +266,7 @@ with evidence_page:
         applied_search("trial", len(trial_results))
         selected_nct_ids: list[str] = []
         if trial_results:
+            st.markdown("#### Select evidence for the briefing")
             trial_by_nct_id = {trial["nct_id"]: trial for trial in trial_results}
             selected_nct_ids = st.multiselect(
                 "Select registry records for this meeting",
@@ -292,10 +294,10 @@ with draft_page:
         placeholder="Paste permitted text for local source preservation. OpenAI mode sends this text to OpenAI.",
     )
     meeting_notes = st.text_area(
-        "New fictional meeting notes",
+        "Meeting notes",
         key="meeting_notes",
         height=130,
-        placeholder="Enter synthetic demo notes only. Do not enter patient details or real HCP information.",
+        placeholder="Enter meeting notes for review. Do not enter patient details or real HCP information.",
     )
     generate = st.button("Prepare selected sources and notes", key="prepare_drafts", type="primary", width="stretch")
 
@@ -339,11 +341,11 @@ with draft_page:
             with st.container(border=True):
                 render_draft(result["context_draft"])
         st.subheader("Draft briefing")
-        st.caption(f"Mode: {result.get('generation_mode', 'Code-only')} | Requires MSL review")
+        st.caption(f"Mode: {result.get('generation_mode', 'Offline')} | Requires MSL review")
         with st.container(border=True):
             render_draft(result.get("briefing", "No briefing available."))
         st.subheader("Draft note and follow-up")
-        st.caption("Requires MSL review. This prototype does not create CRM records or send messages.")
+        st.caption("Requires MSL review. This app does not create CRM records or send messages.")
         with st.container(border=True):
             render_draft(result.get("follow_up_draft", "No new notes were submitted."))
         if result.get("agent_trace"):
@@ -352,14 +354,14 @@ with draft_page:
             if len(result["agent_trace"]) == 3:
                 st.success("All three agent steps completed. Review the drafts before recording your findings.")
             report = build_report(result)
-            st.download_button("Download walkthrough record", json.dumps(report, indent=2),
+            st.download_button("Download preparation record", json.dumps(report, indent=2),
                                file_name="openai_walkthrough.json", mime="application/json", key="download_walkthrough")
-            if not public_demo and st.button("Save walkthrough record locally", key="save_walkthrough"):
+            if not public_demo and st.button("Save preparation record locally", key="save_walkthrough"):
                 try:
                     saved_path = save_report(result)
                     st.success(f"Saved run evidence to {saved_path}")
                 except OSError:
-                    st.error("The run record could not be saved locally. Use Download walkthrough record instead.")
+                    st.error("The run record could not be saved locally. Use Download preparation record instead.")
             st.caption("The record includes model drafts and agent status, not your API key. Saved results still need human review.")
 
 st.divider()

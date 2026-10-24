@@ -27,7 +27,7 @@ def profile_card(record):
     st.markdown(f"""<div class="profile-card"><div class="profile-top"><div class="avatar">{escape(initials)}</div>
       <div><div class="card-eyebrow">YOUR SELECTED KOL</div><h3>{escape(record['display_name'])}</h3><p>{escape(record['institution'])}</p></div></div>
       <div class="profile-role">{escape(record['role'])}</div>
-      <div class="profile-tags"><span>{escape(record['kol_id'])}</span><span>{escape(profile['territory'])}</span></div>
+      <div class="profile-tags"><span>{escape(profile['relationship_stage'])}</span><span>{escape(profile['territory'])}</span></div>
       <div class="next-meeting"><span>NEXT CONVERSATION</span><strong>{escape(record['planned_meeting']['date'])}</strong><p>{escape(record['planned_meeting']['purpose'])}</p></div></div>""", unsafe_allow_html=True)
 
 
@@ -42,3 +42,31 @@ def render_draft(text):
                 st.write(marker+appendix)
             return
     st.write(text)
+
+
+def crm_profile_details(record):
+    """Four responsive cards with escaped labels and values from the selected record."""
+    profile = record["crm_profile"]
+    def fields(items):
+        return '<dl class="crm-field-grid">' + ''.join(
+            f'<div class="crm-field"><dt>{escape(label)}</dt><dd>{escape(str(value))}</dd></div>'
+            for label, value in items) + '</dl>'
+    assignment = fields([
+        ("CRM record", profile["crm_record_id"]), ("KOL ID", record["kol_id"]),
+        ("Organization ID", record["organization_id"]), ("Territory", profile["territory"]),
+        ("Location", f"{profile['city']}, {profile['country']}"), ("Assigned role", profile["assigned_msl_role"]),
+    ])
+    engagement = fields([
+        ("Relationship", profile["relationship_stage"]), ("Preferred channel", profile["preferred_channel"]),
+        ("Profile reviewed", profile["profile_reviewed_on"]), ("CRM snapshot", profile["snapshot_date"]),
+    ])
+    interests = '<ul class="crm-interests">' + ''.join(f'<li>{escape(topic)}</li>' for topic in profile["scientific_interests"]) + '</ul>'
+    meeting = record["planned_meeting"]
+    cards = [
+        ("Record & assignment", assignment), ("Engagement preferences", engagement),
+        ("Scientific interests", '<p class="crm-card-caption">Topics for discussion</p>' + interests),
+        ("Planned meeting", f'<div class="crm-meeting-date">{escape(meeting["date"])}</div><p class="crm-meeting-purpose">{escape(meeting["purpose"])}</p>'),
+    ]
+    markup = '<div class="crm-profile-grid">' + ''.join(
+        f'<section class="crm-detail-card"><h3>{escape(title)}</h3>{body}</section>' for title, body in cards) + '</div>'
+    st.markdown(markup, unsafe_allow_html=True)

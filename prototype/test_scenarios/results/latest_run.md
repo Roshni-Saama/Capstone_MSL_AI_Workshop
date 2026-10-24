@@ -2,7 +2,7 @@
 
 Report date: 2026-10-24 (Asia/Kolkata).
 
-Executed cases: **121**. Passed: **121**. Failed: **0**. Skipped: **0**.
+Executed cases: **126**. Passed: **126**. Failed: **0**. Skipped: **0**.
 
 Results are derived from [the pytest JUnit XML](automated_tests.xml); this report does not infer pass status from file presence or earlier runs.
 
@@ -13,11 +13,12 @@ Results are derived from [the pytest JUnit XML](automated_tests.xml); this repor
 | Agent evaluation harness and grader | 8 |
 | ClinicalTrials.gov parsing and prompts | 6 |
 | Guided walkthrough and run evidence | 4 |
+| Neutral interface wording and preservation | 3 |
 | OpenAI integration contracts | 25 |
 | Prepared public runtime protections | 2 |
 | PubMed parsing and validation | 5 |
 | Scientific search summaries | 16 |
-| Synthetic CRM data and UI | 17 |
+| Synthetic CRM data and UI | 19 |
 | UI and LLM failure recovery | 9 |
 | Workflow and evidence boundaries | 7 |
 

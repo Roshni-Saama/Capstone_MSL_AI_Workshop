@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-10-24T14:11:22+05:30",
+  "checks": [
+    {
+      "viewport": "desktop",
+      "columns": 2,
+      "cards": 4,
+      "passed": true
+    },
+    {
+      "viewport": "mobile",
+      "columns": 1,
+      "cards": 4,
+      "passed": true
+    }
+  ],
+  "scope": "CRM layout only; no registry or model calls."
+}

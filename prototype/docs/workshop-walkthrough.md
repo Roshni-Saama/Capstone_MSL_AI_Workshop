@@ -56,3 +56,7 @@ Ask the workshop evaluator to accept or revise the scope, agent approach and man
 ## Live LLM demonstration prerequisite
 
 The OpenAI integration is tested with mock responses. Configure a key in the sidebar and complete the [live verification checklist](../specs/llm-agents.md) before presenting real LLM behavior. Do not represent mocked test outputs as live generation.
+
+## Presentation delivery - 24 October 2026
+
+A [16-slide HTML deck](../presentation/index.html), [PDF](../presentation/presentation.pdf), [speaker script](../presentation/presenter-notes.md) and [portable sharing package instructions](../presentation/README.md) are now prepared. The integrated screenshot walkthrough is independent of live registry/model access. Local slides: http://localhost:8765/index.html; local app: http://localhost:8502. Source evidence remains explicit: 126 automated tests, 16 harness scenarios and eight browser checks, with no claim of reviewed live model quality or measured benefit.

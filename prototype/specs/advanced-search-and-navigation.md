@@ -46,3 +46,21 @@ Three full-width workspaces replace the uneven CRM/evidence columns: 01 KOL cont
 ## Verification
 
 [Filter tests](../tests/test_search_filters.py) exercise Boolean grouping, request encoding, validation before network, state invalidation, reset, navigation and visible date errors. Existing source selection, source-preservation, summary-cache and failure-recovery tests still run. See [latest automated evidence](../test_scenarios/results/latest_run.md), [live filter checks](../test_scenarios/results/advanced_filters_live.json) and [browser checks](../test_scenarios/results/advanced_filters_browser.json). Live checks validate connectivity and query acceptance, not medical relevance or completeness; no OpenAI call was made during this change.
+
+## Neutral presentation wording ? 24 October 2026
+
+Use neutral visible labels: Select a KOL, Meeting notes, KOL observation and Guided preparation. Remove repetitive fictional/demo/prototype qualifiers from managed UI copy and CRM descriptions. Retain one brief synthetic-CRM disclosure and required draft-review/action-boundary guidance. Presentation copies preserve canonical IDs and provenance; never rewrite scientific source text or user-entered notes. [Presentation tests](../tests/test_presentation.py) verify these boundaries.
+
+## CRM profile cards ? 24 October 2026
+
+The CRM profile uses four cards: Record & assignment, Engagement preferences, Scientific interests, and Planned meeting. Cards appear in two columns on wider screens and one column at 760px or below; individual fields stack below 480px. All existing record fields remain available, text is escaped before rendering and underlying records are unchanged.
+
+## Task, request and search alignment ? 24 October 2026
+
+Follow-up tasks use responsive cards with original status, overdue flag calculated at the existing snapshot, owner, due/completion dates and closure evidence. Medical-request cards retain the complete question, status, owner, response/source-pack state and linked IDs. Complete read-only registers remain under expanders. Desktop shows three task cards and two request cards per row; narrow screens stack them.
+
+Both registries use aligned query/action toolbars, grouped horizontal filter rows and bordered result cards with escaped titles, provenance, original links and immediately visible summaries. Original details and supporting quotes stay expandable. No retrieval, filter semantics, source-selection or generation behavior changed. Existing state-isolation and explicit-selection tests continue to apply; CRM card checks validate field preservation and HTML escaping.
+
+## Selected theme - 24 October 2026
+
+User selected A - Navy & Azure. App CSS, both Streamlit theme configurations, slide template, architecture SVG and embedded screenshots use the selected palette. Semantic completion/overdue status colours remain green/amber. Browser checks verify the actual computed primary, sidebar and page colours, as well as the existing layouts and public search behavior.

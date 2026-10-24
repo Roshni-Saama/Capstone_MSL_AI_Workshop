@@ -78,15 +78,15 @@ def crm_summary(record):
 
 def format_crm_details(record):
     profile = record["crm_profile"]
-    lines = ["Synthetic CRM profile and latest task snapshot (not scientific evidence):",
+    lines = ["CRM profile and latest task snapshot (not scientific evidence):",
              f"CRM record: {profile['crm_record_id']}; snapshot: {profile['snapshot_date']}",
              f"Territory: {profile['territory']}; assigned role: {profile['assigned_msl_role']}",
              f"Preferred channel: {profile['preferred_channel']}",
              f"Scientific interests (topics only): {', '.join(profile['scientific_interests'])}",
-             "Current synthetic tasks (interaction notes above are historical snapshots):"]
+             "Current tasks (interaction notes above are historical snapshots):"]
     for row in task_rows(record):
         lines.append(f"- {row['Task ID']}: {row['Task']} Owner: {row['Owner']}; status: {row['Status']}; due: {row['Due date']}; overdue at snapshot: {row['Overdue']}.")
-    lines.append("Synthetic medical-information requests (questions, not clinical findings):")
+    lines.append("Medical-information requests (questions, not clinical findings):")
     for request in record["medical_requests"]:
         lines.append(f"- {request['request_id']}: {request['question']} Status: {request['status']}; response: {request['response_status']}.")
     return "\n".join(lines)

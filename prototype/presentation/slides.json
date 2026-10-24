@@ -1,0 +1,193 @@
+[
+  {
+    "kicker": "MSL / KOL ENGAGEMENT | 24 OCTOBER 2026",
+    "title": "Medical Engagement<br><em>Workbench</em>",
+    "lead": "A focused workflow for repeat-meeting preparation, scientific evidence review and follow-up.",
+    "body": "<div class=\"hero-layout\"><div><div class=\"pills\"><span>3 bounded agents</span><span>Source-linked drafts</span><span>Human review</span></div><div class=\"byline prepared-by\"><span>Prepared by</span><strong>Sayali Shedge</strong><strong>Asawari U</strong><strong>Roshni Srivastava</strong></div><p class=\"small muted\">Local working application | Synthetic CRM | Live public registry search</p><div class=\"actions\"><a class=\"button\" href=\"#demo=profile\">Explore the walkthrough</a><a class=\"button secondary\" href=\"http://localhost:8502\" target=\"_blank\" rel=\"noopener\">Open local app</a></div></div><div class=\"cover-visual\"><div>CONTEXT</div><span>&#8595;</span><div>EVIDENCE</div><span>&#8595;</span><div>REVIEWED FOLLOW-UP</div></div></div>",
+    "notes": "Introduce the focused repeat-meeting use case. This is a working local application, not a production deployment. CRM is synthetic. Public retrieval is verified; a saved and human-reviewed live OpenAI run remains pending.",
+    "refs": [
+      "prototype/README.md",
+      "prototype/data/kol_records.json"
+    ]
+  },
+  {
+    "kicker": "01 / THE PROBLEM",
+    "title": "Continuity across scientific conversations",
+    "lead": "Before the next meeting, the MSL needs prior context, relevant evidence and the unresolved request in one place.",
+    "body": "<div class=\"grid three\"><article class=\"box\"><h3>What happened?</h3><ul><li>Prior discussions and observations</li><li>Outstanding tasks and medical requests</li><li>An exact, dated KOL record</li></ul></article><article class=\"box\"><h3>What supports it?</h3><ul><li>Literature and registered studies</li><li>Explicit source selection</li><li>Original identifiers and text</li></ul></article><article class=\"box\"><h3>What happens next?</h3><ul><li>A structured draft note</li><li>Open questions and requests</li><li>MSL review and follow-up</li></ul></article></div><div class=\"callout\">Value hypothesis: less reconstruction effort and fewer missed commitments. Time savings and usefulness have not yet been measured.</div>",
+    "notes": "Present the benefit as a hypothesis. The application supports preparation and documentation; the MSL retains scientific judgment and responsibility for follow-up.",
+    "refs": [
+      "prototype/specs/scope-and-delivery.md",
+      "prototype/specs/evaluation-and-review.md"
+    ]
+  },
+  {
+    "kicker": "02 / WHAT IS BUILT",
+    "title": "A complete local workflow, with clear boundaries",
+    "lead": "Three workspaces connect the CRM snapshot to public evidence and reviewable drafts.",
+    "body": "<div class=\"stats\"><div><b>3</b><span>KOL profiles</span></div><div><b>9</b><span>interactions</span></div><div><b>9</b><span>tasks</span></div><div><b>6</b><span>medical requests</span></div></div><div class=\"grid three\"><article class=\"box\"><h3>01 | KOL context</h3><p>Profile, interaction history, follow-up tasks and medical requests.</p></article><article class=\"box\"><h3>02 | Evidence search</h3><p>PubMed and ClinicalTrials.gov filters, summaries and source selection.</p></article><article class=\"box\"><h3>03 | Drafts & follow-up</h3><p>Priorities, briefing, note drafts and downloadable preparation records.</p></article></div><div class=\"callout\">CRM snapshot: 23 October 2026. Read-only fixture data; no live CRM connection or task write-back.</div>",
+    "notes": "Explain the fixed dataset counts and snapshot date. Completed tasks are recorded fixture history, not actions performed by this application. Source retrieval uses public APIs.",
+    "refs": [
+      "prototype/data/kol_records.json",
+      "prototype/app.py"
+    ]
+  },
+  {
+    "kicker": "03 / THE EXPERIENCE",
+    "title": "Know the KOL before reviewing the evidence",
+    "lead": "A profile organized around assignment, engagement preferences, scientific interests and the planned meeting.",
+    "body": "<div class=\"wide-image\">[[image:crm_profile_desktop.png|CRM profile: side-by-side record, engagement and meeting cards]]</div><div class=\"pills\"><span>Exact-ID retrieval</span><span>Separate KOL records</span><span>Workspace clears on KOL change</span></div>",
+    "notes": "Show Dr Mira Sen. Point out territory, preferred channel, scientific interests and planned meeting. Changing KOL clears notes, source selections, search results and prior drafts.",
+    "refs": [
+      "prototype/ui.py",
+      "prototype/presentation.py",
+      "prototype/tests/test_crm.py"
+    ]
+  },
+  {
+    "kicker": "04 / FOLLOW-UP VISIBILITY",
+    "title": "Keep the next action and the open question visible",
+    "lead": "Read-only cards make status, ownership, dates and medical-information requests easier to scan.",
+    "body": "<div class=\"grid two picture-pair\"><div>[[image:aligned_tasks_desktop.png|Follow-up tasks: status, owner, due date and closure evidence]]</div><div>[[image:aligned_requests_desktop.png|Medical requests: question, response status, source pack and linked task]]</div></div><div class=\"callout\">Overdue uses the CRM snapshot date. Newly drafted requests do not assign an owner, set a deadline or change CRM status.</div>",
+    "notes": "Distinguish fixture ownership from generated follow-up. Full registers remain under expanders. New requests are drafts requiring review and assignment outside this application.",
+    "refs": [
+      "prototype/crm_views.py",
+      "prototype/crm.py",
+      "prototype/tests/test_crm.py"
+    ]
+  },
+  {
+    "kicker": "05 / ADVANCED SEARCH",
+    "title": "Filter the right source, using the right meaning",
+    "lead": "Filters are sent to the public API before the returned-record limit is applied.",
+    "body": "<div class=\"grid two picture-pair\"><div>[[image:aligned_pubmed_filters_desktop.png|PubMed publication, evidence, focus and access filters]]<p class=\"small\"><b>PubMed:</b> publication dates, article types, languages, availability, species, therapy keywords, affiliation and journal.</p></div><div>[[image:aligned_trials_filters_desktop.png|ClinicalTrials.gov treatment, recruitment, design, eligibility and date filters]]<p class=\"small\"><b>Trials:</b> treatment, location, recruitment, phase, design, eligibility and registry dates.</p></div></div><div class=\"callout\">Author affiliation is not study location. Trial registration/update dates are not publication dates. Up to five returned records per search is not an exhaustive export.</div>",
+    "notes": "Explain source-specific meanings. PubMed therapy keywords search title/abstract. Trials provide intervention fields. Changing controls clears stale evidence without automatically searching.",
+    "refs": [
+      "prototype/search_filters.py",
+      "prototype/filter_views.py",
+      "prototype/specs/advanced-search-and-navigation.md"
+    ]
+  },
+  {
+    "kicker": "06 / SOURCE-FIRST REVIEW",
+    "title": "A short overview, with the original evidence available",
+    "lead": "Summaries support scanning. The briefing uses the original explicitly selected records.",
+    "body": "<div class=\"grid two result-slide\"><div>[[image:aligned_pubmed_results_desktop.png|Actual public-search snapshot: Offline excerpt, not an AI-generated summary]]</div><article class=\"box\"><h3>What the user reviews</h3><ul><li>PMID or NCT ID and original link</li><li>Offline excerpt / overview, or an explicit OpenAI summary request</li><li>Original abstract or registry details under an expander</li><li>Explicit source selection before preparation</li></ul></article></div><div class=\"callout\">PubMed retrieval is metadata/abstract based. Planned trial outcomes are not represented as study results.</div>",
+    "notes": "The screenshot is a real search snapshot in Offline mode. Do not call its excerpt an AI summary. OpenAI mode adds one public-record summary batch per successful nonempty search; CRM and notes are excluded from that request.",
+    "refs": [
+      "prototype/search_result_views.py",
+      "prototype/search_summaries.py",
+      "prototype/specs/search-summaries.md"
+    ]
+  },
+  {
+    "kicker": "07 / THREE AGENTS",
+    "title": "One responsibility per agent",
+    "lead": "Exactly three application agents, coordinated by LangGraph.",
+    "body": "<div class=\"grid three agent-grid\"><article class=\"box\"><h3><span class=\"step\">01</span>KOL Context Agent</h3><p class=\"label\">INPUT</p><p>Selected KOL ID and CRM history.</p><p class=\"label\">OUTPUT</p><p>Exact context; OpenAI mode adds meeting priorities and unresolved requests.</p><p class=\"small muted\">CRM is context, not scientific evidence.</p></article><article class=\"box\"><h3><span class=\"step\">02</span>Scientific Source Agent</h3><p class=\"label\">INPUT</p><p>Explicit searches and selected scientific sources.</p><p class=\"label\">OUTPUT</p><p>Retrieved records, summaries and a source-linked briefing with questions and limitations.</p><p class=\"small muted\">Missing sources trigger abstention.</p></article><article class=\"box\"><h3><span class=\"step\">03</span>Follow-up Agent</h3><p class=\"label\">INPUT</p><p>MSL-entered meeting notes.</p><p class=\"label\">OUTPUT</p><p>Preserved notes plus draft observations, requests and open questions.</p><p class=\"small muted\">New owners and dates remain unassigned.</p></article></div>",
+    "notes": "These are bounded roles, not three independent autonomous chatbots. The Scientific Source Agent owns explicit retrieval, search summaries and the scientific preparation node; retrieval is not a fourth agent.",
+    "refs": [
+      "prototype/agents.py",
+      "prototype/workflow.py",
+      "prototype/specs/llm-agents.md"
+    ]
+  },
+  {
+    "kicker": "08 / ARCHITECTURE",
+    "title": "A deterministic flow around bounded model calls",
+    "lead": "The user chooses the KOL, initiates searches, selects evidence and explicitly requests preparation.",
+    "body": "<svg class=\"architecture\" viewBox=\"0 0 1120 280\" role=\"img\" aria-label=\"LangGraph preparation flow with isolated CRM, source and notes inputs\"><defs><marker id=\"arrow\" viewBox=\"0 0 10 10\" refX=\"9\" refY=\"5\" markerWidth=\"7\" markerHeight=\"7\" orient=\"auto\"><path d=\"M0 0 L10 5 L0 10z\" fill=\"#2563EB\"/></marker></defs><g fill=\"#EFF6FF\" stroke=\"#D7E3F2\"><rect x=\"10\" y=\"8\" width=\"245\" height=\"48\" rx=\"10\"/><rect x=\"315\" y=\"8\" width=\"245\" height=\"48\" rx=\"10\"/><rect x=\"620\" y=\"8\" width=\"245\" height=\"48\" rx=\"10\"/></g><g fill=\"#53657A\" font-size=\"17\" text-anchor=\"middle\"><text x=\"132\" y=\"38\">Selected CRM context</text><text x=\"437\" y=\"38\">Selected original sources</text><text x=\"742\" y=\"38\">MSL-entered notes</text></g><g stroke=\"#2563EB\" stroke-width=\"3\" marker-end=\"url(#arrow)\"><path d=\"M132 57V105\"/><path d=\"M437 57V105\"/><path d=\"M742 57V105\"/><path d=\"M256 151H310\"/><path d=\"M561 151H615\"/><path d=\"M866 151H910\"/></g><g fill=\"#fff\" stroke=\"#2563EB\" stroke-width=\"2\"><rect x=\"10\" y=\"110\" width=\"245\" height=\"90\" rx=\"14\"/><rect x=\"315\" y=\"110\" width=\"245\" height=\"90\" rx=\"14\"/><rect x=\"620\" y=\"110\" width=\"245\" height=\"90\" rx=\"14\"/></g><rect x=\"916\" y=\"110\" width=\"192\" height=\"90\" rx=\"14\" fill=\"#102A43\"/><g font-size=\"19\" text-anchor=\"middle\" fill=\"#172B4D\"><text x=\"132\" y=\"149\">KOL Context</text><text x=\"132\" y=\"176\">Agent</text><text x=\"437\" y=\"149\">Scientific Source</text><text x=\"437\" y=\"176\">Agent</text><text x=\"742\" y=\"149\">Follow-up</text><text x=\"742\" y=\"176\">Agent</text></g><g font-size=\"19\" text-anchor=\"middle\" fill=\"#fff\"><text x=\"1012\" y=\"149\">MSL review</text><text x=\"1012\" y=\"176\">of drafts</text></g><path d=\"M25 229H865\" stroke=\"#B7CAE4\" stroke-width=\"2\"/><text x=\"445\" y=\"260\" text-anchor=\"middle\" font-size=\"17\" fill=\"#53657A\">LangGraph coordinates the three preparation steps in order</text></svg><div class=\"grid two compact\"><article class=\"box\"><h3>Search time</h3><p>Read-only public registry retrieval. In OpenAI mode, one public-record summary batch per nonempty search.</p></article><article class=\"box\"><h3>Preparation time</h3><p>Offline or OpenAI drafting. Maximum three model requests; absent sources or notes can skip individual requests.</p></article></div>",
+    "notes": "Trace the graph from left to right. Identity resolves before model requests. Each role receives its own payload. Arrows show control order: the scientific model receives selected sources, not CRM context. Search-time requests are separate explicit actions.",
+    "refs": [
+      "prototype/workflow.py",
+      "prototype/agents.py",
+      "prototype/search_summaries.py"
+    ]
+  },
+  {
+    "kicker": "09 / RUNTIME CONTROLS",
+    "title": "Designed to make unsupported output visible",
+    "lead": "Controls help the software fail clearly; they do not establish medical correctness.",
+    "body": "<div class=\"grid two\"><article class=\"box\"><h3>Before and during generation</h3><ul><li>Exact-ID lookup and input-size limits</li><li>Strict structured outputs and schema validation</li><li>Selected-source IDs and exact quote checks</li><li>Bounded output, timeout and sanitized errors</li></ul></article><article class=\"box\"><h3>At the review boundary</h3><ul><li>Abstain without scientific evidence</li><li>Clear stale drafts after failure or changed criteria</li><li>Preserve original notes and scientific sources</li><li>Leave approval and external action with people</li></ul></article></div><div class=\"callout\">Matching a quote does not prove correct interpretation. No live CRM writes, external messages or safety submissions are implemented.</div>",
+    "notes": "Do not present controls as clinical validation or compliance certification. They constrain format, source references and quote occurrence. Human review must still assess scientific support, omissions and usefulness.",
+    "refs": [
+      "prototype/llm.py",
+      "prototype/agents.py",
+      "prototype/tests/test_llm.py",
+      "prototype/tests/test_app.py"
+    ]
+  },
+  {
+    "kicker": "10 / QA EVIDENCE",
+    "title": "Software behavior tested, with separate evidence types",
+    "lead": "Actual saved execution artifacts | 24 October 2026",
+    "body": "<div class=\"stats three-stats\"><div><b>{{TESTS}}</b><span>automated test cases passed</span></div><div><b>{{HARNESS}}</b><span>fixed harness cases passed</span></div><div><b>{{BROWSER}}</b><span>desktop/mobile checks passed</span></div></div><div class=\"grid two compact\"><article class=\"box\"><h3>Automated coverage</h3><ul><li>Agent contracts and graph order</li><li>KOL isolation and UI recovery</li><li>API parsing, filters and source selection</li><li>Schema, citation and quote rejection</li></ul></article><article class=\"box\"><h3>Observed browser checks</h3><ul><li>Task and request card alignment</li><li>Live PubMed and trial retrieval</li><li>Grouped filters and visible summaries</li><li>Mobile layouts without page overflow</li></ul></article></div><div class=\"callout\">Harness cases overlap with unit-test behavior. These totals are not independent samples of model quality or a clinical-accuracy score.</div>",
+    "notes": "Open the evidence copies if challenged. Pytest cases use mocked services; browser checks include actual public retrieval and no model calls. Do not sum the counts into a single quality sample. The live OpenAI evaluation remains separate.",
+    "refs": [
+      "prototype/test_scenarios/results/automated_tests.xml",
+      "prototype/harness/results/agent_evaluation.json",
+      "prototype/test_scenarios/results/aligned_layout_browser.json"
+    ]
+  },
+  {
+    "kicker": "11 / THE EVALUATION HARNESS",
+    "title": "A repeatable experiment around the actual agents",
+    "lead": "Local fake transport exercises production orchestration and parsing without API keys or network access.",
+    "body": "<div class=\"harness-flow\"><div><span>01</span><b>Fixed cases</b><p>Synthetic inputs and explicit expected outcomes</p></div><div><span>02</span><b>Scripted transport</b><p>Structured local responses and error cases</p></div><div><span>03</span><b>Production graph</b><p>The same three agents and schema validation</p></div><div><span>04</span><b>Named checks</b><p>Identity, role inputs, evidence and call budget</p></div><div><span>05</span><b>Saved reports</b><p>JSON, readable results, versions and input hashes</p></div></div><div class=\"grid two compact\"><article class=\"box\"><h3>Deliberate failure cases</h3><p>Unknown identity, oversized input, missing evidence, unselected citations, invented quotes, refusals and malformed output.</p></article><article class=\"box\"><h3>Test the grader, too</h3><p>Corrupt identity, notes, sources, credentials, role inputs, call order and other-KOL context; the grader must reject them.</p></article></div>",
+    "notes": "Distinguish runtime controls from evaluation. LangGraph and validation surround runtime requests. The evaluation harness supplies scripted responses and grades mechanical behavior. Network guards prevent accidental service calls. There is no model judge or live prompt-injection robustness claim.",
+    "refs": [
+      "prototype/harness/README.md",
+      "prototype/harness/evaluate.py",
+      "prototype/harness/cases.json",
+      "prototype/tests/test_harness.py"
+    ]
+  },
+  {
+    "kicker": "12 / STRUCTURE & SPECIFICATIONS",
+    "title": "Behavior contracts, implementation and evidence are separated",
+    "lead": "The repository is also the Obsidian vault, keeping the supporting documentation together.",
+    "body": "<div class=\"grid two\"><article class=\"box\"><h3>Application structure</h3><pre>prototype/\n  app.py                 Workspaces + session state\n  agents.py              Three bounded roles\n  workflow.py            LangGraph orchestration\n  llm.py                 Model client + validation\n  pubmed.py / clinical_trials.py\n  search_filters.py      Query construction\n  ui.py / crm_views.py   Presentation</pre></article><article class=\"box\"><h3>Specification & QA structure</h3><pre>prototype/\n  specs/                 Behavior contracts\n    requirement-test-matrix.md\n    agent-harness.md\n    evaluation-and-review.md\n  tests/                 Executable assertions\n  harness/               Fixed-case evaluation\n  test_scenarios/        Use cases + QA evidence\nwiki/                    Project knowledge</pre></article></div><div class=\"callout\">One QA command: <code>./prototype/.venv/Scripts/python.exe -B prototype/harness/run_local_qa.py</code></div>",
+    "notes": "Explain the loop: define behavior, implement focused changes, map requirements to tests, run QA, then inspect evidence. Specifications exist; evaluator agreement on scope and thresholds is still pending.",
+    "refs": [
+      "prototype/specs/README.md",
+      "prototype/specs/requirement-test-matrix.md",
+      "prototype/harness/run_local_qa.py",
+      "wiki/index.md"
+    ]
+  },
+  {
+    "kicker": "13 / SIX-MINUTE WALKTHROUGH",
+    "title": "A reliable path through the working application",
+    "lead": "Start in Offline mode. Use OpenAI mode only for a separately configured and honestly labeled live run.",
+    "body": "<ol class=\"demo-steps\"><li><b>Context | 1 minute</b><span>Select Dr Mira Sen. Show the profile, prior history, open task and medical request.</span></li><li><b>Evidence | 2 minutes</b><span>Run public searches. Inspect a summary and original details; explicitly select a record.</span></li><li><b>Drafts | 1 minute</b><span>Enter synthetic meeting notes and prepare. Explain Offline versus OpenAI behavior.</span></li><li><b>Boundaries | 1 minute</b><span>Show abstention without selected evidence and workspace clearing on KOL change.</span></li><li><b>Evidence | 1 minute</b><span>Show saved QA artifacts and identify remaining evaluator review.</span></li></ol><div class=\"actions\"><a class=\"button\" href=\"#demo=profile\">Use the screenshot walkthrough</a><a class=\"button secondary\" href=\"http://localhost:8502\" target=\"_blank\" rel=\"noopener\">Open local app</a></div>",
+    "notes": "Have the app running first. Enter a key only in its password field, never on a slide. Offline mode preserves sources and formats notes; it does not interpret clinical evidence. The screenshot walkthrough is a fallback, not live model output.",
+    "refs": [
+      "prototype/docs/live-walkthrough.md",
+      "prototype/docs/workshop-walkthrough.md",
+      "prototype/test_scenarios/use_cases.md"
+    ]
+  },
+  {
+    "kicker": "14 / WHAT REMAINS",
+    "title": "The next milestone is reviewed evidence of usefulness",
+    "lead": "The local build is ready to demonstrate. Model quality and stakeholder acceptance need their own evidence.",
+    "body": "<div class=\"grid three\"><article class=\"box\"><h3>Validate the outputs</h3><ul><li>Record a local OpenAI walkthrough</li><li>Check paraphrases against original sources</li><li>Exercise missing/conflicting evidence and hostile source text</li></ul></article><article class=\"box\"><h3>Complete evaluator review</h3><ul><li>Name the reviewer and record decisions</li><li>Score E1-E8 with the prepared rubric</li><li>Measure a baseline before claiming time savings</li></ul></article><article class=\"box\"><h3>Decide the next scope</h3><ul><li>Agree approval and task-tracking needs</li><li>Assess production identity and durable records</li><li>Confirm a permitted host with the team</li></ul></article></div><div class=\"callout\">Hosting remains on hold. No external public app URL has been created. The shareable HTML walkthrough works independently of hosting.</div>",
+    "notes": "Ask for a reviewer, date and acceptance decision. Functionality was explored, but no saved and reviewed live OpenAI report exists in the project evidence. No productivity or scientific-quality improvement has been measured.",
+    "refs": [
+      "prototype/specs/evaluation-and-review.md",
+      "prototype/harness/reviewer_scores.csv",
+      "prototype/docs/deployment.md"
+    ]
+  },
+  {
+    "kicker": "15 / EVIDENCE & SHARING",
+    "title": "A presentation the team can inspect and share",
+    "lead": "Use the HTML file for interactive presenting and the PDF for circulation.",
+    "body": "<div class=\"grid two\"><article class=\"box\"><h3>How to share</h3><ul><li>Send index.html: screenshots are embedded</li><li>Explore the walkthrough without a key or network calls</li><li>Use presentation.pdf for static review</li><li>The localhost app link works only on the presenter\u2019s computer</li></ul></article><article class=\"box\"><h3>Supporting artifacts</h3><ul><li><a href=\"evidence/latest_run.txt\">Automated QA report</a></li><li><a href=\"evidence/agent_evaluation.json\">Agent-harness results</a></li><li><a href=\"evidence/aligned_layout_browser.json\">Browser verification</a></li><li><a href=\"evidence/requirement-test-matrix.txt\">Requirement-to-test matrix</a></li><li><a href=\"evidence/evaluation-and-review.txt\">Evaluator protocol</a></li></ul></article></div><div class=\"actions\"><a class=\"button\" href=\"#demo=profile\">Explore the walkthrough</a><button class=\"secondary\" onclick=\"window.print()\">Print / save PDF</button></div><p class=\"small muted\">This is a dated evidence snapshot. Rerun QA and rebuild after later application changes.</p>",
+    "notes": "The HTML slides and screenshot walkthrough are self-contained. The ZIP includes the PDF, notes and evidence copies. Markdown evidence may reference repository-relative files; use the source repository for full navigation. No public hosting occurred.",
+    "refs": [
+      "prototype/test_scenarios/results/latest_run.md",
+      "prototype/harness/results/agent_evaluation.json"
+    ]
+  }
+]

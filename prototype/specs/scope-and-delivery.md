@@ -41,7 +41,7 @@ No real CRM updates, external messages, safety submissions, or claims of complet
 | 3 | Complete governance ownership and failure handling | Populated controls, review responsibilities, evidence, and unresolved concerns | Controls and proposed role owners drafted; approval pending |
 | 4 | Evaluate usefulness and reliability | Manual baseline, agreed targets, fixed fictional cases/source pack, and reviewer-scored results | Fixed fictional cases and review protocol prepared; results unmeasured |
 | 5 | Verify live retrieval for demonstration | Dated PubMed and ClinicalTrials.gov smoke checks, including failures/no results | Topic/no-result smoke checks passed on 23 October 2026; failures tested with mocks |
-| 6 | Prepare final presentation and walkthrough | One coherent problem-to-outcome narrative, architecture view, limitations, and actual evaluation results | Presentation script drafted; review and measured results pending |
+| 6 | Prepare final presentation and walkthrough | One coherent problem-to-outcome narrative, architecture view, limitations, and actual evaluation results | HTML deck, PDF, notes and screenshot walkthrough prepared; evaluator review and measured results pending |
 
 For evaluation, keep software acceptance checks separate from business outcomes. Existing unit tests can establish record isolation and formatting behavior; they cannot establish reduced preparation time or scientific usefulness. Include missing evidence, conflicting sources, off-label questions, and potential safety information as reviewer scenarios without claiming automated classification or routing.
 
@@ -83,3 +83,7 @@ The interface now has a navy/teal theme, clearer typography, aligned CRM/evidenc
 ## 24 October 2026 ? Local QA and harness priority
 
 Hosting is on hold pending team confirmation. A dedicated [agent evaluation harness](../harness/README.md) and [harness specification](agent-harness.md) now complement the runtime controls and unit/UI tests. Use the generated reports for current counts; earlier numeric verification statements are historical. Next evidence needed is a recorded real OpenAI run and evaluator-scored output review.
+
+## Presentation artifacts - 24 October 2026
+
+Delivered [HTML slides and screenshot walkthrough](../presentation/index.html), [PDF](../presentation/presentation.pdf) and [presenter notes](../presentation/presenter-notes.md), with evidence snapshots and a source manifest. The shareable HTML works without hosting; the local preview on port 8765 is not a public deployment. Presentation-specific browser/PDF checks passed separately from application QA.

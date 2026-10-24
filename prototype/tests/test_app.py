@@ -31,7 +31,7 @@ def test_drafts_separate_sources_and_history_without_external_search(monkeypatch
     assert "Draft briefing" in [element.value for element in app.subheader]
     assert "Draft note and follow-up" in [element.value for element in app.subheader]
     assert "Requires MSL review" in "\n".join(element.value for element in app.caption)
-    assert "Meeting context (synthetic CRM history):" in text
+    assert "Meeting context (CRM history):" in text
     assert "Selected scientific source text" in text
     assert "SYNTHETIC SOURCE ONLY" in text
     assert "Owner and due date: Not assigned" in text

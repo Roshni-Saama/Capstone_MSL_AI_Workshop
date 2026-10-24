@@ -34,3 +34,9 @@ The [agent harness](../harness/README.md) adds fixed-case evaluation, named asse
 ## Advanced search and browser evidence
 
 [Source-specific filter specification](../specs/advanced-search-and-navigation.md), [live API acceptance](results/advanced_filters_live.json), [browser checks](results/advanced_filters_browser.json), [desktop PubMed preview](results/advanced_filters_desktop.png), [desktop trial preview](results/trial_filters_desktop.png), [mobile preview](results/advanced_filters_mobile.png). Earlier UI screenshots are historical; these previews show the three-workspace layout.
+
+Neutral wording: [presentation-preservation tests](../tests/test_presentation.py), [browser check](results/neutral_wording_browser.json), [current screenshot](results/neutral_wording_desktop.png).
+
+CRM profile cards: [browser check](results/crm_profile_browser.json), [desktop layout](results/crm_profile_desktop.png), [mobile layout](results/crm_profile_mobile.png).
+
+Task/request and search alignment: [browser checks](results/aligned_layout_browser.json), [task cards](results/aligned_tasks_desktop.png), [request cards](results/aligned_requests_desktop.png), [PubMed filters](results/aligned_pubmed_filters_desktop.png), [trial filters](results/aligned_trials_filters_desktop.png).

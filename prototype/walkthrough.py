@@ -4,7 +4,7 @@ from pathlib import Path
 import json
 
 DEMO_QUERY = "older adults cancer clinical trial representation review"
-DEMO_NOTES = "Fictional Dr Mira Sen asked for a source-linked explanation of how older adults were represented in the selected study and its limitations. She requested a reviewed follow-up; no response, owner or deadline was promised."
+DEMO_NOTES = "Dr Mira Sen asked for a source-linked explanation of how older adults were represented in the selected study and its limitations. She requested a reviewed follow-up; no response, owner or deadline was promised."
 REPORT_PATH = Path(__file__).parent / "test_scenarios/results/live_openai_walkthrough.json"
 
 

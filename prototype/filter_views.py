@@ -16,46 +16,68 @@ def clear_filter_widgets(prefix):
 
 def pubmed_controls():
     with st.expander("Advanced PubMed filters"):
-        st.caption("Combine categories with AND; multiple article types or languages use OR. Filters apply when you click Search.")
+        st.markdown("**Publication & evidence**")
         one, two, three = st.columns(3)
         with one:
             start = st.date_input("Publication date from", value=None, min_value=date(1900, 1, 1), max_value=date(2100, 12, 31), key="pm_start")
-            end = st.date_input("Publication date to", value=None, min_value=date(1900, 1, 1), max_value=date(2100, 12, 31), key="pm_end")
-            types = st.multiselect("Article types", list(PUBMED_TYPES), key="pm_types")
         with two:
-            therapy = st.text_input("Therapy / intervention keyword", max_chars=120, key="pm_therapy", help="Searches the title and abstract; it is not a standardized therapy classification.")
-            affiliation = st.text_input("Author affiliation location", max_chars=120, key="pm_affiliation", help="Country, city or institution in author affiliations. This does not establish the study's location.")
-            journal = st.text_input("Journal", max_chars=120, key="pm_journal")
+            end = st.date_input("Publication date to", value=None, min_value=date(1900, 1, 1), max_value=date(2100, 12, 31), key="pm_end")
         with three:
+            types = st.multiselect("Article types", list(PUBMED_TYPES), key="pm_types")
+        st.markdown("**Scientific focus & location**")
+        one, two, three = st.columns(3)
+        with one:
+            therapy = st.text_input("Therapy / intervention keyword", max_chars=120, key="pm_therapy", help="Searches title/abstract text, not a standardized therapy classification.")
+        with two:
+            affiliation = st.text_input("Author affiliation location", max_chars=120, key="pm_affiliation", help="Country, city or institution in author affiliations; not necessarily the study location.")
+        with three:
+            journal = st.text_input("Journal", max_chars=120, key="pm_journal")
+        st.markdown("**Access & preferences**")
+        one, two = st.columns(2)
+        with one:
             languages = st.multiselect("Article languages", list(LANGUAGES), key="pm_languages")
+        with two:
             availability = st.selectbox("Text availability", ["Any", "Abstract available", "Free full text"], key="pm_availability")
+        one, two = st.columns(2)
+        with one:
             species = st.selectbox("Species", ["Any", "Humans", "Other animals"], key="pm_species")
+        with two:
             sort = st.selectbox("Sort PubMed results", list(PUBMED_SORT), key="pm_sort")
-        st.caption("Indexing-dependent filters can exclude recent or unindexed citations. Free full text availability does not mean this app retrieves the full article.")
+        st.caption("Categories combine with AND; selected types/languages use OR. Indexing filters may omit recent citations. Full text is not retrieved by this app.")
         st.button("Reset PubMed filters", key="reset_pm_filters", on_click=clear_filter_widgets, args=("pm_",))
     return PubMedFilters(start, end, tuple(types), tuple(languages), availability, species, therapy, affiliation, journal, sort)
 
 
 def trial_controls():
     with st.expander("Advanced ClinicalTrials.gov filters"):
-        st.caption("Filter registered studies by treatment, location, recruitment and design. Dates describe registry records, not journal publication.")
+        st.markdown("**Treatment & location**")
         one, two, three = st.columns(3)
         with one:
             intervention = st.text_input("Intervention / treatment name", max_chars=120, key="ct_intervention")
+        with two:
             intervention_type = st.selectbox("Intervention type", list(INTERVENTION_TYPES), key="ct_intervention_type")
-            location = st.text_input("Study location", max_chars=120, key="ct_location", help="Country, state, city or facility location terms; not a distance or recruiting-site guarantee.")
+        with three:
+            location = st.text_input("Study location", max_chars=120, key="ct_location", help="Country, state, city or facility terms; not a distance or recruiting-site guarantee.")
+        st.markdown("**Recruitment & study design**")
+        one, two, three = st.columns(3)
+        with one:
             statuses = st.multiselect("Recruitment statuses", list(STATUSES), key="ct_statuses")
         with two:
-            study_type = st.selectbox("Study type", list(STUDY_TYPES), key="ct_study_type")
             phases = st.multiselect("Study phases", list(PHASES), key="ct_phases")
+        with three:
+            study_type = st.selectbox("Study type", list(STUDY_TYPES), key="ct_study_type")
+        st.markdown("**Eligibility & record dates**")
+        one, two, three = st.columns(3)
+        with one:
             age = st.selectbox("Eligible age group", list(AGE_GROUPS), key="ct_age")
             sex = st.selectbox("Eligible sex", list(SEXES), key="ct_sex")
-        with three:
+        with two:
             date_field = st.selectbox("Registry date field", list(DATE_FIELDS), key="ct_date_field")
             start = st.date_input("Registry date from", value=None, min_value=date(1900, 1, 1), max_value=date(2100, 12, 31), key="ct_start")
-            end = st.date_input("Registry date to", value=None, min_value=date(1900, 1, 1), max_value=date(2100, 12, 31), key="ct_end")
+        with three:
             sort = st.selectbox("Sort trial results", list(TRIAL_SORT), key="ct_sort")
-        st.caption("Multiple statuses or phases use OR within their category; categories use AND. Eligibility and record-level locations require inspection of the original study.")
+            end = st.date_input("Registry date to", value=None, min_value=date(1900, 1, 1), max_value=date(2100, 12, 31), key="ct_end")
+        st.caption("Categories combine with AND; selected statuses/phases use OR. Dates refer to registry records. Inspect original eligibility and site details.")
         st.button("Reset trial filters", key="reset_ct_filters", on_click=clear_filter_widgets, args=("ct_",))
     return TrialFilters(start, end, date_field, tuple(statuses), tuple(phases), study_type, intervention_type, intervention, location, age, sex, sort)
 

@@ -108,3 +108,43 @@ def test_crm_tabs_metrics_and_tables_switch_to_the_selected_kol_only():
         assert set(app.dataframe[0].value["Task ID"]) == {task["task_id"] for task in record["tasks"]}
         assert set(app.dataframe[1].value["Request ID"]) == {request["request_id"] for request in record["medical_requests"]}
         assert record["crm_profile"]["crm_record_id"] in "\n".join(x.value for x in app.markdown)
+
+
+def test_profile_cards_keep_selected_record_fields_and_escape_markup():
+    import copy
+    from unittest.mock import patch
+    from ui import crm_profile_details
+    from presentation import display_crm
+    record = display_crm(copy.deepcopy(load_records()[0]))
+    record["crm_profile"]["territory"] = "<script>unsafe</script>"
+    with patch("ui.st.markdown") as render:
+        crm_profile_details(record)
+    markup = render.call_args.args[0]
+    assert markup.count('class="crm-detail-card"') == 4
+    assert record["kol_id"] in markup
+    assert record["crm_profile"]["crm_record_id"] in markup
+    assert record["planned_meeting"]["date"] in markup
+    assert all(topic in markup for topic in record["crm_profile"]["scientific_interests"])
+    assert "&lt;script&gt;unsafe&lt;/script&gt;" in markup
+    assert "<script>" not in markup
+
+
+def test_task_and_request_cards_preserve_ids_statuses_and_escape_content():
+    import copy
+    from unittest.mock import patch
+    from crm_views import render_task_cards, render_request_cards
+    from presentation import display_crm
+    record = display_crm(copy.deepcopy(load_records()[0]))
+    record["medical_requests"][0]["question"] = "<script>untrusted</script>"
+    with patch("crm_views.st.markdown") as render:
+        render_task_cards(record)
+        tasks = render.call_args.args[0]
+        render_request_cards(record)
+        requests = render.call_args.args[0]
+    assert tasks.count('class="crm-work-card"') == 3
+    assert requests.count('class="crm-work-card"') == 2
+    assert all(task["task_id"] in tasks for task in record["tasks"])
+    assert all(request["request_id"] in requests for request in record["medical_requests"])
+    assert 'Overdue' in tasks and 'Completed' in tasks
+    assert '&lt;script&gt;untrusted&lt;/script&gt;' in requests
+    assert '<script>' not in requests

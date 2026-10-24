@@ -59,7 +59,7 @@ def test_briefing_preserves_sources_without_interpreting_them() -> None:
     assert source_text in result["briefing"]
     assert "not independently verified" in result["briefing"]
     assert "does not interpret clinical evidence" in result["briefing"]
-    assert result["generation_mode"].startswith("Code-only")
+    assert result["generation_mode"].startswith("Offline")
 
 
 def test_follow_up_preserves_notes_and_does_not_invent_tasks() -> None:
@@ -69,6 +69,6 @@ def test_follow_up_preserves_notes_and_does_not_invent_tasks() -> None:
 
     assert notes in result["follow_up_draft"]
     assert "MSL interpretation: Not generated" in result["follow_up_draft"]
-    assert "Suggested follow-up (rule-based)" in result["follow_up_draft"]
+    assert "Suggested follow-up" in result["follow_up_draft"]
     assert "Review the request in the notes against approved scientific sources." in result["follow_up_draft"]
     assert "Owner and due date: Not assigned" in result["follow_up_draft"]

@@ -178,3 +178,33 @@ Local QA closeout: **105 automated tests passed** and **16 fixed harness cases p
 User requested date/location/therapy filters and a cleaner layout. Added [source-specific advanced filters](../prototype/specs/advanced-search-and-navigation.md), verified against official PubMed guidance and the ClinicalTrials.gov OpenAPI specification. Replaced the uneven two-column layout with three full-width workspace tabs. Filter/query changes invalidate old evidence and drafts, with no automatic search. Added focused QA, [live API evidence](../prototype/test_scenarios/results/advanced_filters_live.json) and [browser evidence](../prototype/test_scenarios/results/advanced_filters_browser.json). Hosting stays on hold; no live model quality was evaluated.
 
 Advanced-filter closeout: **121 automated tests passed** and **16 harness cases passed**. Both combined-filter API requests returned records; desktop/mobile browser checks passed. Reports and [QA closeout](../prototype/test_scenarios/results/local_qa_summary.md) refreshed. Fresh local preview: http://localhost:8502. Hosting remains on hold.
+
+## 24 October 2026 ? Neutral interface wording
+
+User requested removal of repeated fictional/demo terminology. Cleaned visible labels, helper text and CRM presentation, including neutral draft headings and guided-preparation controls. Preserved a brief synthetic-data disclosure, original CRM records and identifiers, raw scientific evidence, entered notes and MSL-review requirements. Added preservation and visible-copy checks in [presentation tests](../prototype/tests/test_presentation.py). Latest automated results are in the [QA report](../prototype/test_scenarios/results/latest_run.md).
+
+Neutral-copy closeout: **124 tests passed**, **16 harness cases passed**. Refreshed the running preview on port 8502 and verified neutral labels, retained data disclosure and updated Offline draft wording. No scientific source text, entered notes or canonical CRM data was rewritten.
+
+## 24 October 2026 ? CRM profile card layout
+
+User requested side-by-side CRM information. Replaced the vertical list with four responsive cards covering record/assignment, engagement preferences, scientific interests and planned meeting. Preserved all existing values and added a focused field-preservation/HTML-escaping check. See [layout specification](../prototype/specs/advanced-search-and-navigation.md).
+
+CRM layout closeout: **125 tests passed**, **16 harness cases passed**. Browser checks confirm two-column desktop cards and stacked mobile cards without overflow. [Layout previews](../prototype/test_scenarios/results/crm_profile_browser.json) saved; local preview restarted on port 8502.
+
+## 24 October 2026 ? Task/request and registry alignment
+
+User requested cleaner follow-up tasks, medical requests and both search tabs. Added responsive task/request cards with preserved read-only registers, aligned query/action toolbars, grouped filter rows and summary-first result cards. Original source details, selections, status values, ownership and evidence links remain available. [Layout contract](../prototype/specs/advanced-search-and-navigation.md) updated; QA totals are recorded in generated reports.
+
+Alignment closeout: **126 automated tests** and **16 harness cases** passed. Eight desktop/mobile browser checks passed, including aligned card metadata and both live public searches. [QA evidence](../prototype/test_scenarios/results/aligned_layout_browser.json) and previews saved. Local preview refreshed on port 8502.
+
+## 24 October 2026 - Presentation and portable showcase
+
+User requested a presentation covering delivered capabilities, structure, agents, testing and harness, plus a demo link. Prepared [16-slide HTML/PDF materials](../prototype/presentation/README.md), speaker notes, architecture diagram, eight-view screenshot walkthrough and dated evidence snapshots. Local-only slides/showcase served on port 8765; working app remains on 8502. HTML works offline and can be shared as a file. Presentation QA: 47 checks passed; PDF has 16 pages. Application evidence remains 126 tests, 16 overlapping harness cases and eight browser checks. Live OpenAI output review, evaluator acceptance and hosting approval remain pending.
+
+## 24 October 2026 - Team credits and palette selection
+
+User requested the cover credit Prepared by: Sayali Shedge, Asawari U, Roshni Srivastava. Rebuilt HTML/PDF and verified all names. Prepared [four matching slide/application palette proposals](../prototype/presentation/palettes.html), comparison and individual PNG samples, plus numerical text/button contrast checks. No new palette is applied pending the user selection. Presentation QA remains 47 passing checks; palette/name preview checks passed. Updated the shareable presentation ZIP.
+
+## 24 October 2026 - Navy & Azure selected and applied
+
+User selected palette A. Applied primary #2563EB, navy #102A43, text #172B4D, background #F4F7FC and soft #EFF6FF across app CSS, Streamlit themes, slide template and architecture diagram. Refreshed every embedded app screenshot and rebuilt the HTML/PDF. Team credits remain Sayali Shedge, Asawari U and Roshni Srivastava. QA: 126 tests, 16 harness scenarios, eight refreshed browser checks and 47 presentation checks passed. [Theme evidence](../prototype/test_scenarios/results/navy_azure_browser.json). Updated the ZIP; no hosting action performed.

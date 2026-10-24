@@ -12,6 +12,7 @@ from typing import Any
 
 from clinical_trials import discussion_prompts, search_clinical_trials
 from pubmed import search_pubmed
+from presentation import display_crm
 from crm import validate_crm_records, format_crm_details
 from llm import (ContextOutput, ScienceOutput, FollowUpOutput, OpenAILLM, LLMError,
                  validate_items, render_items)
@@ -22,13 +23,14 @@ Record = dict[str, Any]
 
 
 def format_crm_context(record: Record) -> str:
+    record = display_crm(record)
     interactions = []
     for item in record["interactions"]:
         interactions.append(
             "\n".join(
                 [
                     f"- {item['date']} ({item['engagement_id']}): {item['purpose']}",
-                    f"  Synthetic KOL observation: {item['observation']}",
+                    f"  KOL observation: {item['observation']}",
                     f"  Draft MSL interpretation: {item['msl_interpretation']}",
                     f"  Follow-up: {item['task']} Owner: {item['owner_role']}. "
                     f"Status: {item['status']}. Due: {item['due_date']}.",
@@ -44,7 +46,7 @@ def format_crm_context(record: Record) -> str:
             f"Therapy area: {record['therapy_area']}",
             f"Planned meeting: {meeting['date']} ({meeting['engagement_id']})",
             f"Purpose: {meeting['purpose']}",
-            "Prior interactions (synthetic CRM history):",
+            "Prior interactions (CRM history):",
             *interactions,
             format_crm_details(record),
         ]
@@ -160,12 +162,12 @@ class ScientificSourceAgent:
         if not source_text:
             return {
                 "briefing": (
-                    "No scientific source text was supplied, so this prototype abstains "
-                    "from scientific claims. Use the synthetic CRM history only to review "
+                    "No scientific source text was supplied, so the assistant abstains "
+                    "from scientific claims. Use the CRM history only to review "
                     "prior topics and open follow-up. Add an approved source pack before "
                     "drafting evidence content."
                 ),
-                "generation_mode": "Abstention: code-only, no scientific source supplied",
+                "generation_mode": "Abstention: no scientific source supplied",
             }
         if llm is not None:
             sources_by_id = {f"S{index}": text for index, text in
@@ -189,16 +191,16 @@ class ScientificSourceAgent:
         return {
             "briefing": (
                 "DRAFT FOR MSL REVIEW\n\n"
-                "Meeting context (synthetic CRM history):\n"
+                "Meeting context (CRM history):\n"
                 f"{crm_context}\n\n"
                 "Selected scientific source text (PubMed metadata/abstracts, "
                 "ClinicalTrials.gov registry fields, and/or user-provided; verbatim; "
                 "not independently verified):\n"
                 f"{source_text}\n\n"
                 "Evidence summary: Not generated. Review the source text and write a "
-                "summary manually; this code-only prototype does not interpret clinical evidence."
+                "summary manually; Offline mode does not interpret clinical evidence."
             ),
-            "generation_mode": "Code-only: source-preserving draft, no model call",
+            "generation_mode": "Offline: source-preserving draft, no model call",
         }
 
 
@@ -209,7 +211,7 @@ class FollowUpAgent:
         meeting_notes = notes.strip()
         if not meeting_notes:
             return (
-                "Add fictional meeting notes to create a structured draft. "
+                "Add meeting notes to create a structured draft. "
                 "No interpretation or follow-up task has been created."
             )
 
@@ -226,7 +228,7 @@ class FollowUpAgent:
                 + "\n\nOpen questions:\n" + render_items(draft.open_questions)
                 + "\n\nMSL interpretation: Enter only after review."
                 + "\nOwner and due date: Not assigned.\nStatus: Draft for review."
-                + "\nSafety reminder: Use the organization's established process for potential safety information; this prototype does not detect or submit reports."
+                + "\nSafety reminder: Use the organization's established process for potential safety information; this app does not detect or submit reports."
             )
         request_terms = ("ask", "asked", "question", "request", "evidence", "source")
         has_request = any(term in meeting_notes.casefold() for term in request_terms)
@@ -241,10 +243,10 @@ class FollowUpAgent:
             f"{meeting_notes}\n\n"
             "Observation: Review the notes and confirm the stakeholder statement.\n"
             "MSL interpretation: Not generated; enter only after review.\n"
-            f"Suggested follow-up (rule-based): {suggested_task}\n"
+            f"Suggested follow-up: {suggested_task}\n"
             "Owner and due date: Not assigned.\n"
             "Status: Draft for review.\n"
             "The suggested task is a generic workflow prompt, not a scientific conclusion.\n"
             "Safety reminder: If notes contain potential safety information, use the "
-            "organization's established process. This prototype does not detect or submit reports."
+            "organization's established process. This app does not detect or submit reports."
         )

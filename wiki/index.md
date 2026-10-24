@@ -17,6 +17,7 @@ Status: editable starter templates. Created 13 October 2026.
 - [Scientific search summaries and original-detail access](../prototype/specs/search-summaries.md)
 - [Human oversight and guardrails](governance/oversight.md)
 - [Evaluation cases and workshop reviewer pack](../prototype/specs/evaluation-and-review.md)
+- [HTML presentation, PDF and shareable walkthrough](../prototype/presentation/README.md)
 - [Workshop presentation and walkthrough](../prototype/docs/workshop-walkthrough.md)
 - [Live OpenAI walkthrough - Dr Mira Sen](../prototype/docs/live-walkthrough.md)
 - [Specification development directory](../prototype/specs/README.md)

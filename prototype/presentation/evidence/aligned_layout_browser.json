@@ -1,0 +1,45 @@
+{
+  "checked_at": "2026-10-24T15:05:45+05:30",
+  "url": "http://localhost:8502",
+  "palette": "A - Navy & Azure",
+  "computed_colors": {
+    "primary": "rgb(37, 99, 235)",
+    "sidebar": "rgb(16, 42, 67)",
+    "background": "rgb(244, 247, 252)"
+  },
+  "scope": "Read-only CRM and live public searches in Offline mode; no OpenAI calls.",
+  "checks": [
+    {
+      "check": "Follow-up tasks: aligned desktop cards in Navy & Azure",
+      "passed": true
+    },
+    {
+      "check": "Medical requests: aligned desktop cards in Navy & Azure",
+      "passed": true
+    },
+    {
+      "check": "PubMed: live search, source summaries and filters in Navy & Azure",
+      "passed": true
+    },
+    {
+      "check": "ClinicalTrials.gov: live search, source summaries and filters in Navy & Azure",
+      "passed": true
+    },
+    {
+      "check": "Follow-up tasks: stacked mobile cards without overflow",
+      "passed": true
+    },
+    {
+      "check": "Medical requests: stacked mobile cards without overflow",
+      "passed": true
+    },
+    {
+      "check": "PubMed: mobile search without overflow",
+      "passed": true
+    },
+    {
+      "check": "ClinicalTrials.gov: mobile search without overflow",
+      "passed": true
+    }
+  ]
+}

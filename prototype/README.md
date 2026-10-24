@@ -80,11 +80,11 @@ See the [search-summary specification](specs/search-summaries.md) and [executed 
 
 ## Guided live walkthrough and refreshed interface
 
-The workspace uses a navy/teal palette, system typography, a clear heading scale, aligned CRM/evidence columns, readable metrics and distinct review cards. Original source appendices are collapsed in review drafts and remain accessible. Desktop and narrow-screen browser checks were performed on 24 October 2026.
+The workspace uses a navy/azure palette, system typography, a clear heading scale, aligned CRM/evidence columns, readable metrics and distinct review cards. Original source appendices are collapsed in review drafts and remain accessible. Desktop and narrow-screen browser checks were performed on 24 October 2026.
 
-Open **Live OpenAI walkthrough - Dr Mira Sen** and click **Load Dr Mira Sen walkthrough**. This selects KOL-DEMO-001, switches to OpenAI mode and fills a public topic query plus fictional notes. Loading inputs makes no API request. Enter the key locally, run the PubMed search, inspect and select an article, then Prepare. Check all three entries under Agent run details and review the generated claims against sources.
+Open **Guided preparation - Dr Mira Sen** and click **Load Dr Mira Sen case**. This selects KOL-DEMO-001, switches to OpenAI mode and fills a public topic query plus fictional notes. Loading inputs makes no API request. Enter the key locally, run the PubMed search, inspect and select an article, then Prepare. Check all three entries under Agent run details and review the generated claims against sources.
 
-After successful generation, **Download walkthrough record** exports a JSON report. **Save walkthrough record locally** explicitly writes the report to `prototype/test_scenarios/results/live_openai_walkthrough.json`. Reports include drafts and agent status, exclude credential fields, and retain a human-review-pending label. No live result is claimed until a real key-configured run has completed. Original CRM fixture data remains read-only.
+After successful generation, **Download preparation record** exports a JSON report. **Save preparation record locally** explicitly writes the report to `prototype/test_scenarios/results/live_openai_walkthrough.json`. Reports include drafts and agent status, exclude credential fields, and retain a human-review-pending label. No live result is claimed until a real key-configured run has completed. Original CRM fixture data remains read-only.
 
 ## Public hosting
 
@@ -97,3 +97,19 @@ Run `./prototype/.venv/Scripts/python.exe -B prototype/harness/run_local_qa.py` 
 ## Advanced search and cleaner navigation
 
 Use **KOL context**, **Evidence search** and **Drafts & follow-up** for the three full-width workspaces. Evidence search has separate PubMed and ClinicalTrials.gov tabs, each with expandable advanced filters. PubMed supports publication dates, article types/languages, availability, species, therapy keywords, affiliation location and journal. Trials support intervention name/type, study location, recruitment, phase, study type, age/sex eligibility and registry dates. Changing criteria clears old results and drafts; click Search to retrieve again. See [filter semantics and verification](specs/advanced-search-and-navigation.md). The verified fresh local preview for this update runs at http://localhost:8502.
+
+## Interface wording
+
+Visible labels and CRM descriptions use neutral wording such as Select a KOL, Meeting notes and KOL observation. A single data disclosure identifies the CRM as synthetic. A presentation copy removes repeated scenario qualifiers from CRM descriptions; original records, provenance, identifiers, scientific source text and entered notes are preserved. Draft-review guidance and action boundaries remain visible.
+
+## Task, request and search cards
+
+KOL context presents follow-up tasks and medical requests as read-only cards, with full registers under expanders. Evidence search uses aligned search/action bars, grouped filters and summary-first result cards; original details remain expandable. Layouts adapt to desktop and mobile.
+
+## Presentation and guided showcase
+
+The [16-slide HTML presentation](presentation/index.html), [PDF](presentation/presentation.pdf), [presenter notes](presentation/presenter-notes.md) and [sharing instructions](presentation/README.md) cover the current UI, three agents, architecture, specifications, testing and evaluation harness. The HTML embeds an eight-view screenshot walkthrough that works offline. Local presentation: http://localhost:8765/index.html. Public hosting remains on hold.
+
+## Selected colour palette
+
+User-selected A - Navy & Azure is applied consistently to the app and presentation: primary #2563EB, navy #102A43, text #172B4D, page #F4F7FC and soft panels #EFF6FF. Current embedded screenshots were refreshed after verifying computed browser colours.

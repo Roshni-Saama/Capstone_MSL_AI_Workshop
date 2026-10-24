@@ -14,7 +14,7 @@ def test_kol_context_agent_retrieves_one_exact_synthetic_record() -> None:
     assert result["record"]["kol_id"] == "KOL-DEMO-001"
     assert "ENG-DEMO-001" in result["crm_context"]
     assert "ENG-DEMO-101" not in result["crm_context"]
-    assert "synthetic CRM history" in result["crm_context"]
+    assert "CRM history" in result["crm_context"]
 
 
 def test_kol_context_agent_rejects_unknown_record() -> None:

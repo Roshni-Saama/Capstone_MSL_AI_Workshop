@@ -1,0 +1,78 @@
+{
+  "status": "Palette A is applied to the presentation and prototype. Other options remain alternatives.",
+  "palettes": [
+    {
+      "id": "A",
+      "name": "Navy & Azure",
+      "description": "Clear and professional. My recommendation for a crisp presentation and scientific workspace.",
+      "navy": "#102A43",
+      "primary": "#2563EB",
+      "ink": "#172B4D",
+      "background": "#F4F7FC",
+      "soft": "#EFF6FF",
+      "muted": "#53657A",
+      "border": "#D7E3F2",
+      "contrast": {
+        "body_text_on_background": 13.13,
+        "white_on_primary_button": 5.17,
+        "primary_on_white": 5.17,
+        "muted_on_soft": 5.5
+      }
+    },
+    {
+      "id": "B",
+      "name": "Plum & Lavender",
+      "description": "Distinctive and polished, with softer surfaces and a rich purple accent.",
+      "navy": "#302047",
+      "primary": "#7350A2",
+      "ink": "#302640",
+      "background": "#F8F6FC",
+      "soft": "#F3EDF9",
+      "muted": "#675F77",
+      "border": "#E3D9EF",
+      "contrast": {
+        "body_text_on_background": 13.26,
+        "white_on_primary_button": 6.18,
+        "primary_on_white": 6.18,
+        "muted_on_soft": 5.26
+      }
+    },
+    {
+      "id": "C",
+      "name": "Forest & Sage",
+      "description": "Calm and understated, with deep green navigation and gentle sage surfaces.",
+      "navy": "#173F35",
+      "primary": "#2E6B55",
+      "ink": "#243B32",
+      "background": "#F5F8F4",
+      "soft": "#E9F3EC",
+      "muted": "#5D7165",
+      "border": "#D6E4D8",
+      "contrast": {
+        "body_text_on_background": 11.23,
+        "white_on_primary_button": 6.27,
+        "primary_on_white": 6.27,
+        "muted_on_soft": 4.61
+      }
+    },
+    {
+      "id": "D",
+      "name": "Graphite & Amber",
+      "description": "Warm and editorial, with graphite structure and a restrained amber action colour.",
+      "navy": "#252D38",
+      "primary": "#9A5B08",
+      "ink": "#29313D",
+      "background": "#F8F7F3",
+      "soft": "#FFF3DA",
+      "muted": "#6C6C69",
+      "border": "#E7DECC",
+      "contrast": {
+        "body_text_on_background": 12.24,
+        "white_on_primary_button": 5.42,
+        "primary_on_white": 5.42,
+        "muted_on_soft": 4.79
+      }
+    }
+  ],
+  "selected_palette": "A"
+}

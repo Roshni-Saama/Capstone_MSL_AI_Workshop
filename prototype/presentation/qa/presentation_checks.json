@@ -1,0 +1,197 @@
+{
+  "checked_at": "2026-10-24T15:05:54+05:30",
+  "slide_count": 16,
+  "walkthrough_views": 8,
+  "checks": [
+    {
+      "check": "Slide 1 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 2 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 3 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 4 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 5 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 6 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 7 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 8 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 9 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 10 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 11 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 12 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 13 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 14 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 15 content fits",
+      "passed": true
+    },
+    {
+      "check": "Slide 16 content fits",
+      "passed": true
+    },
+    {
+      "check": "Keyboard, notes and outline navigation",
+      "passed": true
+    },
+    {
+      "check": "Walkthrough view profile",
+      "passed": true
+    },
+    {
+      "check": "Walkthrough view tasks",
+      "passed": true
+    },
+    {
+      "check": "Walkthrough view requests",
+      "passed": true
+    },
+    {
+      "check": "Walkthrough view pubmed-filters",
+      "passed": true
+    },
+    {
+      "check": "Walkthrough view pubmed-results",
+      "passed": true
+    },
+    {
+      "check": "Walkthrough view trial-filters",
+      "passed": true
+    },
+    {
+      "check": "Walkthrough view trial-results",
+      "passed": true
+    },
+    {
+      "check": "Walkthrough view drafts",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 1 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 2 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 3 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 4 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 5 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 6 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 7 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 8 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 9 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 10 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 11 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 12 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 13 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 14 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 15 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile slide 16 has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "Mobile walkthrough has no horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "All print slides fit before their footers",
+      "passed": true
+    },
+    {
+      "check": "Standalone HTML and walkthrough work offline",
+      "passed": true
+    },
+    {
+      "check": "No JavaScript exceptions",
+      "passed": true
+    },
+    {
+      "check": "PDF has exactly 16 pages",
+      "passed": true
+    },
+    {
+      "check": "PDF includes agent roles and recorded QA counts",
+      "passed": true
+    }
+  ],
+  "javascript_errors": [],
+  "passed": true
+}

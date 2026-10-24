@@ -1,4 +1,5 @@
 """Summary-first result presentation; original evidence stays accessible."""
+from html import escape
 import streamlit as st
 from search_summaries import summarize_results
 
@@ -16,11 +17,12 @@ def render_summary(preview):
 
 def render_pubmed_result(article, preview=None):
     identifier = article["pmid"]
-    with st.expander(f"{article['title']} | PMID {identifier}"):
+    with st.container(border=True, key=f"pubmed_result_{identifier}"):
+        st.markdown(f'<div class="evidence-result-header"><span class="source-label">PubMed</span><h3>{escape(article["title"])}</h3></div>', unsafe_allow_html=True)
         preview = preview or summarize_results([article], "pubmed")[identifier]
-        render_summary(preview)
         st.caption(f"{article['journal'] or 'Journal unavailable'} ({article['year'] or 'Year unavailable'}) | PMID {identifier}")
         st.markdown(f"[Open PubMed record]({article['url']})")
+        render_summary(preview)
         with st.expander("View original details"):
             st.markdown(f"**Authors:** {article['authors'] or 'Unavailable'}")
             st.markdown(f"**DOI:** {article['doi'] or 'Unavailable'}")
@@ -30,12 +32,13 @@ def render_pubmed_result(article, preview=None):
 
 def render_trial_result(trial, source_agent, preview=None):
     identifier = trial["nct_id"]
-    with st.expander(f"{trial['title']} | {identifier}"):
+    with st.container(border=True, key=f"trial_result_{identifier}"):
+        st.markdown(f'<div class="evidence-result-header"><span class="source-label">ClinicalTrials.gov</span><h3>{escape(trial["title"])}</h3></div>', unsafe_allow_html=True)
         preview = preview or summarize_results([trial], "trials")[identifier]
-        render_summary(preview)
         st.caption(f"NCT ID: {identifier} | Last posted update: {trial['last_updated'] or 'Not listed'}")
         st.caption("Registry overview; planned outcomes are not study results.")
         st.markdown(f"[Open ClinicalTrials.gov record]({trial['url']})")
+        render_summary(preview)
         with st.expander("View original details"):
             st.markdown(
                 f"**Registry status:** {trial['status']}  \n"

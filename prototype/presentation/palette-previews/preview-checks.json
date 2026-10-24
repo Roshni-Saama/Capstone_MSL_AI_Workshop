@@ -1,0 +1,32 @@
+{
+  "checks": [
+    {
+      "check": "Palette A: cover and UI preview rendered",
+      "passed": true
+    },
+    {
+      "check": "Palette B: cover and UI preview rendered",
+      "passed": true
+    },
+    {
+      "check": "Palette C: cover and UI preview rendered",
+      "passed": true
+    },
+    {
+      "check": "Palette D: cover and UI preview rendered",
+      "passed": true
+    },
+    {
+      "check": "Palette gallery is readable without mobile horizontal overflow",
+      "passed": true
+    },
+    {
+      "check": "All three requested names appear on PDF cover",
+      "passed": true
+    }
+  ],
+  "javascript_errors": [],
+  "passed": true,
+  "status": "Palette A is applied to the app and presentation; alternative palettes are retained for comparison.",
+  "selected_palette": "A"
+}
