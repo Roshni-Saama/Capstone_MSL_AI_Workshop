@@ -77,3 +77,19 @@ Opening a PubMed or ClinicalTrials.gov result now shows a short overview before 
 - Source selection remains explicit. Preparing a briefing uses original selected records, not generated search summaries. Registry planned outcomes are not represented as study results.
 
 See the [search-summary specification](specs/search-summaries.md) and [executed test scenarios](test_scenarios/README.md).
+
+## Guided live walkthrough and refreshed interface
+
+The workspace uses a navy/teal palette, system typography, a clear heading scale, aligned CRM/evidence columns, readable metrics and distinct review cards. Original source appendices are collapsed in review drafts and remain accessible. Desktop and narrow-screen browser checks were performed on 24 October 2026.
+
+Open **Live OpenAI walkthrough - Dr Mira Sen** and click **Load Dr Mira Sen walkthrough**. This selects KOL-DEMO-001, switches to OpenAI mode and fills a public topic query plus fictional notes. Loading inputs makes no API request. Enter the key locally, run the PubMed search, inspect and select an article, then Prepare. Check all three entries under Agent run details and review the generated claims against sources.
+
+After successful generation, **Download walkthrough record** exports a JSON report. **Save walkthrough record locally** explicitly writes the report to `prototype/test_scenarios/results/live_openai_walkthrough.json`. Reports include drafts and agent status, exclude credential fields, and retain a human-review-pending label. No live result is claimed until a real key-configured run has completed. Original CRM fixture data remains read-only.
+
+## Public hosting
+
+See [deployment setup and hosted verification](docs/deployment.md). The root `streamlit_app.py` is the public entrypoint: visitors supply their own API keys and download reports; server-side keys and local report saves are disabled. Deployment is pending authenticated publication.
+
+## Local QA and agent harness
+
+Run `./prototype/.venv/Scripts/python.exe -B prototype/harness/run_local_qa.py` from the repository root. It executes tests, regenerates the scenario catalog and runs the fixed agent evaluation pack. See [harness instructions and reports](harness/README.md) and [specification directory](specs/README.md). Hosting is on hold pending team confirmation.

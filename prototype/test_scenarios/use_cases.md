@@ -42,3 +42,9 @@ Use conflicting synthetic source text, an instruction-like source, a fictional o
 ## UC-008: summary-first scientific search
 
 Run either registry search and open a record. Expect a short AI summary draft in OpenAI mode, or a labeled offline excerpt/overview otherwise. Original abstract or registry data is available under View original details. Check source links, supporting quotes, missing abstracts, a failed AI summary and repeated UI edits without another model call. Preparing without selecting the result must still abstain. Executable coverage: test_search_summaries.py. Live AI summary usefulness remains a reviewer task.
+
+## UC-009: guided Dr Mira Sen OpenAI walkthrough
+
+Use the guided walkthrough at the top of the app to load Dr Mira Sen, a public PubMed query and fictional notes. Confirm loading alone triggers no model or registry calls. Enter the API key locally, Search PubMed, inspect a summary, select an article, then Prepare. Review all three agent steps, citations, uncertainties, preserved notes and unassigned new owner/date. Download the report or explicitly save it locally. Report completion records software execution; human scientific review and usefulness scores remain separate.
+
+Automated tests mock the calls and test setup plus report handling. Real model completion is pending until the user finishes the key-configured walkthrough. See [the live walkthrough guide](../docs/live-walkthrough.md).

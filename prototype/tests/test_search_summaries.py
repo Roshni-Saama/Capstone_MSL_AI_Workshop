@@ -107,7 +107,7 @@ def test_ui_shows_summary_before_collapsed_original_details(registry_index, monk
     search.return_value = [record]
     query_key = "pubmed_query" if registry_index == 0 else "trial_query"
     app.text_input(key=query_key).input("fictional topic")
-    app.button[registry_index].click().run()
+    app.button(key=("search_pubmed" if registry_index == 0 else "search_trials")).click().run()
     assert not app.exception
     details = next(expander for expander in app.expander if expander.label == "View original details")
     original = "\n".join(element.value for element in details.markdown)
@@ -117,7 +117,7 @@ def test_ui_shows_summary_before_collapsed_original_details(registry_index, monk
     prefix = "pubmed" if registry_index == 0 else "trial"
     preview = next(iter(app.session_state[prefix + "_summaries"].values()))
     assert marker not in " ".join(preview["points"])
-    app.button[2].click().run()
+    app.button(key="prepare_drafts").click().run()
     assert "abstains" in app.session_state["workflow_result"]["briefing"]
 
 
@@ -129,7 +129,7 @@ def test_ai_summaries_are_cached_on_rerun_and_cleared_on_kol_switch(monkeypatch)
     pubmed.return_value = [article()]
     app.radio(key="drafting_mode").set_value("OpenAI LLM").run()
     app.text_input(key="pubmed_query").input("fictional topic")
-    app.button[0].click().run()
+    app.button(key="search_pubmed").click().run()
     assert not app.exception
     assert len(runtime.calls) == 1
     assert "AI summary draft" in app.session_state["pubmed_summaries"]["12345678"]["mode"]
@@ -147,10 +147,10 @@ def test_failed_ai_summary_shows_labeled_preview_and_clears_previous_ai_text(mon
     pubmed.return_value = [article()]
     app.radio(key="drafting_mode").set_value("OpenAI LLM").run()
     app.text_input(key="pubmed_query").input("fictional topic")
-    app.button[0].click().run()
+    app.button(key="search_pubmed").click().run()
     assert "pubmed_summaries" in app.session_state
     runtime.generate = Mock(side_effect=LLMError("Demo summary failure"))
-    app.button[0].click().run()
+    app.button(key="search_pubmed").click().run()
     assert not app.exception
     assert "pubmed_summaries" not in app.session_state
     assert any("Demo summary failure" in warning.value for warning in app.warning)

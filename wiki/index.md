@@ -17,6 +17,10 @@ Status: editable starter templates. Created 13 October 2026.
 - [Human oversight and guardrails](governance/oversight.md)
 - [Evaluation cases and workshop reviewer pack](../prototype/specs/evaluation-and-review.md)
 - [Workshop presentation and walkthrough](../prototype/docs/workshop-walkthrough.md)
+- [Live OpenAI walkthrough - Dr Mira Sen](../prototype/docs/live-walkthrough.md)
+- [Specification development directory](../prototype/specs/README.md)
+- [Local QA and agent evaluation harness](../prototype/harness/README.md)
+- [Public deployment setup and verification](../prototype/docs/deployment.md)
 - [Wiki change log](log.md)
 - [Codex instructions](../AGENTS.md)
 

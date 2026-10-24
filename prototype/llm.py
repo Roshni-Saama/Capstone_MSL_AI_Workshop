@@ -75,7 +75,8 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 
 class OpenAILLM:
     def __init__(self, api_key: str | None = None, model: str | None = None):
-        self._api_key = (api_key or os.environ.get("OPENAI_API_KEY", "")).strip()
+        server_key = "" if os.environ.get("MSL_PUBLIC_DEMO") == "1" else os.environ.get("OPENAI_API_KEY", "")
+        self._api_key = (api_key or server_key).strip()
         self.model = (model or os.environ.get("OPENAI_MODEL", DEFAULT_MODEL)).strip()
         if not self._api_key:
             raise LLMError("Add an OpenAI API key in the sidebar or set OPENAI_API_KEY.")

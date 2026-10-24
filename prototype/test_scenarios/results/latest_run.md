@@ -1,16 +1,19 @@
 # Latest automated test execution
 
-Report date: 2026-10-23 (Asia/Kolkata).
+Report date: 2026-10-24 (Asia/Kolkata).
 
-Executed cases: **91**. Passed: **91**. Failed: **0**. Skipped: **0**.
+Executed cases: **105**. Passed: **105**. Failed: **0**. Skipped: **0**.
 
 Results are derived from [the pytest JUnit XML](automated_tests.xml); this report does not infer pass status from file presence or earlier runs.
 
 | Area | Executed cases |
 | --- | --- |
 | Agent contracts | 6 |
+| Agent evaluation harness and grader | 8 |
 | ClinicalTrials.gov parsing and prompts | 6 |
+| Guided walkthrough and run evidence | 4 |
 | OpenAI integration contracts | 25 |
+| Prepared public runtime protections | 2 |
 | PubMed parsing and validation | 5 |
 | Scientific search summaries | 16 |
 | Synthetic CRM data and UI | 17 |
@@ -21,7 +24,7 @@ Run from the prototype folder:
 
 ```powershell
 ./.venv/Scripts/python.exe -B -m pytest -q -p no:cacheprovider --junitxml=test_scenarios/results/automated_tests.xml
-./.venv/Scripts/python.exe -B test_scenarios/build_report.py --date 2026-10-23
+./.venv/Scripts/python.exe -B test_scenarios/build_report.py --date 2026-10-24
 ```
 
 The suite uses fictional CRM fixtures and mocked model/registry responses; no live OpenAI completion or medical accuracy was verified by this test run.

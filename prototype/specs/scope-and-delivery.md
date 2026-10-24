@@ -18,7 +18,7 @@ The implementation is a Streamlit demonstrator over three fictional KOL records.
 | Scientific Source Agent | Search public sources, preserve selected identifiers/text, and optionally draft quote-backed scientific briefing items | Separates source retrieval from CRM history and scientific judgment | Select sources and assess their relevance, limitations, and meaning |
 | Follow-up Agent | Preserve notes and optionally extract quote-backed observations, requests and open questions | Makes note preservation and task-drafting limits independently checkable | Confirm observations, enter interpretations, and assign ownership and due dates |
 
-Implementation evidence: [agents.py](../agents.py), [workflow.py](../workflow.py), and [app.py](../app.py). These are bounded workflow components. The implementation now adds bounded model drafting; autonomous planning and external action remain excluded. Live OpenAI access and scientific quality have not yet been verified because no API key is configured. Workshop evaluator acceptance remains pending.
+Implementation evidence: [agents.py](../agents.py), [workflow.py](../workflow.py), and [app.py](../app.py). These are bounded workflow components. The implementation now adds bounded model drafting; autonomous planning and external action remain excluded. Live OpenAI output and scientific quality have not yet been independently reviewed; the user has an API key available locally. Workshop evaluator acceptance remains pending.
 
 ## Demonstration storyline
 
@@ -75,3 +75,11 @@ The fictional fixture now includes three profiles, nine historical interactions,
 ## Summary-first search results
 
 PubMed and ClinicalTrials.gov results show concise previews with originals under View original details. OpenAI-mode searches may make one additional public-source summary batch request via the Scientific Source Agent; offline previews require no model. Original records remain the briefing evidence. See [the search-summary contract](search-summaries.md).
+
+## 24 October 2026 - Interface and guided walkthrough
+
+The interface now has a navy/teal theme, clearer typography, aligned CRM/evidence columns and draft review cards. A guided Mira Sen setup loads fictional notes and a public query without requests. The user is exploring the functionality and has not saved a live report; live verification remains pending. The full mocked/offline suite records 95 passing cases. A successful future run can be explicitly saved without credential fields for output review.
+
+## 24 October 2026 ? Local QA and harness priority
+
+Hosting is on hold pending team confirmation. A dedicated [agent evaluation harness](../harness/README.md) and [harness specification](agent-harness.md) now complement the runtime controls and unit/UI tests. Use the generated reports for current counts; earlier numeric verification statements are historical. Next evidence needed is a recorded real OpenAI run and evaluator-scored output review.

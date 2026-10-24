@@ -25,7 +25,7 @@ def test_drafts_separate_sources_and_history_without_external_search(monkeypatch
     app, pubmed, trials = start_app(monkeypatch)
     app.text_area(key="scientific_source_text").input("SYNTHETIC SOURCE ONLY")
     app.text_area(key="meeting_notes").input("Fictional KOL asked for sources.")
-    app.button[2].click().run()
+    app.button(key="prepare_drafts").click().run()
     assert not app.exception
     text = "\n".join(element.value for element in app.markdown)
     assert "Draft briefing" in [element.value for element in app.subheader]
@@ -44,10 +44,10 @@ def test_switching_kol_clears_previous_draft_notes_sources_and_search_state(monk
     pubmed.side_effect = None
     pubmed.return_value = []
     app.text_input(key="pubmed_query").input("fictional topic")
-    app.button[0].click().run()
+    app.button(key="search_pubmed").click().run()
     app.text_area(key="scientific_source_text").input("KOL ONE SOURCE")
     app.text_area(key="meeting_notes").input("KOL ONE asked a question.")
-    app.button[2].click().run()
+    app.button(key="prepare_drafts").click().run()
     assert app.session_state["workflow_result"]["kol_id"] == "KOL-DEMO-001"
     app.selectbox[0].select_index(1).run()
     assert not app.exception
@@ -59,7 +59,7 @@ def test_switching_kol_clears_previous_draft_notes_sources_and_search_state(monk
     text = "\n".join(element.value for element in app.markdown)
     assert "KOL ONE" not in text
     assert "ENG-DEMO-001" not in text
-    app.button[2].click().run()
+    app.button(key="prepare_drafts").click().run()
     assert app.session_state["workflow_result"]["kol_id"] == "KOL-DEMO-002"
     assert "abstains" in app.session_state["workflow_result"]["briefing"]
     trials.assert_not_called()
@@ -69,7 +69,7 @@ def test_missing_source_abstains_and_fixture_is_not_modified(monkeypatch):
     fixture = APP.parent / "data" / "kol_records.json"
     before = fixture.read_bytes()
     app, pubmed, trials = start_app(monkeypatch)
-    app.button[2].click().run()
+    app.button(key="prepare_drafts").click().run()
     assert not app.exception
     assert "abstains" in app.session_state["workflow_result"]["briefing"]
     assert fixture.read_bytes() == before
@@ -88,12 +88,12 @@ def test_explicit_search_failure_and_empty_results_are_visible(monkeypatch, butt
     query_key = "pubmed_query" if button_index == 0 else "trial_query"
     app.text_input(key=query_key).input("fictional topic")
     search.side_effect = error
-    app.button[button_index].click().run()
+    app.button(key=("search_pubmed" if button_index == 0 else "search_trials")).click().run()
     assert not app.exception
     assert "Demo connection failure" in [x.value for x in app.error]
     search.side_effect = None
     search.return_value = []
-    app.button[button_index].click().run()
+    app.button(key=("search_pubmed" if button_index == 0 else "search_trials")).click().run()
     assert not app.exception
     assert not app.error
     assert any("No " in x.value and "found" in x.value for x in app.info)
@@ -118,12 +118,12 @@ def test_registry_material_requires_explicit_selection(monkeypatch, button_index
     search.side_effect = None
     search.return_value = [record]
     app.text_input(key=query_key).input("fictional topic")
-    app.button[button_index].click().run()
+    app.button(key=("search_pubmed" if button_index == 0 else "search_trials")).click().run()
     assert not app.exception
-    app.button[2].click().run()
+    app.button(key="prepare_drafts").click().run()
     assert "abstains" in app.session_state["workflow_result"]["briefing"]
     app.multiselect(key=selected_key).select(identifier).run()
-    app.button[2].click().run()
+    app.button(key="prepare_drafts").click().run()
     assert not app.exception
     briefing = app.session_state["workflow_result"]["briefing"]
     assert identifier in briefing
@@ -135,11 +135,11 @@ def test_registry_material_requires_explicit_selection(monkeypatch, button_index
 def test_llm_mode_missing_key_shows_error_without_stale_draft(monkeypatch):
     monkeypatch.delenv("OPENAI_API_KEY", raising=False)
     app, _, _ = start_app(monkeypatch)
-    app.button[2].click().run()
+    app.button(key="prepare_drafts").click().run()
     assert "workflow_result" in app.session_state
     app.radio(key="drafting_mode").set_value("OpenAI LLM").run()
     assert "workflow_result" not in app.session_state
-    app.button[2].click().run()
+    app.button(key="prepare_drafts").click().run()
     assert not app.exception
     assert any("API key" in x.value for x in app.error)
     assert "workflow_result" not in app.session_state
@@ -157,12 +157,12 @@ def test_llm_mode_success_then_failure_does_not_show_old_output(monkeypatch):
     app.text_input(key="openai_api_key").input("TEST-KEY")
     app.text_area(key="scientific_source_text").input("SYNTHETIC SOURCE TEXT")
     app.text_area(key="meeting_notes").input("KOL asked for sources.")
-    app.button[2].click().run()
+    app.button(key="prepare_drafts").click().run()
     assert not app.exception
     assert "Draft meeting priorities" in [x.value for x in app.subheader]
     assert len(app.session_state["workflow_result"]["agent_trace"]) == 3
     factory.side_effect = LLMError("Demo OpenAI failure")
-    app.button[2].click().run()
+    app.button(key="prepare_drafts").click().run()
     assert not app.exception
     assert "workflow_result" not in app.session_state
     assert "Demo OpenAI failure" in [x.value for x in app.error]

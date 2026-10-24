@@ -149,3 +149,26 @@ Append new entries; preserve earlier entries.
 - Offline mode shows labeled compact excerpts/registry overviews. Explicit OpenAI searches can request one batch of quote-checked short summaries through the Scientific Source Agent, without CRM data.
 - Added per-session summaries and clearing on new search, mode/model or identity changes. Failed AI summaries show a warning and labeled offline previews; original records remain briefing evidence.
 - Full automated suite: 91 passed. Added 16 summary-specific cases; live OpenAI summary quality remains unverified in this development run.
+
+## 24 October 2026 - Refresh interface and prepare guided live walkthrough
+
+- Improved type scale, spacing, contrast, sidebar, profile card, metrics and draft review panels with a navy/teal theme and responsive styling.
+- Added explicit Mira Sen walkthrough setup, loading only fictional notes and a public query without external calls. Selected scientific sources remain a separate explicit choice.
+- Added downloadable and explicitly saved run records that exclude credential fields and keep review pending. No real CRM write was introduced.
+- Verified 95 automated cases with mocked external services; browser checks at desktop and 430px widths found no horizontal document overflow. User-key-configured live output is still pending.
+
+## 24 October 2026 - Clarify live walkthrough status
+
+- The user clarified they are exploring prototype functionality and have not saved the live run report.
+- Kept independent live completion/output verification pending. No generated clinical content or model-quality result was invented.
+- Guided setup and explicit evidence-save controls remain ready for a later user-run walkthrough; UI improvements and the 95-case automated verification are complete.
+
+## 24 October 2026 ? Public hosting preparation
+
+User chose public sharing and confirmed roshni.srivastava@saama.com for sign-in. Added [deployment instructions](../prototype/docs/deployment.md), a root Community Cloud entrypoint and theme configuration. Public mode requires a visitor key, ignores server-side OpenAI credentials, and offers report downloads instead of shared-server saves. Added focused public credential and session-isolation checks. Authenticated publication, hosted smoke checks and recorded live OpenAI evaluation remain pending.
+
+## 24 October 2026 ? Local QA and explicit agent harness
+
+User put hosting on hold pending team confirmation and requested local QA plus harness documentation. Baseline suite rerun passed 97 tests. Added [fixed agent evaluation](../prototype/harness/README.md), network-blocked scripted transport, per-check reports with source hashes, a caller-independent QA runner and tests that reject intentionally corrupted outputs. Added [harness contract](../prototype/specs/agent-harness.md) and [specification index](../prototype/specs/README.md). Live OpenAI quality and reviewer scoring remain pending; latest execution totals are reported in the generated QA artifacts.
+
+Local QA closeout: **105 automated tests passed** and **16 fixed harness cases passed**; catalog and machine-readable evidence refreshed. Local wiki/prototype links and all nine raw-source checksums validated. See [closeout](../prototype/test_scenarios/results/local_qa_summary.md). Reviewer scoring and real OpenAI evidence remain pending.

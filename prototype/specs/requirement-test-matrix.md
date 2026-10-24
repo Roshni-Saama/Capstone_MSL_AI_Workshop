@@ -30,3 +30,8 @@
 | CRM metrics, tabs and tables isolate selected KOL | Streamlit AppTest checks all three profiles and table identifiers | `tests/test_crm.py` | Implemented |
 | Every executed test instance has scenario evidence | Catalog generated from actual JUnit XML | `test_scenarios/README.md` | See latest execution report |
 | Summary-first scientific search and retained original details | Offline excerpts/trial overviews; batch LLM validation; UI order, caching and labeled failure preview | `tests/test_search_summaries.py` | Implemented; live summary quality pending |
+| Guided Mira Sen setup makes no external calls | Selects correct fictional KOL, mode, query and notes without requests | `tests/test_walkthrough.py` | Implemented |
+| Explicit run evidence excludes credential fields | Whitelisted report fields, local save and UI save invocation | `tests/test_walkthrough.py` | Implemented; actual live record pending |
+
+| Fixed agent evaluation pack, provenance and grader regression detection | 16 Offline/scripted cases plus intentional output/request corruption tests | `harness/evaluate.py`, `tests/test_harness.py`, `specs/agent-harness.md` | Implemented; see latest harness results |
+| Local QA executes consistently from repository or prototype folder | Absolute runner paths and root pytest pythonpath configuration | `harness/run_local_qa.py`, `../pytest.ini` | Implemented |
