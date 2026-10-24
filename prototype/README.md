@@ -93,3 +93,7 @@ See [deployment setup and hosted verification](docs/deployment.md). The root `st
 ## Local QA and agent harness
 
 Run `./prototype/.venv/Scripts/python.exe -B prototype/harness/run_local_qa.py` from the repository root. It executes tests, regenerates the scenario catalog and runs the fixed agent evaluation pack. See [harness instructions and reports](harness/README.md) and [specification directory](specs/README.md). Hosting is on hold pending team confirmation.
+
+## Advanced search and cleaner navigation
+
+Use **KOL context**, **Evidence search** and **Drafts & follow-up** for the three full-width workspaces. Evidence search has separate PubMed and ClinicalTrials.gov tabs, each with expandable advanced filters. PubMed supports publication dates, article types/languages, availability, species, therapy keywords, affiliation location and journal. Trials support intervention name/type, study location, recruitment, phase, study type, age/sex eligibility and registry dates. Changing criteria clears old results and drafts; click Search to retrieve again. See [filter semantics and verification](specs/advanced-search-and-navigation.md). The verified fresh local preview for this update runs at http://localhost:8502.

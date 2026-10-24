@@ -9,6 +9,7 @@ import urllib.parse
 import urllib.request
 
 import truststore
+from search_filters import TrialFilters, trial_parameters
 
 
 API_URL = "https://clinicaltrials.gov/api/v2/studies"
@@ -98,7 +99,7 @@ def _study_record(study: dict) -> dict[str, str | list[str]]:
     }
 
 
-def search_clinical_trials(query: str, page_size: int = 5) -> list[dict[str, str | list[str]]]:
+def search_clinical_trials(query: str, page_size: int = 5, *, filters: TrialFilters | None = None) -> list[dict[str, str | list[str]]]:
     """Search current public registry records; return at most ten studies."""
     search_term = query.strip()
     if not search_term:
@@ -109,7 +110,7 @@ def search_clinical_trials(query: str, page_size: int = 5) -> list[dict[str, str
         raise ValueError("Clinical trial result count must be between 1 and 10.")
 
     params = urllib.parse.urlencode(
-        {"query.cond": search_term, "pageSize": page_size, "format": "json"}
+        {**trial_parameters(search_term, filters), "pageSize": page_size, "format": "json"}
     )
     payload = _get_json(f"{API_URL}?{params}")
     studies = payload.get("studies", [])

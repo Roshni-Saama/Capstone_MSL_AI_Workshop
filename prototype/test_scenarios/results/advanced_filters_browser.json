@@ -1,0 +1,31 @@
+{
+  "checked_at": "2026-10-24T13:28:17+05:30",
+  "url": "http://localhost:8502",
+  "scope": "Fictional CRM, live public searches and Offline drafts only; no key or OpenAI call.",
+  "checks": [
+    {
+      "check": "PubMed filtered search in browser",
+      "passed": true
+    },
+    {
+      "check": "ClinicalTrials.gov filtered search in browser",
+      "passed": true
+    },
+    {
+      "check": "Offline draft workspace; unselected records excluded",
+      "passed": true
+    },
+    {
+      "check": "No page horizontal overflow at 1680px",
+      "passed": true
+    },
+    {
+      "check": "No page horizontal overflow at 430px",
+      "passed": true
+    },
+    {
+      "check": "No visible application exception",
+      "passed": true
+    }
+  ]
+}

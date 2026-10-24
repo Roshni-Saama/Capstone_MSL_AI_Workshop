@@ -1,5 +1,5 @@
 {
-  "run_at": "2026-10-24T12:29:43+05:30",
+  "run_at": "2026-10-24T13:42:59+05:30",
   "validation_type": "Mechanical regression evaluation; offline and scripted model transport only",
   "live_openai_evaluated": false,
   "clinical_quality_evaluated": false,
@@ -11,12 +11,15 @@
     "pydantic": "2.14.1"
   },
   "input_sha256": {
-    "harness/evaluate.py": "60a54c38ec030636a03eda5230ffb73464b00adadf290c82121c9f0db57896c9",
+    "harness/evaluate.py": "8cb380181d11675209d19544d05c04d5adf5cddcab74a33c7b6451b75c9fbbdb",
     "harness/cases.json": "1b6e40ef849eb7e010363b93e62d02c6b8fc1ef9eb19af3081b78ffe88881c31",
     "workflow.py": "3cd45a81c7696e762d170e4a5c89b5c21ebede1a257825e4f26d1a0396e2c155",
-    "agents.py": "36ebaca36a0abf3a35bb2da061579f06c45901dad08094b5b997a5f7b6f5a06b",
+    "agents.py": "4273cfbcbb7fe96eb8a880b99bd110eb2f28a70b5e0cb314d248a58d3666a73f",
     "llm.py": "591f019201fb32c77e29286aadbb0ddad71d1cbe154fff173227f0b1b3fd8a32",
-    "data/kol_records.json": "684ef347bf39918a78d3e46378122353074300fb1c8b53a57ec34941bc0fbcf5"
+    "data/kol_records.json": "684ef347bf39918a78d3e46378122353074300fb1c8b53a57ec34941bc0fbcf5",
+    "search_filters.py": "15f48956e1bebeaa789f376e24a95fe331152a4b80fafc94dadc1b00006fd20a",
+    "pubmed.py": "4e53c2167cc42fd6fcbb67fe596236620eeb905c45e45c768333a91f39dc741b",
+    "clinical_trials.py": "8c519a990b2dd6099a4e176efbe5614427d9cf4de084e155fae6c0a8aea60cd8"
   },
   "total": 16,
   "passed": 16,
@@ -41,7 +44,7 @@
       "error_type": null,
       "expected_error": null,
       "mock_transport_calls": 0,
-      "duration_ms": 11.55
+      "duration_ms": 11.0
     },
     {
       "id": "mock-kol-001",
@@ -70,7 +73,7 @@
       "error_type": null,
       "expected_error": null,
       "mock_transport_calls": 3,
-      "duration_ms": 8.84
+      "duration_ms": 5.78
     },
     {
       "id": "offline-kol-002",
@@ -91,7 +94,7 @@
       "error_type": null,
       "expected_error": null,
       "mock_transport_calls": 0,
-      "duration_ms": 5.65
+      "duration_ms": 5.39
     },
     {
       "id": "mock-kol-002",
@@ -120,7 +123,7 @@
       "error_type": null,
       "expected_error": null,
       "mock_transport_calls": 3,
-      "duration_ms": 7.99
+      "duration_ms": 4.8
     },
     {
       "id": "offline-kol-003",
@@ -141,7 +144,7 @@
       "error_type": null,
       "expected_error": null,
       "mock_transport_calls": 0,
-      "duration_ms": 5.33
+      "duration_ms": 5.29
     },
     {
       "id": "mock-kol-003",
@@ -170,7 +173,7 @@
       "error_type": null,
       "expected_error": null,
       "mock_transport_calls": 3,
-      "duration_ms": 8.57
+      "duration_ms": 9.35
     },
     {
       "id": "missing-source-abstention",
@@ -196,7 +199,7 @@
       "error_type": null,
       "expected_error": null,
       "mock_transport_calls": 2,
-      "duration_ms": 6.91
+      "duration_ms": 5.67
     },
     {
       "id": "empty-notes-no-follow-up",
@@ -223,7 +226,7 @@
       "error_type": null,
       "expected_error": null,
       "mock_transport_calls": 2,
-      "duration_ms": 7.61
+      "duration_ms": 4.21
     },
     {
       "id": "unknown-identity-rejected",
@@ -239,7 +242,7 @@
       "error_type": "KeyError",
       "expected_error": "KeyError",
       "mock_transport_calls": 0,
-      "duration_ms": 1.53
+      "duration_ms": 2.12
     },
     {
       "id": "oversized-input-rejected",
@@ -255,7 +258,7 @@
       "error_type": "LLMError",
       "expected_error": "LLMError",
       "mock_transport_calls": 0,
-      "duration_ms": 1.68
+      "duration_ms": 1.61
     },
     {
       "id": "unselected-citation-rejected",
@@ -276,7 +279,7 @@
       "error_type": "LLMError",
       "expected_error": "LLMError",
       "mock_transport_calls": 2,
-      "duration_ms": 5.55
+      "duration_ms": 4.04
     },
     {
       "id": "invented-quote-rejected",
@@ -297,7 +300,7 @@
       "error_type": "LLMError",
       "expected_error": "LLMError",
       "mock_transport_calls": 2,
-      "duration_ms": 9.14
+      "duration_ms": 5.99
     },
     {
       "id": "malformed-output-rejected",
@@ -315,7 +318,7 @@
       "error_type": "LLMError",
       "expected_error": "LLMError",
       "mock_transport_calls": 1,
-      "duration_ms": 4.62
+      "duration_ms": 3.07
     },
     {
       "id": "refusal-rejected",
@@ -333,7 +336,7 @@
       "error_type": "LLMError",
       "expected_error": "LLMError",
       "mock_transport_calls": 1,
-      "duration_ms": 4.81
+      "duration_ms": 5.96
     },
     {
       "id": "conflicting-sources-preserved",
@@ -362,7 +365,7 @@
       "error_type": null,
       "expected_error": null,
       "mock_transport_calls": 3,
-      "duration_ms": 8.55
+      "duration_ms": 7.1
     },
     {
       "id": "instruction-like-source-remains-data",
@@ -391,7 +394,7 @@
       "error_type": null,
       "expected_error": null,
       "mock_transport_calls": 3,
-      "duration_ms": 7.93
+      "duration_ms": 8.13
     }
   ]
 }

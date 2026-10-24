@@ -13,6 +13,7 @@ Status: editable starter templates. Created 13 October 2026.
 - [Engagement workflow](workflows/engagement.md)
 - [Prototype scope, demonstration storyline, and delivery plan](../prototype/specs/scope-and-delivery.md)
 - [OpenAI LLM agents: setup and acceptance criteria](../prototype/specs/llm-agents.md)
+- [Advanced registry filters and three-workspace navigation](../prototype/specs/advanced-search-and-navigation.md)
 - [Scientific search summaries and original-detail access](../prototype/specs/search-summaries.md)
 - [Human oversight and guardrails](governance/oversight.md)
 - [Evaluation cases and workshop reviewer pack](../prototype/specs/evaluation-and-review.md)

@@ -122,7 +122,7 @@ def run_cases(path=None):
     if any(case["mode"] not in ("offline", "mock") for case in cases):
         raise ValueError("Only offline and mock harness modes are allowed.")
     results = [evaluate_case(case) for case in cases]
-    files = [Path(__file__), path, PROTOTYPE / "workflow.py", PROTOTYPE / "agents.py", PROTOTYPE / "llm.py", PROTOTYPE / "data/kol_records.json"]
+    files = [Path(__file__), path, PROTOTYPE / "workflow.py", PROTOTYPE / "agents.py", PROTOTYPE / "llm.py", PROTOTYPE / "data/kol_records.json", PROTOTYPE / "search_filters.py", PROTOTYPE / "pubmed.py", PROTOTYPE / "clinical_trials.py"]
     return {"run_at": datetime.now(ZoneInfo("Asia/Kolkata")).isoformat(timespec="seconds"),
             "validation_type": "Mechanical regression evaluation; offline and scripted model transport only",
             "live_openai_evaluated": False, "clinical_quality_evaluated": False,

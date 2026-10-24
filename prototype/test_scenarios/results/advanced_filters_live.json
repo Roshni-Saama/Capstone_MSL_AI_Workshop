@@ -1,0 +1,34 @@
+{
+  "checked_at": "2026-10-24T13:25:13+05:30",
+  "scope": "Read-only public API connectivity and filter acceptance; no OpenAI request or scientific appraisal.",
+  "checks": [
+    {
+      "name": "PubMed advanced filters",
+      "status": "Passed",
+      "returned_records": 1,
+      "identifiers": [
+        "42379463"
+      ],
+      "parameters": {
+        "term": "(cancer) AND 2024/01/01:2026/10/24[dp] AND (\"Review\"[pt]) AND (english[la]) AND hasabstract AND humans[mh] AND \"immunotherapy\"[tiab] AND \"India\"[ad]",
+        "sort": "pub_date"
+      }
+    },
+    {
+      "name": "ClinicalTrials.gov advanced filters",
+      "status": "Passed",
+      "returned_records": 1,
+      "identifiers": [
+        "NCT06561386"
+      ],
+      "parameters": {
+        "query.cond": "cancer",
+        "query.intr": "\"pembrolizumab\"",
+        "query.locn": "\"India\"",
+        "filter.overallStatus": "RECRUITING",
+        "filter.advanced": "(AREA[Phase]PHASE2 OR AREA[Phase]PHASE3) AND AREA[StudyType]INTERVENTIONAL AND AREA[InterventionType]DRUG AND AREA[StdAge]OLDER_ADULT AND AREA[LastUpdatePostDate]RANGE[2024-01-01,MAX]",
+        "sort": "LastUpdatePostDate:desc"
+      }
+    }
+  ]
+}

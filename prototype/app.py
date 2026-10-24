@@ -15,6 +15,8 @@ from pubmed import PubMedError
 from crm import crm_summary, task_rows
 from workflow import load_records, run_workflow
 from ui import apply_theme, hero, section_label, profile_card, render_draft
+from filter_views import FILTER_KEYS, pubmed_controls, trial_controls, invalidate_changed_search, applied_search
+from search_filters import pubmed_parameters, trial_parameters
 from walkthrough import DEMO_QUERY, DEMO_NOTES, build_report, save_report
 
 
@@ -81,7 +83,7 @@ selected = st.selectbox(
     "Select a fictional KOL",
     options=records,
     key="selected_kol",
-    format_func=lambda record: f"{record['display_name']} Â· {record['kol_id']}",
+    format_func=lambda record: f"{record['display_name']} | {record['kol_id']}",
 )
 
 st.caption("Changing the KOL clears the current notes, source selections, searches, and drafts.")
@@ -95,6 +97,8 @@ if st.session_state.get("active_kol_id") != selected["kol_id"]:
         "meeting_notes", "pubmed_summaries", "pubmed_summary_error", "trial_summaries", "trial_summary_error",
     ):
         st.session_state.pop(state_key, None)
+    for key in FILTER_KEYS + ["pubmed_controls_signature", "trial_controls_signature", "pubmed_applied_parameters", "trial_applied_parameters"]:
+        st.session_state.pop(key, None)
     st.session_state["active_kol_id"] = selected["kol_id"]
 
 if st.session_state.pop("walkthrough_seed_pending", False):
@@ -102,8 +106,8 @@ if st.session_state.pop("walkthrough_seed_pending", False):
     st.session_state["meeting_notes"] = DEMO_NOTES
     st.session_state["scientific_source_text"] = ""
 
-left, right = st.columns([0.95, 1.15], gap="large")
-with left:
+context_page, evidence_page, draft_page = st.tabs(["01  KOL context", "02  Evidence search", "03  Drafts & follow-up"])
+with context_page:
     section_label("01", "KOL context", "Continuity before the next conversation")
     profile_card(selected)
     profile = selected["crm_profile"]
@@ -155,114 +159,131 @@ with left:
             for request in selected["medical_requests"]
         ], hide_index=True, width="stretch")
 
-with right:
-    section_label("02", "Scientific evidence", "Find relevant sources. Keep their limitations in view.")
-    st.markdown("### PubMed literature")
-    st.caption(
-        "Search NCBI PubMed by scientific topic. Do not enter patient details, "
-        "identifiable information, or confidential CRM content."
-    )
-    pubmed_query = st.text_input(
-        "Search terms",
-        placeholder='Example: oncology trial population older adults',
-        max_chars=300,
-        key="pubmed_query",
-    )
-    search_clicked = st.button("Search PubMed", key="search_pubmed", width="stretch")
-    if search_clicked:
-        for state_key in ("pubmed_summaries", "pubmed_summary_error", "selected_pmids"):
-            st.session_state.pop(state_key, None)
-        st.session_state["pubmed_query_submitted"] = True
-        if not pubmed_query.strip():
-            st.session_state["pubmed_error"] = "Enter search terms before searching."
-            st.session_state["pubmed_results"] = []
-        else:
-            try:
-                st.session_state["pubmed_results"] = source_agent.search_pubmed(pubmed_query, retmax=5)
-                st.session_state.pop("pubmed_error", None)
-                populate_search_summaries("pubmed", st.session_state["pubmed_results"], "pubmed")
-            except (PubMedError, ValueError) as error:
+
+with evidence_page:
+    section_label("02", "Scientific evidence", "Search one source at a time. Select the records for your briefing.")
+    pubmed_page, trial_page = st.tabs(["PubMed", "ClinicalTrials.gov"])
+    with pubmed_page:
+        st.markdown("### PubMed literature")
+        st.caption(
+            "Search NCBI PubMed by scientific topic. Do not enter patient details, "
+            "identifiable information, or confidential CRM content."
+        )
+        pubmed_query = st.text_input(
+            "Search terms",
+            placeholder='Example: oncology trial population older adults',
+            max_chars=300,
+            key="pubmed_query",
+        )
+        pm_filters = pubmed_controls()
+        invalidate_changed_search("pubmed", pubmed_query, pm_filters)
+        search_clicked = st.button("Search PubMed", key="search_pubmed", width="stretch")
+        if search_clicked:
+            for state_key in ("pubmed_summaries", "pubmed_summary_error", "selected_pmids", "workflow_result"):
+                st.session_state.pop(state_key, None)
+            st.session_state["pubmed_query_submitted"] = True
+            if not pubmed_query.strip():
+                st.session_state["pubmed_error"] = "Enter search terms before searching."
                 st.session_state["pubmed_results"] = []
-                st.session_state["pubmed_error"] = str(error)
+            else:
+                try:
+                    parameters = pubmed_parameters(pubmed_query, pm_filters)
+                    st.session_state["pubmed_applied_parameters"] = parameters
+                    st.session_state["pubmed_results"] = source_agent.search_pubmed(pubmed_query, retmax=5, filters=pm_filters)
+                    st.session_state.pop("pubmed_error", None)
+                    populate_search_summaries("pubmed", st.session_state["pubmed_results"], "pubmed")
+                except (PubMedError, ValueError) as error:
+                    st.session_state["pubmed_results"] = []
+                    st.session_state["pubmed_error"] = str(error)
 
-    if st.session_state.get("pubmed_error"):
-        st.error(st.session_state["pubmed_error"])
+        if st.session_state.get("pubmed_error"):
+            st.error(st.session_state["pubmed_error"])
 
-    if st.session_state.get("pubmed_summary_error"):
-        st.warning(st.session_state["pubmed_summary_error"])
+        if st.session_state.get("pubmed_summary_error"):
+            st.warning(st.session_state["pubmed_summary_error"])
 
-    pubmed_results = st.session_state.get("pubmed_results", [])
-    selected_pmids: list[str] = []
-    if pubmed_results:
-        result_by_pmid = {article["pmid"]: article for article in pubmed_results}
-        selected_pmids = st.multiselect(
-            "Select articles to include as source text",
-            options=list(result_by_pmid),
-            key="selected_pmids",
-            format_func=lambda pmid: (
-                f"{result_by_pmid[pmid]['year'] or 'Year n/a'} Â· "
-                f"{result_by_pmid[pmid]['title']} Â· PMID {pmid}"
-            ),
+        pubmed_results = st.session_state.get("pubmed_results", [])
+        applied_search("pubmed", len(pubmed_results))
+        selected_pmids: list[str] = []
+        if pubmed_results:
+            result_by_pmid = {article["pmid"]: article for article in pubmed_results}
+            selected_pmids = st.multiselect(
+                "Select articles to include as source text",
+                options=list(result_by_pmid),
+                key="selected_pmids",
+                format_func=lambda pmid: (
+                    f"{result_by_pmid[pmid]['year'] or 'Year n/a'} | "
+                    f"{result_by_pmid[pmid]['title']} | PMID {pmid}"
+                ),
+            )
+            for article in pubmed_results:
+                render_pubmed_result(article, st.session_state.get("pubmed_summaries", {}).get(article["pmid"]))
+        elif st.session_state.get("pubmed_query_submitted") and not st.session_state.get("pubmed_error"):
+            st.info("No PubMed results found for that search.")
+
+
+    with trial_page:
+        st.markdown("### Clinical trial registry")
+        st.caption(
+            "Search public registry records by condition/topic. Registry records are "
+            "not proof of study quality, results, or current operational status."
         )
-        for article in pubmed_results:
-            render_pubmed_result(article, st.session_state.get("pubmed_summaries", {}).get(article["pmid"]))
-    elif st.session_state.get("pubmed_query_submitted") and not st.session_state.get("pubmed_error"):
-        st.info("No PubMed results found for that search.")
-
-    st.divider()
-    st.markdown("### Clinical trial registry")
-    st.caption(
-        "Search public registry records by condition/topic. Registry records are "
-        "not proof of study quality, results, or current operational status."
-    )
-    trial_query = st.text_input(
-        "Condition or study topic",
-        placeholder="Example: chronic lymphocytic leukemia",
-        max_chars=250,
-        key="trial_query",
-    )
-    trial_search_clicked = st.button("Search ClinicalTrials.gov", key="search_trials", width="stretch")
-    if trial_search_clicked:
-        for state_key in ("trial_summaries", "trial_summary_error", "selected_nct_ids"):
-            st.session_state.pop(state_key, None)
-        st.session_state["trial_query_submitted"] = True
-        if not trial_query.strip():
-            st.session_state["trial_error"] = "Enter a condition or topic before searching trials."
-            st.session_state["trial_results"] = []
-        else:
-            try:
-                st.session_state["trial_results"] = source_agent.search_trials(trial_query, page_size=5)
-                st.session_state.pop("trial_error", None)
-                populate_search_summaries("trial", st.session_state["trial_results"], "trials")
-            except (ClinicalTrialsError, ValueError) as error:
+        trial_query = st.text_input(
+            "Condition or study topic",
+            placeholder="Example: chronic lymphocytic leukemia",
+            max_chars=250,
+            key="trial_query",
+        )
+        ct_filters = trial_controls()
+        invalidate_changed_search("trial", trial_query, ct_filters)
+        trial_search_clicked = st.button("Search ClinicalTrials.gov", key="search_trials", width="stretch")
+        if trial_search_clicked:
+            for state_key in ("trial_summaries", "trial_summary_error", "selected_nct_ids", "workflow_result"):
+                st.session_state.pop(state_key, None)
+            st.session_state["trial_query_submitted"] = True
+            if not trial_query.strip():
+                st.session_state["trial_error"] = "Enter a condition or topic before searching trials."
                 st.session_state["trial_results"] = []
-                st.session_state["trial_error"] = str(error)
+            else:
+                try:
+                    parameters = trial_parameters(trial_query, ct_filters)
+                    st.session_state["trial_applied_parameters"] = parameters
+                    st.session_state["trial_results"] = source_agent.search_trials(trial_query, page_size=5, filters=ct_filters)
+                    st.session_state.pop("trial_error", None)
+                    populate_search_summaries("trial", st.session_state["trial_results"], "trials")
+                except (ClinicalTrialsError, ValueError) as error:
+                    st.session_state["trial_results"] = []
+                    st.session_state["trial_error"] = str(error)
 
-    if st.session_state.get("trial_error"):
-        st.error(st.session_state["trial_error"])
+        if st.session_state.get("trial_error"):
+            st.error(st.session_state["trial_error"])
 
-    if st.session_state.get("trial_summary_error"):
-        st.warning(st.session_state["trial_summary_error"])
+        if st.session_state.get("trial_summary_error"):
+            st.warning(st.session_state["trial_summary_error"])
 
-    trial_results = st.session_state.get("trial_results", [])
-    selected_nct_ids: list[str] = []
-    if trial_results:
-        trial_by_nct_id = {trial["nct_id"]: trial for trial in trial_results}
-        selected_nct_ids = st.multiselect(
-            "Select registry records for this meeting",
-            options=list(trial_by_nct_id),
-            key="selected_nct_ids",
-            format_func=lambda nct_id: (
-                f"{trial_by_nct_id[nct_id]['status']} Â· "
-                f"{trial_by_nct_id[nct_id]['title']} Â· {nct_id}"
-            ),
-        )
-        for trial in trial_results:
-            render_trial_result(trial, source_agent, st.session_state.get("trial_summaries", {}).get(trial["nct_id"]))
-    elif st.session_state.get("trial_query_submitted") and not st.session_state.get("trial_error"):
-        st.info("No ClinicalTrials.gov records found for that search.")
+        trial_results = st.session_state.get("trial_results", [])
+        applied_search("trial", len(trial_results))
+        selected_nct_ids: list[str] = []
+        if trial_results:
+            trial_by_nct_id = {trial["nct_id"]: trial for trial in trial_results}
+            selected_nct_ids = st.multiselect(
+                "Select registry records for this meeting",
+                options=list(trial_by_nct_id),
+                key="selected_nct_ids",
+                format_func=lambda nct_id: (
+                    f"{trial_by_nct_id[nct_id]['status']} | "
+                    f"{trial_by_nct_id[nct_id]['title']} | {nct_id}"
+                ),
+            )
+            for trial in trial_results:
+                render_trial_result(trial, source_agent, st.session_state.get("trial_summaries", {}).get(trial["nct_id"]))
+        elif st.session_state.get("trial_query_submitted") and not st.session_state.get("trial_error"):
+            st.info("No ClinicalTrials.gov records found for that search.")
 
-    st.divider()
+
+with draft_page:
+    st.caption(f"Selected evidence: {len(selected_pmids)} PubMed article(s) | {len(selected_nct_ids)} trial record(s)")
+    st.caption("Sources selected in Evidence search carry into this workspace. Review the original records before preparing drafts.")
     section_label("03", "Meeting notes & follow-up", "Turn a scientific conversation into a reviewable draft")
     scientific_source_text = st.text_area(
         "Optional source text from approved materials",
@@ -278,68 +299,68 @@ with right:
     )
     generate = st.button("Prepare selected sources and notes", key="prepare_drafts", type="primary", width="stretch")
 
-if generate:
-    selected_articles = [
-        article
-        for article in st.session_state.get("pubmed_results", [])
-        if article["pmid"] in selected_pmids
-    ]
-    selected_pubmed_text = source_agent.format_pubmed_sources(selected_articles)
-    selected_trials = [
-        trial
-        for trial in st.session_state.get("trial_results", [])
-        if trial["nct_id"] in selected_nct_ids
-    ]
-    selected_trial_text = source_agent.format_trial_sources(selected_trials)
-    source_parts = [
-        part
-        for part in (selected_pubmed_text, selected_trial_text, scientific_source_text.strip())
-        if part
-    ]
-    st.session_state.pop("workflow_result", None)
-    try:
-        with st.spinner("Preparing review drafts..."):
-            result = run_workflow(
-                kol_id=selected["kol_id"],
-                scientific_sources="\n\n---\n\n".join(source_parts),
-                meeting_notes=meeting_notes,
-                use_llm=use_llm, api_key=api_key or None, model=model,
-            )
-        st.session_state["workflow_result"] = result
-    except LLMError as error:
-        st.error(str(error))
+    if generate:
+        selected_articles = [
+            article
+            for article in st.session_state.get("pubmed_results", [])
+            if article["pmid"] in selected_pmids
+        ]
+        selected_pubmed_text = source_agent.format_pubmed_sources(selected_articles)
+        selected_trials = [
+            trial
+            for trial in st.session_state.get("trial_results", [])
+            if trial["nct_id"] in selected_nct_ids
+        ]
+        selected_trial_text = source_agent.format_trial_sources(selected_trials)
+        source_parts = [
+            part
+            for part in (selected_pubmed_text, selected_trial_text, scientific_source_text.strip())
+            if part
+        ]
+        st.session_state.pop("workflow_result", None)
+        try:
+            with st.spinner("Preparing review drafts..."):
+                result = run_workflow(
+                    kol_id=selected["kol_id"],
+                    scientific_sources="\n\n---\n\n".join(source_parts),
+                    meeting_notes=meeting_notes,
+                    use_llm=use_llm, api_key=api_key or None, model=model,
+                )
+            st.session_state["workflow_result"] = result
+        except LLMError as error:
+            st.error(str(error))
 
-result = st.session_state.get("workflow_result")
-if result and result.get("kol_id") == selected["kol_id"]:
-    st.divider()
-    section_label("04", "Your review workspace", "Verify the source support and refine the next action")
-    if result.get("context_draft"):
-        st.subheader("Draft meeting priorities")
+    result = st.session_state.get("workflow_result")
+    if result and result.get("kol_id") == selected["kol_id"]:
+        st.divider()
+        section_label("04", "Your review workspace", "Verify the source support and refine the next action")
+        if result.get("context_draft"):
+            st.subheader("Draft meeting priorities")
+            with st.container(border=True):
+                render_draft(result["context_draft"])
+        st.subheader("Draft briefing")
+        st.caption(f"Mode: {result.get('generation_mode', 'Code-only')} | Requires MSL review")
         with st.container(border=True):
-            render_draft(result["context_draft"])
-    st.subheader("Draft briefing")
-    st.caption(f"Mode: {result.get('generation_mode', 'Code-only')} Â· Requires MSL review")
-    with st.container(border=True):
-        render_draft(result.get("briefing", "No briefing available."))
-    st.subheader("Draft note and follow-up")
-    st.caption("Requires MSL review. This prototype does not create CRM records or send messages.")
-    with st.container(border=True):
-        render_draft(result.get("follow_up_draft", "No new notes were submitted."))
-    if result.get("agent_trace"):
-        with st.expander("Agent run details"):
-            st.table(result["agent_trace"])
-        if len(result["agent_trace"]) == 3:
-            st.success("All three agent steps completed. Review the drafts before recording your findings.")
-        report = build_report(result)
-        st.download_button("Download walkthrough record", json.dumps(report, indent=2),
-                           file_name="openai_walkthrough.json", mime="application/json", key="download_walkthrough")
-        if not public_demo and st.button("Save walkthrough record locally", key="save_walkthrough"):
-            try:
-                saved_path = save_report(result)
-                st.success(f"Saved run evidence to {saved_path}")
-            except OSError:
-                st.error("The run record could not be saved locally. Use Download walkthrough record instead.")
-        st.caption("The record includes model drafts and agent status, not your API key. Saved results still need human review.")
+            render_draft(result.get("briefing", "No briefing available."))
+        st.subheader("Draft note and follow-up")
+        st.caption("Requires MSL review. This prototype does not create CRM records or send messages.")
+        with st.container(border=True):
+            render_draft(result.get("follow_up_draft", "No new notes were submitted."))
+        if result.get("agent_trace"):
+            with st.expander("Agent run details"):
+                st.table(result["agent_trace"])
+            if len(result["agent_trace"]) == 3:
+                st.success("All three agent steps completed. Review the drafts before recording your findings.")
+            report = build_report(result)
+            st.download_button("Download walkthrough record", json.dumps(report, indent=2),
+                               file_name="openai_walkthrough.json", mime="application/json", key="download_walkthrough")
+            if not public_demo and st.button("Save walkthrough record locally", key="save_walkthrough"):
+                try:
+                    saved_path = save_report(result)
+                    st.success(f"Saved run evidence to {saved_path}")
+                except OSError:
+                    st.error("The run record could not be saved locally. Use Download walkthrough record instead.")
+            st.caption("The record includes model drafts and agent status, not your API key. Saved results still need human review.")
 
 st.divider()
 st.caption(

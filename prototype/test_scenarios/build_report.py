@@ -17,6 +17,7 @@ cases = list(root.iter("testcase"))
 if not cases:
     raise SystemExit("No executed test cases in XML; no report was generated.")
 categories = {
+    "test_search_filters": ("Advanced registry filters and navigation", "Validate server-side filter encoding, date/option rejection, query state clearing, reset and three-workspace navigation using mocked services."),
     "test_harness": ("Agent evaluation harness and grader", "Run the fixed synthetic evaluation pack without network and ensure deliberately corrupted outputs fail the grader."),
     "test_public_deployment": ("Prepared public runtime protections", "Check visitor-key isolation and download-only reporting locally; no hosted deployment is performed."),
     "test_walkthrough": ("Guided walkthrough and run evidence", "Load fictional Mira Sen inputs without network calls and verify credential-free, explicitly saved run records."),

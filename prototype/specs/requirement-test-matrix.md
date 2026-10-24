@@ -35,3 +35,7 @@
 
 | Fixed agent evaluation pack, provenance and grader regression detection | 16 Offline/scripted cases plus intentional output/request corruption tests | `harness/evaluate.py`, `tests/test_harness.py`, `specs/agent-harness.md` | Implemented; see latest harness results |
 | Local QA executes consistently from repository or prototype folder | Absolute runner paths and root pytest pythonpath configuration | `harness/run_local_qa.py`, `../pytest.ini` | Implemented |
+
+| Source-specific advanced filters apply at the public API before result limits | Validate dates/enums, Boolean grouping and outgoing query parameters | `tests/test_search_filters.py` | Implemented; live acceptance recorded separately |
+| Filter/query edits invalidate old results and drafts without calls | AppTest checks both registries, reset controls and KOL switching | `tests/test_search_filters.py` | Implemented |
+| Three full-width workspaces retain explicit evidence selection | Navigation, source-selection and CRM tests plus desktop/mobile browser checks | `tests/test_search_filters.py`, `tests/test_app.py`, `tests/test_crm.py` | Implemented |

@@ -21,3 +21,7 @@ Status date: 24 October 2026. This distinguishes earlier observations, current a
 Earlier observations are documented in [evaluation-and-review.md](../specs/evaluation-and-review.md) and [wiki/log.md](../../wiki/log.md). The latest test report is generated from actual pytest XML, not from this narrative table.
 
 Desktop and narrow-screen browser previews of the refreshed interface were checked on 24 October 2026 without model calls. No horizontal document overflow was observed at 1680px and 430px viewport widths. These checks establish layout behavior, not live scientific performance.
+
+## Advanced filters and workspaces ? 24 October 2026
+
+Read-only filtered PubMed and ClinicalTrials.gov calls both returned one record in connectivity checks; exact criteria and IDs are in [live evidence](results/advanced_filters_live.json). Fresh-browser checks exercised both filtered searches, Offline abstention with unselected sources, all three workspaces, no visible exception and no horizontal page overflow at 1680px and 430px; see [browser evidence](results/advanced_filters_browser.json). These are software/connectivity observations, not scientific appraisal or a live OpenAI evaluation.

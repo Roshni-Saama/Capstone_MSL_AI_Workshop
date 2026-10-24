@@ -102,11 +102,11 @@ class ScientificSourceAgent:
         from search_summaries import summarize_results
         return summarize_results(records, kind, llm=llm)
 
-    def search_pubmed(self, query: str, retmax: int = 5) -> list[dict[str, str]]:
-        return search_pubmed(query, retmax=retmax)
+    def search_pubmed(self, query: str, retmax: int = 5, *, filters=None) -> list[dict[str, str]]:
+        return search_pubmed(query, retmax=retmax, **({"filters": filters} if filters is not None else {}))
 
-    def search_trials(self, query: str, page_size: int = 5) -> list[dict[str, Any]]:
-        return search_clinical_trials(query, page_size=page_size)
+    def search_trials(self, query: str, page_size: int = 5, *, filters=None) -> list[dict[str, Any]]:
+        return search_clinical_trials(query, page_size=page_size, **({"filters": filters} if filters is not None else {}))
 
     def trial_discussion_prompts(self, study: dict[str, Any]) -> list[str]:
         return discussion_prompts(study)

@@ -11,8 +11,8 @@ def apply_theme():
 def hero():
     st.markdown("""<section class="workbench-hero">
       <div class="hero-eyebrow">MEDICAL AFFAIRS / ENGAGEMENT WORKSPACE</div>
-      <h1>Every conversation.<br><span class="hero-accent">Better prepared.</span></h1>
-      <p>Bring KOL context, scientific evidence and thoughtful follow-up into one workspace.</p>
+      <h1>Medical Engagement <span class="hero-accent">Workbench</span></h1>
+      <p>Know the KOL. Find the evidence. Prepare a thoughtful follow-up.</p>
       <div class="hero-pills"><span>01 &nbsp; Understand the KOL</span><span>02 &nbsp; Review the evidence</span><span>03 &nbsp; Prepare &amp; follow up</span></div>
     </section>""", unsafe_allow_html=True)
 

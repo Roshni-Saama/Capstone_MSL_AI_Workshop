@@ -30,3 +30,7 @@ The automated catalog documents assertions actually exercised. Source inspection
 ## Dedicated agent harness
 
 The [agent harness](../harness/README.md) adds fixed-case evaluation, named assertions, network guards, grader regression checks, provenance hashes and a single local-QA command. Its [16-case report](../harness/results/agent_evaluation.md) is separate from the unit/UI test count; the two overlap in tested behavior. [Specification development](../specs/README.md) remains a separate folder.
+
+## Advanced search and browser evidence
+
+[Source-specific filter specification](../specs/advanced-search-and-navigation.md), [live API acceptance](results/advanced_filters_live.json), [browser checks](results/advanced_filters_browser.json), [desktop PubMed preview](results/advanced_filters_desktop.png), [desktop trial preview](results/trial_filters_desktop.png), [mobile preview](results/advanced_filters_mobile.png). Earlier UI screenshots are historical; these previews show the three-workspace layout.

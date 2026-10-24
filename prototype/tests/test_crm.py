@@ -102,8 +102,7 @@ def test_crm_tabs_metrics_and_tables_switch_to_the_selected_kol_only():
     for index, record in enumerate(load_records()):
         app.selectbox[0].select_index(index).run()
         assert not app.exception
-        assert [tab.label for tab in app.tabs] == [
-            "CRM profile", "Interaction timeline", "Follow-up tasks", "Medical requests"]
+        assert {"CRM profile", "Interaction timeline", "Follow-up tasks", "Medical requests"}.issubset({tab.label for tab in app.tabs})
         assert {metric.label: metric.value for metric in app.metric} == {
             "Interactions": "3", "Active tasks": "2", "Overdue tasks": "1"}
         assert set(app.dataframe[0].value["Task ID"]) == {task["task_id"] for task in record["tasks"]}

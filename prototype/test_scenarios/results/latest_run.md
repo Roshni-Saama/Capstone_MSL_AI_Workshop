@@ -2,12 +2,13 @@
 
 Report date: 2026-10-24 (Asia/Kolkata).
 
-Executed cases: **105**. Passed: **105**. Failed: **0**. Skipped: **0**.
+Executed cases: **121**. Passed: **121**. Failed: **0**. Skipped: **0**.
 
 Results are derived from [the pytest JUnit XML](automated_tests.xml); this report does not infer pass status from file presence or earlier runs.
 
 | Area | Executed cases |
 | --- | --- |
+| Advanced registry filters and navigation | 16 |
 | Agent contracts | 6 |
 | Agent evaluation harness and grader | 8 |
 | ClinicalTrials.gov parsing and prompts | 6 |

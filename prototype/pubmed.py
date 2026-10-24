@@ -11,6 +11,7 @@ import urllib.request
 import xml.etree.ElementTree as ET
 
 import truststore
+from search_filters import PubMedFilters, pubmed_parameters
 
 
 EUTILS_BASE = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils"
@@ -91,7 +92,7 @@ def _article_from_xml(article: ET.Element) -> dict[str, str]:
     }
 
 
-def search_pubmed(query: str, retmax: int = 5) -> list[dict[str, str]]:
+def search_pubmed(query: str, retmax: int = 5, *, filters: PubMedFilters | None = None) -> list[dict[str, str]]:
     """Search PubMed and fetch up to ten structured citations and abstracts."""
     search_term = query.strip()
     if not search_term:
@@ -102,7 +103,7 @@ def search_pubmed(query: str, retmax: int = 5) -> list[dict[str, str]]:
         raise ValueError("PubMed result count must be between 1 and 10.")
 
     search_params = urllib.parse.urlencode(
-        {"db": "pubmed", "term": search_term, "retmode": "json", "retmax": retmax}
+        {"db": "pubmed", **pubmed_parameters(search_term, filters), "retmode": "json", "retmax": retmax}
     )
     search_url = f"{EUTILS_BASE}/esearch.fcgi?{search_params}"
     try:
