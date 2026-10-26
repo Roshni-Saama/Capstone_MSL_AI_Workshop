@@ -2,6 +2,7 @@
 from html import escape
 from pathlib import Path
 import streamlit as st
+from presentation import display_id
 
 
 def apply_theme():
@@ -13,7 +14,7 @@ def hero():
       <div class="hero-eyebrow">MEDICAL AFFAIRS / ENGAGEMENT WORKSPACE</div>
       <h1>Medical Engagement <span class="hero-accent">Workbench</span></h1>
       <p>Know the KOL. Find the evidence. Prepare a thoughtful follow-up.</p>
-      <div class="hero-pills"><span>01 &nbsp; Understand the KOL</span><span>02 &nbsp; Review the evidence</span><span>03 &nbsp; Prepare &amp; follow up</span></div>
+      <div class="hero-pills"><span>01 &nbsp; KOL context</span><span>02 &nbsp; Guided evidence</span><span>03 &nbsp; MSL notes</span></div>
     </section>""", unsafe_allow_html=True)
 
 
@@ -52,8 +53,8 @@ def crm_profile_details(record):
             f'<div class="crm-field"><dt>{escape(label)}</dt><dd>{escape(str(value))}</dd></div>'
             for label, value in items) + '</dl>'
     assignment = fields([
-        ("CRM record", profile["crm_record_id"]), ("KOL ID", record["kol_id"]),
-        ("Organization ID", record["organization_id"]), ("Territory", profile["territory"]),
+        ("CRM record", display_id(profile["crm_record_id"])), ("KOL ID", display_id(record["kol_id"])),
+        ("Organization ID", display_id(record["organization_id"])), ("Territory", profile["territory"]),
         ("Location", f"{profile['city']}, {profile['country']}"), ("Assigned role", profile["assigned_msl_role"]),
     ])
     engagement = fields([

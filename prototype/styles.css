@@ -113,6 +113,9 @@ h3 { font-size:1.1rem!important; font-weight:650!important; }
 .crm-record-note { border-top:1px solid var(--line); padding-top:14px; margin-top:18px; }
 .crm-record-note>span { font-size:11px; color:var(--muted); }
 .crm-record-note p { font-size:13px!important; line-height:1.6; margin:5px 0 0; }
+.response-source-links { display:flex; flex-wrap:wrap; gap:8px 14px; margin-top:10px; }
+.response-source-links a { color:var(--primary); font-size:12px; font-weight:600; text-decoration:none; }
+.response-source-links a:hover { text-decoration:underline; }
 .evidence-result-header h3 { font-size:17px!important; line-height:1.5; padding:0; margin:12px 0 0; overflow-wrap:anywhere; }
 .source-label { color:var(--primary); background:#EFF6FF; }
 [data-testid="stVerticalBlockBorderWrapper"]>div { min-width:0; }

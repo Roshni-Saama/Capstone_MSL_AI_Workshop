@@ -34,7 +34,7 @@ def test_visible_labels_are_neutral_with_one_data_disclosure(monkeypatch):
     app, pubmed, trials = start_app(monkeypatch)
     assert app.selectbox(key="selected_kol").label == "Select a KOL"
     assert app.text_area(key="meeting_notes").label == "Meeting notes"
-    assert any("CRM data is synthetic" in info.value for info in app.info)
+    assert any("Illustrative engagement history" in info.value for info in app.info)
     labels = [element.label for elements in (app.selectbox, app.text_area, app.expander) for element in elements]
     assert not any("fictional" in label.lower() or "demo" in label.lower() for label in labels)
     pubmed.assert_not_called()

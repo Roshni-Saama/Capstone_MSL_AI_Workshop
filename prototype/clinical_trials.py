@@ -79,6 +79,9 @@ def _study_record(study: dict) -> dict[str, str | list[str]]:
 
     return {
         "nct_id": nct_id,
+        "lead_sponsor": protocol.get("sponsorCollaboratorsModule", {}).get("leadSponsor", {}).get("name", "Not reported"),
+        "collaborators": [x.get("name", "") for x in protocol.get("sponsorCollaboratorsModule", {}).get("collaborators", [])],
+        "has_results": bool(study.get("hasResults", False)),
         "title": identification.get("briefTitle", "Title unavailable"),
         "status": status.get("overallStatus", "Status unavailable"),
         "last_updated": last_updated,

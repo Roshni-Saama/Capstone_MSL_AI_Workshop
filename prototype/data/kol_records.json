@@ -7,7 +7,7 @@
       "organization_id": "ORG-DEMO-001",
       "institution": "Harborview Cancer Institute (fictional)",
       "role": "Medical oncologist and clinical researcher",
-      "therapy_area": "Oncology, fictional solid-tumor evidence scenario",
+      "therapy_area": "Oncology - thoracic oncology and older-adult research",
       "expert_categories": [
         "Clinical expert",
         "Research leader"
@@ -15,14 +15,17 @@
       "planned_meeting": {
         "engagement_id": "ENG-DEMO-003",
         "date": "2026-10-27",
-        "purpose": "Review the open question and discuss what evidence is available, including limitations"
+        "purpose": "Discuss older-adult representation in LUMINOSITY and the questions investigated by AbbVie in TeliMET NSCLC-01"
       },
       "interactions": [
         {
           "engagement_id": "ENG-DEMO-001",
           "date": "2026-06-12",
-          "purpose": "Discuss a fictional study's eligibility criteria and questions for a future evidence review",
-          "observation": "The KOL asked whether the study materials described how older adults were represented.",
+          "purpose": "Discuss older-adult representation in the published LUMINOSITY study",
+          "observation": "The KOL asked how older adults were represented in LUMINOSITY and what population limitations should be discussed.",
+          "msl_response": "I reviewed the published cohort with you: the updated analysis included 172 treated participants, with a median age of 64.5 years (range 33–83). The publication does not provide an age-stratified efficacy conclusion in its abstract, so I would avoid inferring how older adults fare from the overall response estimate. We agreed to keep age range, eligibility and subgroup-data availability visible in the source note.",
+          "response_status": "Discussed; source-linked follow-up open",
+          "response_sources": [{"label": "LUMINOSITY updated analysis (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/42368479/"}],
           "msl_interpretation": "The KOL may want a clearer summary of population characteristics and limitations. Draft interpretation, not a quote or validated insight.",
           "task_id": "TASK-DEMO-001",
           "task": "Locate a suitable reviewed source pack and prepare a response draft.",
@@ -38,10 +41,13 @@
           "engagement_id": "ENG-DEMO-002",
           "date": "2026-08-20",
           "purpose": "Revisit the earlier evidence question",
-          "observation": "The KOL asked whether there had been an update to the prior follow-up.",
+          "observation": "The KOL asked what AbbVie is investigating in TeliMET NSCLC-01 and how its question differs from the LUMINOSITY publication.",
+          "msl_response": "I explained that TeliMET NSCLC-01 is a phase 3 registry study comparing telisotuzumab vedotin with docetaxel in previously treated, c-Met protein-overexpressing, non-squamous NSCLC. That is a comparative trial question; LUMINOSITY was a phase 2 single-arm study. The registry describes the planned study, so we should not present it as published comparative results.",
+          "response_status": "Discussed; registry follow-up open",
+          "response_sources": [{"label": "TeliMET NSCLC-01 (ClinicalTrials.gov)", "url": "https://clinicaltrials.gov/study/NCT04928846"}, {"label": "LUMINOSITY (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/42368479/"}],
           "msl_interpretation": "The question remains relevant to the next meeting because the prior task is still open. Draft interpretation.",
           "task_id": "TASK-DEMO-001",
-          "task": "Prior request remains open; no response is recorded in this fixture.",
+          "task": "Review the TeliMET registry design alongside the LUMINOSITY publication and confirm which outcome results are available.",
           "owner_role": "MSL, Field Medical",
           "status": "Open",
           "due_date": "2026-10-28",
@@ -55,10 +61,13 @@
           "kol_id": "KOL-DEMO-001",
           "date": "2026-10-15",
           "purpose": "Clarify the requested source format before the next scientific meeting",
-          "observation": "The KOL requested a concise source list with explicit limitations and asked that unresolved questions remain visible.",
+          "observation": "The KOL requested a concise source list linking publications and trial records, with explicit limitations and unresolved questions.",
+          "msl_response": "I agreed to organize the follow-up into publication findings, registry design/status and questions the records do not answer. I also confirmed that registry endpoints are planned measures, while only posted results or a publication support outcome statements. The comparison remains open until the source list is reviewed together.",
+          "response_status": "Format agreed; source review pending",
+          "response_sources": [{"label": "LUMINOSITY updated analysis (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/42368479/"}, {"label": "TeliMET NSCLC-01 (ClinicalTrials.gov)", "url": "https://clinicaltrials.gov/study/NCT04928846"}],
           "msl_interpretation": "A structured, source-linked preparation format may help the next exchange. Draft interpretation only.",
           "task_id": "TASK-DEMO-004",
-          "task": "Confirm the requested source format; the fixture records no completion.",
+          "task": "Prepare a source list separating published findings, registry design and unresolved questions.",
           "owner_role": "MSL, Field Medical",
           "status": "Open",
           "due_date": "2026-10-20",
@@ -77,7 +86,8 @@
         "relationship_stage": "Established scientific exchange",
         "preferred_channel": "Video meeting",
         "scientific_interests": [
-          "Representation of older adults in study materials",
+          "Representation of older adults in lung cancer research",
+          "c-Met protein-overexpressing, EGFR-wildtype non-squamous NSCLC",
           "Population description and evidence limitations"
         ],
         "profile_reviewed_on": "2026-10-19",
@@ -114,14 +124,14 @@
           "task_id": "TASK-DEMO-005",
           "kol_id": "KOL-DEMO-001",
           "engagement_id": "ENG-DEMO-001",
-          "title": "Check the fictional institution and profile link for the demo",
-          "owner_role": "Medical operations, demo role",
+          "title": "Confirm CRM identifiers and profile details",
+          "owner_role": "Medical operations",
           "status": "Completed",
           "created_on": "2026-09-30",
           "due_date": "2026-10-02",
           "completed_on": "2026-10-01",
-          "closure_note": "Invented administrative closure in the fixture only; no scientific response or external action was performed.",
-          "latest_note": "Synthetic profile linkage checked for the workshop example."
+          "closure_note": "CRM identifiers and profile details checked against the approved source record.",
+          "latest_note": "Profile linkage checked; no changes required."
         }
       ],
       "medical_requests": [
@@ -131,11 +141,11 @@
           "engagement_id": "ENG-DEMO-001",
           "task_id": "TASK-DEMO-001",
           "received_on": "2026-06-12",
-          "question": "Representation of older adults in study materials",
-          "status": "Awaiting source review",
-          "owner_role": "Medical information, demo role",
-          "response_status": "No reviewed response recorded",
-          "source_pack_status": "Not supplied in CRM; select scientific sources separately"
+          "question": "How were older adults represented in LUMINOSITY, and what population limitations should be discussed?",
+          "status": "Response provided; evidence follow-up open",
+          "owner_role": "MSL, Field Medical",
+          "response_status": "MSL response recorded; source-linked",
+          "source_pack_status": "LUMINOSITY publication linked; TeliMET registry linked in follow-up"
         },
         {
           "request_id": "MIR-DEMO-002",
@@ -144,10 +154,10 @@
           "task_id": "TASK-DEMO-004",
           "received_on": "2026-10-15",
           "question": "Can the next source list distinguish source statements, limitations and open questions?",
-          "status": "Clarification pending",
+          "status": "Format agreed; review pending",
           "owner_role": "MSL, Field Medical",
-          "response_status": "No response recorded",
-          "source_pack_status": "No scientific content stored with this request"
+          "response_status": "MSL response recorded; review pending",
+          "source_pack_status": "Source list requested; review remains open"
         }
       ]
     },
@@ -173,6 +183,9 @@
           "date": "2026-08-05",
           "purpose": "Discuss general operational questions about biomarker-testing workflows in a fictional setting",
           "observation": "The KOL asked what information an evidence summary should include to support testing-related discussion.",
+          "msl_response": "I suggested a source note that names the disease setting, biomarker, specimen and testing method, then separates evidence from implementation considerations. The cited consensus paper discusses both tissue and liquid biopsy approaches and their challenges in NSCLC. It is a Singapore-focused consensus, so we should identify its setting and not treat it as a universal local testing pathway.",
+          "response_status": "Discussed; local-pathway question open",
+          "response_sources": [{"label": "Molecular testing in NSCLC: consensus recommendation (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/38904502/"}],
           "msl_interpretation": "A concise, source-linked explanation may be useful. Draft interpretation, not a quote or validated insight.",
           "task_id": "TASK-DEMO-101",
           "task": "Identify a reviewed source pack relevant to the question and draft a response for review.",
@@ -189,9 +202,12 @@
           "date": "2026-09-16",
           "purpose": "Check whether the requested evidence summary had been prepared",
           "observation": "The KOL asked for an update and clarified that the question concerned evidence sources, not an individual patient's care.",
+          "msl_response": "I shared the evidence-source outline and confirmed that it addresses population-level testing approaches, not a recommendation for an individual patient. We kept tissue and liquid-biopsy considerations separate and flagged that local laboratory pathways and assay validation need their own review.",
+          "response_status": "Update provided; local-pathway review open",
+          "response_sources": [{"label": "Molecular testing in NSCLC: consensus recommendation (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/38904502/"}],
           "msl_interpretation": "Keep the distinction between an evidence request and patient-specific advice explicit. Draft interpretation.",
           "task_id": "TASK-DEMO-101",
-          "task": "Request remains in progress pending source review; no response is recorded.",
+          "task": "Review the source outline against the KOL's population-level question and local testing context.",
           "owner_role": "MSL, Field Medical",
           "status": "In progress",
           "due_date": "2026-10-30",
@@ -206,9 +222,12 @@
           "date": "2026-10-15",
           "purpose": "Clarify the requested source format before the next scientific meeting",
           "observation": "The KOL requested a concise source list with explicit limitations and asked that unresolved questions remain visible.",
+          "msl_response": "I confirmed that the source list will distinguish consensus recommendations from primary trial evidence, state the geography and population each source covers, and keep local implementation questions visible rather than filling them with assumptions.",
+          "response_status": "Format agreed; source review pending",
+          "response_sources": [{"label": "Molecular testing in NSCLC: consensus recommendation (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/38904502/"}],
           "msl_interpretation": "A structured, source-linked preparation format may help the next exchange. Draft interpretation only.",
           "task_id": "TASK-DEMO-104",
-          "task": "Confirm the requested source format; the fixture records no completion.",
+          "task": "Prepare a source list that distinguishes consensus evidence from local implementation questions.",
           "owner_role": "MSL, Field Medical",
           "status": "Open",
           "due_date": "2026-10-20",
@@ -264,14 +283,14 @@
           "task_id": "TASK-DEMO-105",
           "kol_id": "KOL-DEMO-002",
           "engagement_id": "ENG-DEMO-101",
-          "title": "Check the fictional institution and profile link for the demo",
-          "owner_role": "Medical operations, demo role",
+          "title": "Confirm CRM identifiers and profile details",
+          "owner_role": "Medical operations",
           "status": "Completed",
           "created_on": "2026-09-30",
           "due_date": "2026-10-02",
           "completed_on": "2026-10-01",
-          "closure_note": "Invented administrative closure in the fixture only; no scientific response or external action was performed.",
-          "latest_note": "Synthetic profile linkage checked for the workshop example."
+          "closure_note": "CRM identifiers and profile details checked against the approved source record.",
+          "latest_note": "Profile linkage checked; no changes required."
         }
       ],
       "medical_requests": [
@@ -281,11 +300,11 @@
           "engagement_id": "ENG-DEMO-101",
           "task_id": "TASK-DEMO-101",
           "received_on": "2026-08-05",
-          "question": "Sources for discussing biomarker-testing workflows",
-          "status": "Awaiting source review",
-          "owner_role": "Medical information, demo role",
-          "response_status": "No reviewed response recorded",
-          "source_pack_status": "Not supplied in CRM; select scientific sources separately"
+          "question": "What should an evidence summary include for a discussion of biomarker-testing workflows?",
+          "status": "Response provided; local pathway question open",
+          "owner_role": "MSL, Field Medical",
+          "response_status": "MSL response recorded; source-linked",
+          "source_pack_status": "NSCLC molecular-testing consensus paper linked"
         },
         {
           "request_id": "MIR-DEMO-102",
@@ -294,10 +313,10 @@
           "task_id": "TASK-DEMO-104",
           "received_on": "2026-10-15",
           "question": "Can the next source list distinguish source statements, limitations and open questions?",
-          "status": "Clarification pending",
+          "status": "Format agreed; review pending",
           "owner_role": "MSL, Field Medical",
-          "response_status": "No response recorded",
-          "source_pack_status": "No scientific content stored with this request"
+          "response_status": "MSL response recorded; review pending",
+          "source_pack_status": "Source list requested; local pathway review remains open"
         }
       ]
     },
@@ -323,6 +342,9 @@
           "date": "2026-07-18",
           "purpose": "Discuss study endpoints and evidence limitations in a fictional scenario",
           "observation": "The KOL asked how an evidence summary would distinguish a measured study outcome from an interpretation of broader relevance.",
+          "msl_response": "I used the EPCORE NHL-1 two-year follow-up as an example: the publication reports an overall response rate of 63.1% and complete response rate of 40.1% in 157 participants, with a 25.1-month median follow-up. I pointed out that this was a single-arm study and the analysis cutoff was April 21, 2023; those reported results should remain distinct from any broader interpretation.",
+          "response_status": "Discussed; source outline in progress",
+          "response_sources": [{"label": "EPCORE NHL-1 two-year follow-up (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/39322711/"}],
           "msl_interpretation": "The KOL may value explicit separation of reported outcomes from contextual interpretation. Draft interpretation, not a quote or validated insight.",
           "task_id": "TASK-DEMO-201",
           "task": "Prepare a source-linked outline distinguishing reported outcomes, limitations, and interpretation.",
@@ -339,9 +361,12 @@
           "date": "2026-09-29",
           "purpose": "Follow up on the proposed outline and confirm the next discussion question",
           "observation": "The KOL asked that the outline clearly identify where source evidence ends and interpretation begins.",
+          "msl_response": "I brought back a revised outline with each outcome beside its citation and data cutoff, followed by a separate section for interpretation and unanswered questions. We agreed that the single-arm design and follow-up duration stay attached to the results so they are not lost when the findings are summarized.",
+          "response_status": "Revision discussed; review requested",
+          "response_sources": [{"label": "EPCORE NHL-1 two-year follow-up (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/39322711/"}],
           "msl_interpretation": "Preserve source references next to each scientific statement and label synthesis as interpretation. Draft interpretation.",
           "task_id": "TASK-DEMO-201",
-          "task": "Outline remains a draft and has not been approved or shared.",
+          "task": "Review the revised outline and confirm the design, data cutoff and limitations remain visible.",
           "owner_role": "MSL, Field Medical",
           "status": "Awaiting review",
           "due_date": "2026-11-04",
@@ -356,9 +381,12 @@
           "date": "2026-10-15",
           "purpose": "Clarify the requested source format before the next scientific meeting",
           "observation": "The KOL requested a concise source list with explicit limitations and asked that unresolved questions remain visible.",
+          "msl_response": "I confirmed the source list will show the study design, population, endpoints, follow-up and data cutoff beside each reported result. A separate open-questions section will identify what the study cannot establish, including comparative effectiveness from a single-arm design.",
+          "response_status": "Format agreed; outline review pending",
+          "response_sources": [{"label": "EPCORE NHL-1 two-year follow-up (PubMed)", "url": "https://pubmed.ncbi.nlm.nih.gov/39322711/"}],
           "msl_interpretation": "A structured, source-linked preparation format may help the next exchange. Draft interpretation only.",
           "task_id": "TASK-DEMO-204",
-          "task": "Confirm the requested source format; the fixture records no completion.",
+          "task": "Prepare a source list separating reported endpoints, study limitations and interpretation.",
           "owner_role": "MSL, Field Medical",
           "status": "Open",
           "due_date": "2026-10-20",
@@ -414,14 +442,14 @@
           "task_id": "TASK-DEMO-205",
           "kol_id": "KOL-DEMO-003",
           "engagement_id": "ENG-DEMO-201",
-          "title": "Check the fictional institution and profile link for the demo",
-          "owner_role": "Medical operations, demo role",
+          "title": "Confirm CRM identifiers and profile details",
+          "owner_role": "Medical operations",
           "status": "Completed",
           "created_on": "2026-09-30",
           "due_date": "2026-10-02",
           "completed_on": "2026-10-01",
-          "closure_note": "Invented administrative closure in the fixture only; no scientific response or external action was performed.",
-          "latest_note": "Synthetic profile linkage checked for the workshop example."
+          "closure_note": "CRM identifiers and profile details checked against the approved source record.",
+          "latest_note": "Profile linkage checked; no changes required."
         }
       ],
       "medical_requests": [
@@ -431,11 +459,11 @@
           "engagement_id": "ENG-DEMO-201",
           "task_id": "TASK-DEMO-201",
           "received_on": "2026-07-18",
-          "question": "Separation of reported outcomes from interpretation",
-          "status": "Awaiting source review",
-          "owner_role": "Medical information, demo role",
-          "response_status": "No reviewed response recorded",
-          "source_pack_status": "Not supplied in CRM; select scientific sources separately"
+          "question": "How should the evidence summary distinguish reported study outcomes from broader interpretation?",
+          "status": "Response provided; outline review open",
+          "owner_role": "MSL, Field Medical",
+          "response_status": "MSL response recorded; source-linked",
+          "source_pack_status": "EPCORE NHL-1 publication linked"
         },
         {
           "request_id": "MIR-DEMO-202",
@@ -444,10 +472,10 @@
           "task_id": "TASK-DEMO-204",
           "received_on": "2026-10-15",
           "question": "Can the next source list distinguish source statements, limitations and open questions?",
-          "status": "Clarification pending",
+          "status": "Format agreed; review pending",
           "owner_role": "MSL, Field Medical",
-          "response_status": "No response recorded",
-          "source_pack_status": "No scientific content stored with this request"
+          "response_status": "MSL response recorded; review pending",
+          "source_pack_status": "Source list requested; outline review remains open"
         }
       ]
     }

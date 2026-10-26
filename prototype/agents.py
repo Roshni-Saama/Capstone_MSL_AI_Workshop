@@ -31,7 +31,12 @@ def format_crm_context(record: Record) -> str:
                 [
                     f"- {item['date']} ({item['engagement_id']}): {item['purpose']}",
                     f"  KOL observation: {item['observation']}",
-                    f"  Draft MSL interpretation: {item['msl_interpretation']}",
+                    f"  MSL response: {item['msl_response']}",
+                    f"  Response status: {item['response_status']}",
+                    "  Sources discussed: " + "; ".join(
+                        f"{source['label']} ({source['url']})"
+                        for source in item.get("response_sources", [])
+                    ),
                     f"  Follow-up: {item['task']} Owner: {item['owner_role']}. "
                     f"Status: {item['status']}. Due: {item['due_date']}.",
                 ]
@@ -79,6 +84,10 @@ class KOLContextAgent:
                 return record
         raise KeyError(f"Unknown synthetic KOL ID: {kol_id}")
 
+    def plan_research(self, kol_id, question, llm=None):
+        from mira_research import plan_research
+        return plan_research(kol_id, question, llm)
+
     def retrieve(self, kol_id: str, llm: OpenAILLM | None = None) -> dict[str, Any]:
         record = self.get_record(kol_id)
         context = format_crm_context(record)
@@ -110,6 +119,13 @@ class ScientificSourceAgent:
     def search_trials(self, query: str, page_size: int = 5, *, filters=None) -> list[dict[str, Any]]:
         return search_clinical_trials(query, page_size=page_size, **({"filters": filters} if filters is not None else {}))
 
+    def search_research(self, plan, pubmed_queries, trial_query, *, pubmed_filters=None, trial_filters=None):
+        from mira_research import search_evidence
+        return search_evidence(
+            plan, pubmed_queries, trial_query, agent=self,
+            pubmed_filters=pubmed_filters, trial_filters=trial_filters,
+        )
+
     def trial_discussion_prompts(self, study: dict[str, Any]) -> list[str]:
         return discussion_prompts(study)
 
@@ -140,6 +156,9 @@ class ScientificSourceAgent:
                     f"Title: {study['title']}",
                     f"Record URL: {study['url']}",
                     f"Registry status: {study['status']}",
+                    f"Lead sponsor: {study.get('lead_sponsor', 'Not reported')}",
+                    f"Collaborators: {', '.join(study.get('collaborators', [])) or 'Not reported'}",
+                    f"Registry results posted: {study.get('has_results', False)} (absence does not establish absence of publications)",
                     f"Last posted update: {study['last_updated'] or 'Not listed'}",
                     f"Study type: {study['study_type']}; phase: {study['phase']}",
                     f"Conditions: {', '.join(study['conditions']) or 'Not listed'}",
@@ -206,6 +225,10 @@ class ScientificSourceAgent:
 
 class FollowUpAgent:
     """Preserves notes and drafts bounded offline or LLM follow-up content."""
+
+    def next_actions(self, result, question, links):
+        from mira_research import next_actions
+        return next_actions(result, question, links)
 
     def draft(self, notes: str, llm: OpenAILLM | None = None) -> str:
         meeting_notes = notes.strip()

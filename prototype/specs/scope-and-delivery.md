@@ -66,7 +66,7 @@ The application lives only in `Capstone_MSL_AI_Workshop/prototype`. Its `.venv` 
 
 ## Current next priority
 
-OpenAI integration and mocked tests are implemented. Configure a key in the app sidebar, verify a live three-agent run, then evaluate quote support and usefulness with the workshop evaluator. No business benefit or scientific accuracy is established by the automated checks.
+OpenAI integration and mocked tests are implemented. Configure a key in OpenAI settings on the main page, verify a live three-agent run, then evaluate quote support and usefulness with the workshop evaluator. No business benefit or scientific accuracy is established by the automated checks.
 
 ## Expanded synthetic CRM and scenario evidence
 

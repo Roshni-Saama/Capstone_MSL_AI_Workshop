@@ -15,3 +15,8 @@ def display_crm(value):
     value = value.replace("this fixture", "this record").replace("the fixture", "the record")
     value = value.replace("for the demo", "").replace("Invented administrative closure in the record only", "Administrative closure recorded")
     return value.strip()
+
+
+def display_id(value):
+    """Hide workshop-only markers in identifiers shown in the interface."""
+    return re.sub(r"-DEMO-", "-", str(value), flags=re.I)

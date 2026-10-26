@@ -208,3 +208,7 @@ User requested the cover credit Prepared by: Sayali Shedge, Asawari U, Roshni Sr
 ## 24 October 2026 - Navy & Azure selected and applied
 
 User selected palette A. Applied primary #2563EB, navy #102A43, text #172B4D, background #F4F7FC and soft #EFF6FF across app CSS, Streamlit themes, slide template and architecture diagram. Refreshed every embedded app screenshot and rebuilt the HTML/PDF. Team credits remain Sayali Shedge, Asawari U and Roshni Srivastava. QA: 126 tests, 16 harness scenarios, eight refreshed browser checks and 47 presentation checks passed. [Theme evidence](../prototype/test_scenarios/results/navy_azure_browser.json). Updated the ZIP; no hosting action performed.
+
+## 26 October 2026 - Conversational CRM and local workspace update
+
+Added an MSL response, response status and public source references to each of the nine illustrative interaction records. The KOL timeline and request register show both sides of each exchange, and the Mira research planner receives that response history as context. The prototype now has no left sidebar: drafting mode is on the main page, with API-key and model controls under OpenAI settings. The app remains local at http://localhost:8503; no public hosting was performed. Browser review confirmed the page loads and the sidebar is absent. The full test suite was not run for this update. See [local prototype status](workflows/local-prototype-update-2026-10-26.md).

@@ -18,7 +18,7 @@ From this folder:
 .\.venv\Scripts\python.exe -m streamlit run app.py
 ```
 
-Use the sidebar to select **OpenAI LLM**, enter an API key in the password field and choose a model. The default is `gpt-4.1-mini`; access depends on your API project. Alternatively configure `OPENAI_API_KEY` and optionally `OPENAI_MODEL` in the server environment, then restart Streamlit. `.env` files are not loaded automatically. Do not paste keys into chat, code, source text or meeting notes. No key is bundled with the project.
+Choose **OpenAI LLM** from the drafting mode control on the main page, then open **OpenAI settings** to enter an API key and choose a model. The default is `gpt-4.1-mini`; access depends on your API project. Alternatively configure `OPENAI_API_KEY` and optionally `OPENAI_MODEL` in the server environment, then restart Streamlit. `.env` files are not loaded automatically. Do not paste keys into chat, code, source text or meeting notes. No key is bundled with the project.
 
 The password field remains in the current Streamlit session memory; do not use a shared browser session for secrets. The application does not save credentials to disk or graph state. Secret files are excluded by `.gitignore`.
 
@@ -27,7 +27,7 @@ When you click **Prepare selected sources and notes** in OpenAI mode, the select
 ## Walkthrough
 
 1. Select a fictional KOL and inspect the CRM profile, interaction timeline, current tasks and medical-information requests. The fixed 23 October 2026 snapshot contains 3 profiles, 9 interactions, 9 tasks and 6 requests.
-2. Choose Offline or OpenAI LLM in the sidebar.
+2. Choose Offline or OpenAI LLM on the main page. Open **OpenAI settings** to enter a session-only key when needed.
 3. Search a registry, inspect and explicitly select records, or supply permitted source text.
 4. Enter fictional meeting notes and click Prepare.
 5. Review meeting priorities (LLM mode), scientific draft/abstention, original source appendix and note/follow-up draft. Source IDs and exact supporting quotes aid review.
@@ -96,7 +96,11 @@ Run `./prototype/.venv/Scripts/python.exe -B prototype/harness/run_local_qa.py` 
 
 ## Advanced search and cleaner navigation
 
-Use **KOL context**, **Evidence search** and **Drafts & follow-up** for the three full-width workspaces. Evidence search has separate PubMed and ClinicalTrials.gov tabs, each with expandable advanced filters. PubMed supports publication dates, article types/languages, availability, species, therapy keywords, affiliation location and journal. Trials support intervention name/type, study location, recruitment, phase, study type, age/sex eligibility and registry dates. Changing criteria clears old results and drafts; click Search to retrieve again. See [filter semantics and verification](specs/advanced-search-and-navigation.md). The verified fresh local preview for this update runs at http://localhost:8502.
+Use **KOL context**, **Guided research** and **MSL notes** for the three full-width workspaces. Guided research combines both public sources; PubMed and ClinicalTrials.gov filters are grouped in expandable panels within it. PubMed supports publication dates, article types/languages, availability, species, therapy keywords, affiliation location and journal. Trials support intervention name/type, study location, recruitment, phase, study type, age/sex eligibility and registry dates. Changing criteria clears old results and preparation; click Search to retrieve again. See [filter semantics and verification](specs/advanced-search-and-navigation.md).
+
+## Mira's context-led dual-source workflow
+
+In **Scientific evidence**, select Dr Mira Sen to review her synthetic interaction history, build an OpenAI-assisted research plan from the prior question, review/edit constrained PubMed and ClinicalTrials.gov queries and filters, search both sources, select records, and prepare a source-linked discussion and follow-up. Enter optional MSL notes in **03 MSL notes**. Choose a next-step summary, editable email draft or tentative downloadable meeting proposal inside Guided research. This uses the same three bounded agents; no messages are sent and no calendar availability is checked. See [Mira's workflow specification](specs/mira-research-workflow.md) and [walkthrough](docs/live-walkthrough.md).
 
 ## Interface wording
 

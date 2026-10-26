@@ -20,6 +20,7 @@ Status: editable starter templates. Created 13 October 2026.
 - [HTML presentation, PDF and shareable walkthrough](../prototype/presentation/README.md)
 - [Workshop presentation and walkthrough](../prototype/docs/workshop-walkthrough.md)
 - [Live OpenAI walkthrough - Dr Mira Sen](../prototype/docs/live-walkthrough.md)
+- [Local prototype update: conversational CRM and sidebar removal](workflows/local-prototype-update-2026-10-26.md)
 - [Specification development directory](../prototype/specs/README.md)
 - [Local QA and agent evaluation harness](../prototype/harness/README.md)
 - [Public deployment setup and verification](../prototype/docs/deployment.md)

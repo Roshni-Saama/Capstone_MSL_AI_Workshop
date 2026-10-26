@@ -79,7 +79,7 @@ class OpenAILLM:
         self._api_key = (api_key or server_key).strip()
         self.model = (model or os.environ.get("OPENAI_MODEL", DEFAULT_MODEL)).strip()
         if not self._api_key:
-            raise LLMError("Add an OpenAI API key in the sidebar or set OPENAI_API_KEY.")
+            raise LLMError("Add an OpenAI API key under OpenAI settings or set OPENAI_API_KEY.")
         if not re.fullmatch(r"[A-Za-z0-9_-]+", self._api_key):
             raise LLMError("API key contains invalid characters. Re-enter the key without spaces.")
         if not re.fullmatch(r"[A-Za-z0-9_.:-]{1,100}", self.model):

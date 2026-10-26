@@ -35,13 +35,13 @@ Options within an article-type, language, status or phase category use OR; categ
 
 ## State and failure behavior
 
-Searches remain explicit. Editing controls makes no registry or model call. A changed query or filter clears that source's results, selected IDs, summaries, applied criteria and previous draft. A new explicit search also clears the old draft. Reset controls restore that source's defaults. Changing KOL resets all filter controls and both sources' search state. Tab navigation retains notes and selected sources. The Drafts tab shows selected record counts.
+Searches remain explicit. Editing controls makes no registry or model call. A changed query or filter clears that source's results, selected IDs, summaries, applied criteria and previous preparation. Reset controls restore that source's defaults. Changing KOL resets all filter controls and search state. MSL notes are held in a separate session-only workspace.
 
 Date pickers allow 1900?2100, including historical literature and future planned study dates. Validate dates, options and literal filter fields before requests. Reversed dates or unsupported values produce a visible error. Literal fields reject quotes, brackets, backslashes and line breaks that could alter the generated expression. The main query retains the existing source-specific length limit and supports the source's ordinary query syntax. API failures retain visible errors and no fabricated records.
 
 ## Navigation
 
-Three full-width workspaces replace the uneven CRM/evidence columns: 01 KOL context; 02 Evidence search; 03 Drafts & follow-up. Evidence has PubMed and ClinicalTrials.gov tabs. These are Streamlit tabs rather than separate URL pages; keeping the widgets mounted preserves existing session-only keys, selections and notes without extra model calls. The header is smaller and filters are grouped in expandable three-column panels that stack on narrow screens.
+Three full-width workspaces are available: 01 KOL context; 02 Guided research; 03 MSL notes. Guided research combines PubMed and ClinicalTrials.gov without separate source or drafting tabs. Source-specific filters remain in expandable panels within the flow, and publications and trial records appear side by side for review. The header is smaller and filters are grouped in expandable three-column panels that stack on narrow screens.
 
 ## Verification
 
